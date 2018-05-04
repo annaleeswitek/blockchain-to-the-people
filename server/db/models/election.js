@@ -9,7 +9,7 @@ const Election = db.define('election', {
       notEmpty: true
     }
   },
-  stateDate: {
+  startDate: {
     type: Sequelize.DATE
   },
   endDate: {
