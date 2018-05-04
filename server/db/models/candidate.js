@@ -8,12 +8,15 @@ const Candidate = db.define('candidate', {
     validate: {
       notEmpty: true
     }
-  },
+  }, //images maybe
   affiliation: {
     type: Sequelize.STRING
   },
   voteCount: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
   }
 });
 
