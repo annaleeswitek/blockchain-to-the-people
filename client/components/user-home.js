@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import { fetchActiveElections, fetchUpcomingElections } from '../store/user-home';
 
 /**
  * COMPONENT
@@ -31,14 +32,27 @@ export const UserHome = (props) => {
 const mapState = (state) => {
   return {
     user: state.user,
+    activeElections: state.activeElections,
+    upcomingElections: state.upcomingElections
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = (dispatch) => {
+  return {
+    getActiveElections: () => {
+      dispatch(fetchActiveElections());
+    },
+    getUpcomingElections: () => {
+      dispatch(fetchUpcomingElections());
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+
 }
