@@ -1,5 +1,7 @@
+const Sequelize = require('sequelize')
 const router = require('express').Router()
-const {Community, Election} = require('../db/models')
+const {Community, Election, Candidate} = require('../db/models')
+const Op = Sequelize.Op;
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -14,4 +16,21 @@ router.get('/:id', (req, res, next) => {
   })
     .then(community => res.json(community))
     .catch(next)
+})
+
+router.get('/:id/activeElection', (req, res, next) => {
+  Election.findOne({
+    where: {
+      communityId: req.params.id,
+      startDate: {
+        [Op.lte]: Date.now()
+      },
+      endDate: {
+        [Op.gte]: Date.now()
+      }
+    },
+    include: [{model: Candidate}]
+  })
+  .then(theActiveElection => res.json(theActiveElection))
+  .catch(next);
 })
