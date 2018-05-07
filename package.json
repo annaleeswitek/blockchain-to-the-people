@@ -16,7 +16,7 @@
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
+    "test": "mocha"
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
@@ -28,6 +28,8 @@
     "connect-session-sequelize": "^4.1.0",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
+    "fs-extra": "^6.0.0",
+    "ganache-cli": "^6.1.0",
     "history": "^4.6.3",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
@@ -43,7 +45,10 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.3.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "solc": "^0.4.23",
+    "truffle-hdwallet-provider": "0.0.5",
+    "web3": "^1.0.0-beta.26"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",
@@ -53,12 +58,12 @@
     "@babel/preset-stage-2": "^7.0.0-beta.40",
     "@babel/register": "^7.0.0-beta.40",
     "axios-mock-adapter": "^1.9.0",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.0-beta.2",
     "chai": "^3.5.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
-    "eslint": "^4.10.0",
+    "eslint": "^3.19.0",
     "eslint-config-fullstack": "^3.0.0",
     "eslint-plugin-react": "^7.4.0",
     "mocha": "^3.3.0",
