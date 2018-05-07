@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { fetchActiveElections, fetchUpcomingElections } from '../store/user-home';
-import factory from '../../ethereum/factory';
+import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
+// import factory from '../../ethereum/factory';
 
 /**
  * COMPONENT
  */
 class UserHome extends Component {
   async componentDidMount() {
-    const campaigns = await factory.methods.getDeployedElections().call();
     this.props.getActiveElections();
     this.props.getUpcomingElections();
-
-    console.log(campaigns);
+    this.props.getBlockchainElections();
+    // const campaigns = await factory.methods.getDeployedElections().call();
+    // console.log(campaigns);
   }
   render() {
-    console.log('PROPS', this.props)
+    console.log('state', this.props.state.blockchainElections)
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
 
     let upcoming = this.props.upcomingElections.filter(election => election.communityId === this.props.user.communityId)
@@ -55,6 +55,7 @@ class UserHome extends Component {
           })
         : <div>There's no upcoming elections in your community!</div>
       }
+      <div>{this.props.state.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
     </div>
   )
 
@@ -67,6 +68,7 @@ class UserHome extends Component {
  */
 const mapState = (state) => {
   return {
+    state: state,
     user: state.user,
     activeElections: state.activeElections,
     upcomingElections: state.upcomingElections
@@ -75,6 +77,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    getBlockchainElections: () => {
+      dispatch(fetchBlockchainElections());
+    },
     getActiveElections: () => {
       dispatch(fetchActiveElections());
     },
