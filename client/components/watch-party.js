@@ -11,8 +11,8 @@ class WatchParty extends Component {
 
   componentDidMount () {
     this.props.fetchActiveElections();
-    this.props.fetchCandidatesActiveElection(this.props.user.communityId);
-    console.log('this.props.user.communityId', this.props.user.communityId)
+    // this.props.fetchCandidatesActiveElection(this.props.user.communityId);
+    // console.log('this.props.user.communityId', this.props.user.communityId)
 
   }
 
@@ -64,10 +64,10 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     fetchActiveElections: () => {
       dispatch(fetchActiveElections());
-    },
-    fetchCandidatesActiveElection: (id) => {
-      dispatch(fetchCandidatesActiveElection(id));
     }
+    // fetchCandidatesActiveElection: (id) => {
+    //   dispatch(fetchCandidatesActiveElection(id));
+    // }
   }
 }
 
