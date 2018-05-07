@@ -2,14 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElections, fetchUpcomingElections } from '../store/user-home';
+import factory from '../../ethereum/factory';
 
 /**
  * COMPONENT
  */
 class UserHome extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    const campaigns = await factory.methods.getDeployedElections().call();
     this.props.getActiveElections();
     this.props.getUpcomingElections();
+
+    console.log(campaigns);
   }
   render() {
     console.log('PROPS', this.props)
@@ -55,7 +59,7 @@ class UserHome extends Component {
   )
 
   }
-  
+
 }
 
 /**
