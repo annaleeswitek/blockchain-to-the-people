@@ -1,10 +1,16 @@
-import axios from 'axios'
+import axios from 'axios';
+import factory from '../../ethereum/factory';
 
 //action types
+const GET_BLOCKCHAIN_ELECTIONS = 'GET_BLOCKCHAIN_ELECTIONS';
 const GET_ACTIVE_ELECTIONS = 'GET_ACTIVE_ELECTIONS'
 const GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS'
 
-//acion creators
+//action creators
+const getBlockchainElections = (elections) => {
+  return {type: GET_BLOCKCHAIN_ELECTIONS, elections}
+}
+
 const getActiveElections = (activeElections) => {
   return {type: GET_ACTIVE_ELECTIONS, activeElections}
 }
@@ -13,6 +19,14 @@ const getUpcomingElections = (upcomingElections) => {
 }
 
 //thunks
+export const fetchBlockchainElections = () => {
+  return dispatch => {
+    factory.methods.getDeployedElections().call()
+    .then(elections => dispatch(getBlockchainElections(elections)))
+    .catch(console.error);
+  }
+}
+
 export const fetchActiveElections = () => {
   return dispatch => {
     axios.get('/api/elections/active')
@@ -50,6 +64,15 @@ export function upcomingElectionReducer(upcomingElections = [], action) {
       return action.upcomingElections
     default:
       return upcomingElections
+  }
+}
+
+export function blockchainElectionReducer(blockainElection = [], action) {
+  switch(action.type) {
+    case GET_BLOCKCHAIN_ELECTIONS:
+      return action.elections
+    default:
+      return blockainElection
   }
 }
 
