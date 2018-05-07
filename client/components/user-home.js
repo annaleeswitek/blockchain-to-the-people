@@ -13,7 +13,7 @@ class UserHome extends Component {
     this.props.getActiveElections();
     this.props.getUpcomingElections();
 
-    console.log(campaigns)
+    console.log(campaigns);
   }
   render() {
     console.log('PROPS', this.props)
