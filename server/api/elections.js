@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/active', (req, res, next) => {
-  Election.findOne({
+  Election.findAll({
     where: {
       startDate: {
         [Op.lte]: Date.now()
@@ -27,7 +27,7 @@ router.get('/active', (req, res, next) => {
 })
 
 router.get('/upcoming', (req, res, next) => {
-  Election.findOne({
+  Election.findAll({
     where: {
       startDate: {
         [Op.gte]: Date.now()
