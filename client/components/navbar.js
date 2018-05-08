@@ -16,7 +16,7 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => (
           <Link to="/watch">Watch Party</Link>
           <Link to="/history">History</Link>
           {
-            user.isAdmin ? <Link to="/admin-home">Create Election</Link> : console.log(user.isAdmin)
+            user.isAdmin ? <Link to="/admin-home">Create Election</Link> : null
           }
           <a href="#" onClick={handleClick}>
             Logout

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
 // import factory from '../../ethereum/factory';
+import Election from '../../ethereum/election';
 
 /**
  * COMPONENT
@@ -12,8 +13,10 @@ class UserHome extends Component {
     this.props.getActiveElections();
     this.props.getUpcomingElections();
     this.props.getBlockchainElections();
-    // const campaigns = await factory.methods.getDeployedElections().call();
-    // console.log(campaigns);
+    const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+    const count = await election.methods.candidates(3).call();
+    console.log(count);
+
   }
   render() {
     console.log('state', this.props.state.blockchainElections)
@@ -34,7 +37,7 @@ class UserHome extends Component {
                 <h5>{election.name}</h5>
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
-                <button onClick={() => this.props.history.push('/voting-booth')}>Vote Now!</button>
+                <button>Vote Now!</button>
               </div>
             )
           })
@@ -94,6 +97,6 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-// UserHome.propTypes = {
+UserHome.propTypes = {
 
-// }
+}
