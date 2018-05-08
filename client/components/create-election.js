@@ -3,7 +3,7 @@ import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 
-export default class AdminHome extends Component {
+export default class CreateElection extends Component {
   constructor(){
     super();
     this.state = {
