@@ -27,11 +27,8 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/watch" component={WatchParty} />
-<<<<<<< HEAD
               <Route path="/admin-home" component={AdminHome} />
-=======
               <Route path="/voting-booth" component={VotingBooth} />
->>>>>>> master
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
