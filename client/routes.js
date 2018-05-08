@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, WatchParty, AdminHome} from './components'
+import {Login, Signup, UserHome, WatchParty, VotingBooth, AdminHome} from './components'
 import {me} from './store'
 
 /**
@@ -27,7 +27,11 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/watch" component={WatchParty} />
+<<<<<<< HEAD
               <Route path="/admin-home" component={AdminHome} />
+=======
+              <Route path="/voting-booth" component={VotingBooth} />
+>>>>>>> master
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

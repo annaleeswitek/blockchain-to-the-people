@@ -20,7 +20,8 @@ router.get('/active', (req, res, next) => {
       endDate: {
         [Op.gte]: Date.now()
       }
-    }
+    },
+    include: [{model: Candidate}]
   })
     .then(election => res.json(election))
     .catch(next)
@@ -32,7 +33,8 @@ router.get('/upcoming', (req, res, next) => {
       startDate: {
         [Op.gte]: Date.now()
       }
-    }
+    },
+    include: [{model: Candidate}]
   })
     .then(election => res.json(election))
     .catch(next)

@@ -8,7 +8,11 @@ const Candidate = db.define('candidate', {
     validate: {
       notEmpty: true
     }
-  }, //images maybe
+  },
+  imageURL: {
+    type: Sequelize.STRING,
+    defaultValue: 'server/images/default-picture.png'
+  },
   affiliation: {
     type: Sequelize.STRING
   },
