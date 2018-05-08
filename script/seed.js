@@ -33,7 +33,8 @@ async function seed () {
     {
       name: 'Ms. Admin',
       email: 'admin@admin.com',
-      password: 'admin'
+      password: 'admin',
+      isAdmin: true
     }
   ];
 

@@ -68,7 +68,7 @@ export function upcomingElectionReducer(upcomingElections = [], action) {
 }
 
 export function blockchainElectionReducer(blockainElection = [], action) {
-  switch(action.type) {
+  switch (action.type) {
     case GET_BLOCKCHAIN_ELECTIONS:
       return action.elections
     default:
