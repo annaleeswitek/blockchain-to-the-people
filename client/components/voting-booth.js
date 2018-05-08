@@ -8,18 +8,33 @@ class VotingBooth extends Component {
     super(props)
 
     this.state = {
-      candidate: ''
+      candidateName: '',
+      message: ''
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     this.props.getActiveElections();
   }
 
+  handleChange(evt) {
+    this.setState({[evt.target.name]: evt.target.value})
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    this.setState({
+      message: `You submitted your vote for ${this.state.candidateName}`
+    })
+  }
+
   render() {
     console.log('Props!', this.props)
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)[0]
     console.log('ELECTION', active)
+    console.log('STATE', this.state)
 
     return (
       <div>
@@ -30,19 +45,21 @@ class VotingBooth extends Component {
             <h1>{active.name}</h1>
             <h4>Voting period ends by {active.endDate}</h4>
             <h5>Cast your vote HERE!</h5>
-            <form>
+            <form onSubmit={this.handleSubmit}>
             {
               active.candidates.map(candidate => {
                 return (
-                  <label key={candidate.id}>
-                  <img src={candidate.imageURL} />
-                  <h3>{candidate.name}</h3>
-                  <h4>{candidate.affiliation}</h4>
-                  <input type="checkbox" value={this.state.candidate} />
-                  </label>
+                  <div key={candidate.id}>
+                    <img src={candidate.imageURL} />
+                    <h3>{candidate.name}</h3>
+                    <h4>{candidate.affiliation}</h4>
+                    <input type="checkbox" onChange={this.handleChange} name ="candidateName" value={candidate.name} />
+                  </div>
                 )
               })
             }
+            <button type="submit">Submit Vote</button>
+            <div>{this.state.message}</div>
             </form>
           </div>
           : <div>There's no election active at this time!</div>

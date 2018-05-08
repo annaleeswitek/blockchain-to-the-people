@@ -11,7 +11,7 @@ const Candidate = db.define('candidate', {
   },
   imageURL: {
     type: Sequelize.STRING,
-    defaultValue: 'server/images/default-picture.png'
+    defaultValue: 'http://www.myiconfinder.com/uploads/iconsets/ac7256a56da1fa7c09a699ddec407e7e-human.png'
   },
   affiliation: {
     type: Sequelize.STRING
