@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
 // import factory from '../../ethereum/factory';
+import Election from '../../ethereum/election';
 
 /**
  * COMPONENT
@@ -12,8 +13,8 @@ class UserHome extends Component {
     this.props.getActiveElections();
     this.props.getUpcomingElections();
     this.props.getBlockchainElections();
-    // const campaigns = await factory.methods.getDeployedElections().call();
-    // console.log(campaigns);
+    // const election = Election('0x6628bb1738c58a33362003c737d66beb78d9591c');
+    // const summary = await election.methods.admin().call();
   }
   render() {
     console.log('state', this.props.state.blockchainElections)
