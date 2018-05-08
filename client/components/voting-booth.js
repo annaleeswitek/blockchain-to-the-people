@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchActiveElections } from '../store/user-home';
-
+import web3 from '../../ethereum/web3';
+import Election from '../../ethereum/election';
 
 class VotingBooth extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class VotingBooth extends Component {
 
     this.state = {
       candidateName: '',
-      message: ''
+      message: '',
+      arrayIndex: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -23,18 +25,27 @@ class VotingBooth extends Component {
     this.setState({[evt.target.name]: evt.target.value})
   }
 
-  handleSubmit(evt) {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
-    this.setState({
-      message: `You submitted your vote for ${this.state.candidateName}`
+    let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)[0]
+    console.log('active!', active.blockchainAddress)
+
+    const election = await Election(active.blockchainAddress)
+
+    web3.eth.getAccounts()
+    .then(accounts => {
+      election.methods.submitVote(5463, this.state.arrayIndex).send({
+        from: accounts[0]
+      })
     })
+    .catch(console.error)
   }
 
   render() {
-    console.log('Props!', this.props)
+    // console.log('Props!', this.props)
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)[0]
     console.log('ELECTION', active)
-    console.log('STATE', this.state)
+    // console.log('STATE', this.state)
 
     return (
       <div>
@@ -53,7 +64,7 @@ class VotingBooth extends Component {
                     <img src={candidate.imageURL} />
                     <h3>{candidate.name}</h3>
                     <h4>{candidate.affiliation}</h4>
-                    <input type="checkbox" onChange={this.handleChange} name ="candidateName" value={candidate.name} />
+                    <input type="checkbox" onChange={this.handleChange} name ="arrayIndex" value={candidate.arrayIndex}/>
                   </div>
                 )
               })
