@@ -13,6 +13,7 @@ class UserHome extends Component {
     this.props.getBlockchainElections();
   }
   render() {
+    console.log(this.props.state.blockchainElections)
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
     let upcoming = this.props.upcomingElections.filter(election => election.communityId === this.props.user.communityId)
 
