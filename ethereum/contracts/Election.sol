@@ -12,7 +12,7 @@ contract ElectionFactory {
     return deployedElections;
   }
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 contract Election {
   struct Candidate {
     string name;
@@ -54,6 +54,7 @@ contract Election {
   function submitVote(uint voterCode, uint candidateIndex) public {
     require(voterCode == _code); //they have the code that allows them to vote
     require(!voters[msg.sender].voted); //they haven't voted yet
+    //change voted to true;
     voters[msg.sender].vote = candidateIndex;
     candidates[candidateIndex].count++;
   }
