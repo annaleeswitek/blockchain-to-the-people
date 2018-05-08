@@ -13,9 +13,9 @@ class UserHome extends Component {
     this.props.getActiveElections();
     this.props.getUpcomingElections();
     this.props.getBlockchainElections();
-    // const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
-    // const count = await election.methods.candidates(3).call();
-    // console.log(count);
+    const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+    const count = await election.methods.candidates(3).call();
+    console.log(count);
 
   }
   render() {
