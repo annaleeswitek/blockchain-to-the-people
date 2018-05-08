@@ -28,10 +28,12 @@ export const fetchBlockchainElections = () => {
 }
 
 export const fetchActiveElections = () => {
+  console.log('Yeah! fetchActiveElections is running')
   return dispatch => {
     axios.get('/api/elections/active')
     .then(res => res.data)
     .then(activeElections => {
+      console.log('Yeah! Coming back from the db')
       dispatch(getActiveElections(activeElections))
     })
     .catch(console.error)
