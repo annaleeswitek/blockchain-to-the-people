@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
+import web3 from '../../ethereum/web3';
+import factory from '../../ethereum/factory';
 
 export default class AdminHome extends Component {
   constructor(){
@@ -9,9 +11,11 @@ export default class AdminHome extends Component {
       startDate: null,
       endDate: null,
       startTime: null,
-      endTime: null
+      endTime: null,
+      code: ''
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleStartDate = this.handleStartDate.bind(this);
     this.handleEndDate = this.handleEndDate.bind(this);
@@ -21,6 +25,11 @@ export default class AdminHome extends Component {
 
   handleChange (event) {
     this.setState({ name: event.target.value })
+  }
+
+
+  handleCodeChange(event) {
+      this.setState({ code: event.target.value })
   }
 
   handleStartDate (event, date) {
@@ -51,9 +60,18 @@ export default class AdminHome extends Component {
     console.log(this.state)
   }
 
-  handleSubmit (event) {
+  handleSubmit = async (event) => {
     event.preventDefault();
-  }
+    console.log('Submitted')
+    web3.eth.getAccounts()
+      .then(accounts => {
+        factory.methods
+        .createElection(this.state.code)
+        .send({
+          from: accounts[0]
+        })
+      });
+  };
 
   render () {
     return (
@@ -69,8 +87,13 @@ export default class AdminHome extends Component {
             <DatePicker hintText="end date" value={this.state.endDate}  onChange={this.handleEndDate} />
             <TimePicker hintText="start time" value={this.state.startTime}  onChange={this.handleStartTime} />
             <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
+            <TextField
+              floatingLabelText="code"
+              value={this.state.code}
+              onChange={this.handleCodeChange}
+            />
+          <RaisedButton type="submit">Submit</RaisedButton>
           </form>
-          <RaisedButton>Submit</RaisedButton>
       </div>
   )
   }
