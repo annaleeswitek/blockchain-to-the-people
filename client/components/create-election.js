@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
+import { fetchActiveElections } from '../store/user-home';
 
-export default class CreateElection extends Component {
+// const electionEvent = factory.ElectionLog();
+// electionEvent.watch((error, result) => console.log(error, result));
+
+class CreateElection extends Component {
   constructor(){
     super();
     this.state = {
@@ -16,7 +21,7 @@ export default class CreateElection extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleStartDate = this.handleStartDate.bind(this);
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleStartTime = this.handleStartTime.bind(this);
@@ -24,6 +29,7 @@ export default class CreateElection extends Component {
   }
 
   handleChange (event) {
+    // this.setState({ [event.target.name]: event.target.value })
     this.setState({ name: event.target.value })
   }
 
@@ -60,17 +66,22 @@ export default class CreateElection extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log('Submitted')
     web3.eth.getAccounts()
       .then(accounts => {
-        factory.methods
+        return factory.methods
         .createElection(this.state.code)
         .send({
           from: accounts[0]
         })
-      });
+      })
+      .then(stuff => {
+        console.log(stuff)
+        this.props.getActiveElections();
+      })
+      .catch(console.error)
   };
 
   render () {
@@ -83,7 +94,7 @@ export default class CreateElection extends Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
+            <DatePicker name="start date" hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
             <DatePicker hintText="end date" value={this.state.endDate}  onChange={this.handleEndDate} />
             <TimePicker hintText="start time" value={this.state.startTime}  onChange={this.handleStartTime} />
             <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
@@ -98,3 +109,21 @@ export default class CreateElection extends Component {
   )
   }
 }
+const mapState = (state) => {
+  return {
+    state: state,
+    user: state.user,
+    activeElections: state.activeElections,
+    upcomingElections: state.upcomingElections
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    getActiveElections: () => {
+      dispatch(fetchActiveElections());
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(CreateElection);
