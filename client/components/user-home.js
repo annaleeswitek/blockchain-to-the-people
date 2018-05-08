@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
 // import factory from '../../ethereum/factory';
@@ -34,7 +34,7 @@ class UserHome extends Component {
                 <h5>{election.name}</h5>
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
-                <button>Vote Now!</button>
+                <button onClick={() => this.props.history.push('/voting-booth')}>Vote Now!</button>
               </div>
             )
           })
@@ -94,6 +94,6 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+// UserHome.propTypes = {
 
-}
+// }
