@@ -45,7 +45,8 @@ class WatchParty extends Component {
             <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
           </PieChart>
         <hr />
-        <div>{this.props.candidates[0] && `${this.props.candidates[0].name}`}</div>
+        <div>{this.props.candidates[0] && `${this.props.candidates[0].name} ${this.props.candidates[0].count}`}</div>
+        <div>{this.props.candidates[1] && `${this.props.candidates[1].name} ${this.props.candidates[1].count}`}</div>
       </div>
     )
   }
