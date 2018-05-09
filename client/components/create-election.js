@@ -92,6 +92,7 @@ export default class CreateElection extends Component {
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
+            <br />
           <RaisedButton type="submit">Submit</RaisedButton>
           </form>
       </div>

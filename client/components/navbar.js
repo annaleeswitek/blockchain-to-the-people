@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {AppBar, Drawer} from 'material-ui'
+import FlatButton from 'material-ui/FlatButton';
 
 const Navbar = ({ handleClick, isLoggedIn, user }) => (
   <div>
     <h1>Blockchain to the People</h1>
-    <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/voting-booth">Voting Booth</Link>
-          <Link to="/watch">Watch Party</Link>
-          <Link to="/history">History</Link>
+          <FlatButton><Link to="/home">Home</Link></FlatButton>
+          <FlatButton><Link to="/voting-booth">Voting Booth</Link></FlatButton>
+          <FlatButton><Link to="/watch">Watch Party</Link></FlatButton>
+          <FlatButton><Link to="/history">History</Link></FlatButton>
           {
             user.isAdmin ? <Link to="/create-election">Create Election</Link> : null
           }
@@ -25,13 +26,10 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <FlatButton><Link to="/login">Login</Link></FlatButton>
+          <FlatButton><Link to="/signup">Sign Up</Link></FlatButton>
         </div>
       )}
-
-    </nav>
-    <hr />
   </div>
 )
 
