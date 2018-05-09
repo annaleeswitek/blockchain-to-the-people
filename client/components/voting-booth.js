@@ -35,7 +35,8 @@ class VotingBooth extends Component {
     web3.eth.getAccounts()
     .then(accounts => {
       election.methods.submitVote(5463, this.state.arrayIndex).send({
-        from: accounts[0]
+        from: accounts[0],
+        //equivalent to udemy would be --> value: this.state.arrayIndex
       })
     })
     .catch(console.error)

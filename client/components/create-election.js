@@ -66,7 +66,7 @@ class CreateElection extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     console.log('Submitted')
     web3.eth.getAccounts()
@@ -76,10 +76,7 @@ class CreateElection extends Component {
         .send({
           from: accounts[0]
         })
-      })
-      .then(stuff => {
-        console.log(stuff)
-        this.props.getActiveElections();
+        .then(stuff => console.log(stuff))
       })
       .catch(console.error)
   };

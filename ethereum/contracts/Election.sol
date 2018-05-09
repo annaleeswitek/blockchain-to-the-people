@@ -3,14 +3,14 @@ pragma solidity ^0.4.18;
 contract ElectionFactory {
   address[] public deployedElections;
 
-  // event ElectionLog(
-  //   address election
-  // );
+  event ElectionLog(
+    address election
+  );
 
-  function createElection (uint code) public {
+  function createElection (uint code) public returns (address) {
     address newElection = new Election(code, msg.sender);
     deployedElections.push(newElection);
-    // ElectionLog(newElection);
+    ElectionLog(newElection);
   }
 
   function getDeployedElections() public view returns (address[]) {
