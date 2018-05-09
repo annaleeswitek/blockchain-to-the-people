@@ -1,7 +1,7 @@
 Melissa's mnemonic: 'hotel zone basket crumble foot vault predict jeans federal evil muffin long'
 
 Attempting deploy from account: 0xB9914cbe4E07aca0bf3532EB797D9E08F2c99AaA
-* ADDRESS = Contract deployed to: 0x5C0fE8E63eC8A3460d84B69c9D21822aa9aaDaDa *
+* ADDRESS = Contract deployed to: 0x79D65dE67f8C1A4c7AeC0B520a214C632ce26E11 *
 
 Election create by:
 
@@ -9,3 +9,35 @@ Christen: 0xEA2655A51481B0b6c5F7B05D544aF0b7f857Fd87
 Melissa: 0x85F431deDB1168D270B58E2fAEAb614E2aCa6fC2
 Annalee:
 Tasnuva:
+
+
+Available Accounts
+==================
+(0) 0x2e24b2ecb585317d6c2d1912b2bd7c613691ab7e
+(1) 0xed3b4180a51a60b0555b5904b49403e50d526b58
+(2) 0xa2c29af2656dd8d0710eb7125a40ca90b2eaf846
+(3) 0x5dc52a9c97a8cb99eb636507108c38f51f24da15
+(4) 0x00992a42b5c117dc5b99047bb079c4162381c861
+(5) 0xe770f91a072d25040c74593ec0b6f2f09d45656a
+(6) 0xf4f3163258c24e7dce06e6f0700534dda63dd7f9
+(7) 0x0f9caa0c9ec8aa33315d69c1d1b81a89dae76795
+(8) 0x3fdc1db9ee3d7ec94f4b94fcd63e67536ba4c352
+(9) 0x0968adc5181194c52d73554f8f19e527e3a97ceb
+
+Private Keys
+==================
+(0) 37e4db5a218517a41ea9e1511676e9bff5aad6877153ae57c76a919addf95306
+(1) 5208b7b155b13c67770ea6aa01504a1c1328b48d1c357594877af1c37a593784
+(2) cb565b143f43a9590a01dfb90fc4466c3b063c5752392b1c9732c5552eee553c
+(3) 2ae24ff7dbe7d31de6ede7a987b054791da581f7d33178dbe7354b3bf1e43945
+(4) c1c40c1042245641dc80d5d2a8414fe421fffb1e910e1aa66654db4cf5bc55ee
+(5) f256308bab0f2ae86c965b30166ebed5289e91185d6ab1fd3295c261df90d850
+(6) 9d3a94f52867dbac41c8aedc779338ddeb05340c981aa8158d4a329e7d0177b1
+(7) 3c533e186490f06bfe8a221e9576d61dac444d43e7b9d99d133e0464856793bd
+(8) 4717a0c55821d16cf9c3ef27dfdb74dd3a9a041cd253beb6324665c9dbbf565d
+(9) 997636c11da5446f0404bc54a863fe05c2f96e3fdf8cd56725eccc544b4c0fba
+
+HD Wallet
+==================
+Mnemonic:      perfect canvas solid stage insane emerge strike detect flash enhance crane under
+Base HD Path:  m/44'/60'/0'/0/{account_index}
