@@ -36,13 +36,11 @@ class CreateElection extends Component {
   }
 
   async componentDidMount () {
-    // console.log('factory! ', factory)
-    // console.log('Factory?? ', receiptAddress);
     const createdElectionEvt = await factory.events.ElectionLog({});
-    console.log('hey! electionEvt! ', createdElectionEvt)
+    // console.log('hey! electionEvt! ', createdElectionEvt)
     createdElectionEvt.on((error, result) => {
       if(error) console.log('error here ', error);
-      console.log("RESULT! ", result);
+      // console.log("RESULT! ", result);
     });
   }
 
@@ -90,17 +88,17 @@ class CreateElection extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submitted')
-    web3.eth.getAccounts()
-      .then(accounts => {
-        return factory.methods
-        .createElection(this.state.code)
-        .send({
-          from: accounts[0]
-        })
-        .then(stuff => console.log(stuff.events.ElectionLog.returnValues.election))
-      })
-      .catch(console.error)
+    console.log('event')
+    // web3.eth.getAccounts()
+    //   .then(accounts => {
+    //     return factory.methods
+    //     .createElection(this.state.code)
+    //     .send({
+    //       from: accounts[0]
+    //     })
+    //     .then(stuff => console.log(stuff.events.ElectionLog.returnValues.election))
+    //   })
+      // .catch(console.error)
   };
 
   render () {
