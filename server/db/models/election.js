@@ -21,6 +21,9 @@ const Election = db.define('election', {
         }
       }
     }
+  },
+  blockchainAddress: {
+    type: Sequelize.STRING
   }
 });
 

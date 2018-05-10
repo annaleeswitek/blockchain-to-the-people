@@ -16,6 +16,9 @@ const Candidate = db.define('candidate', {
   affiliation: {
     type: Sequelize.STRING
   },
+  arrayIndex: {
+    type: Sequelize.INTEGER
+  },
   voteCount: {
     type: Sequelize.INTEGER,
     validate: {

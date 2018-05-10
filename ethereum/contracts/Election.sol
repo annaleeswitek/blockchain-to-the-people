@@ -1,16 +1,17 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 contract ElectionFactory {
   address[] public deployedElections;
 
-  // event ElectionLog(
-  //   address election
-  // );
+  event ElectionLog(
+    address election
+  );
 
   function createElection (uint code) public {
-    address newElection = new Election(code, msg.sender);
-    deployedElections.push(newElection);
-    // ElectionLog(newElection);
+    address electionAddress = new Election(code, msg.sender);
+    uint electionId = deployedElections.push(electionAddress)-1;
+    // emit the event based on the contract integer
+    emit ElectionLog(deployedElections[electionId]);
   }
 
   function getDeployedElections() public view returns (address[]) {

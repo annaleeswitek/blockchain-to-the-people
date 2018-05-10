@@ -50,32 +50,38 @@ async function seed () {
     {
       name: 'Bernie Sanders',
       affiliation: 'Democrat',
-      voteCount: 500
+      voteCount: 500,
+      arrayIndex: 1
     },
     {
       name: 'Kieth Ellison',
       affiliation: 'Democrat',
-      voteCount: 550
+      voteCount: 550,
+      arrayIndex: 1
     },
     {
       name: 'Elizabeth Warren',
       affiliation: 'Democrat',
-      voteCount: 100
+      voteCount: 100,
+      arrayIndex: 1
     },
     {
       name: 'Mark Zuckerberg',
       affiliation: 'Democrat',
-      voteCount: 50
+      voteCount: 50,
+      arrayIndex: 1
     },
     {
       name: 'Lord Voldemort',
       affiliation: 'Republican',
-      voteCount: 10
+      voteCount: 10,
+      arrayIndex: 1
     },
     {
       name: 'Jill Stein',
       affiliation: 'Green Party',
-      voteCount: 50
+      voteCount: 50,
+      arrayIndex: 1
     }
 
   ];
@@ -126,17 +132,20 @@ async function seed () {
     {
       name: 'Spring 2018 Primary',
       startDate: 'Fri May 04 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Fri May 26 2018 08:00:00 EST-0400 (EST)'
+      endDate: 'Fri May 26 2018 08:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
     {
       name: 'Vote on who should be president of the pidgeon committee',
       startDate: 'Sat May 27 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Sun May 28 2018 08:00:00 EST-0400 (EST)'
+      endDate: 'Sun May 28 2018 08:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
     {
       name: 'New Board Member Vote',
       startDate: 'Mon May 29 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Tues May 30 2018 08:00:00 EST-0400 (EST)'
+      endDate: 'Tues May 30 2018 08:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     }
   ];
 
