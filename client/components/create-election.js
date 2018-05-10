@@ -4,6 +4,7 @@ import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { fetchActiveElections } from '../store/user-home';
+import moment from 'moment';
 
 // import web3 from './web3';
 // import ElectionFactory from '../../ethereum/build/ElectionFactory.json';
@@ -88,7 +89,27 @@ class CreateElection extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('event')
+    let momentStartTime = moment(this.state.startTime);
+    let momentEndTime = moment(this.state.endTime);
+    let momentStartDate = moment(this.state.startDate);
+    let momentEndDate = moment(this.state.endDate);
+
+    let renderedStartDateTime = moment({
+      year: momentStartDate.year(),
+      month: momentStartDate.month(),
+      day: momentStartDate.day(),
+      hour: momentStartTime.hours(),
+      minute: momentStartTime.minutes()
+    })
+
+    let renderedEndDateTime = moment({
+      year: momentEndDate.year(),
+      month: momentEndDate.month(),
+      day: momentEndDate.day(),
+      hour: momentEndTime.hours(),
+      minute: momentEndTime.minutes()
+    })
+
     // web3.eth.getAccounts()
     //   .then(accounts => {
     //     return factory.methods

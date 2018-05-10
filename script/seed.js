@@ -131,7 +131,7 @@ async function seed () {
   const electionsList = [
     {
       name: 'Spring 2018 Primary',
-      startDate: 'Fri May 04 2018 08:00:00 EST-0400 (EST)',
+      startDate: 'Fri May 10 2018 16:21:00 EST-0400 (EST)',
       endDate: 'Fri May 26 2018 08:00:00 EST-0400 (EST)',
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
