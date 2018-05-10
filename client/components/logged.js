@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
+import PropTypes from 'prop-types'
 import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { logout } from '../store';
+import { connect } from 'react-redux';
 
-const Logged = (props) => (
+const Logged = ({ props, handleClick }) => (
   <IconMenu
     {...props}
     iconButtonElement={
@@ -17,12 +16,29 @@ const Logged = (props) => (
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <MenuItem primaryText="Refresh" />
     <MenuItem primaryText="Help" />
-    <MenuItem primaryText="Sign out" />
+    <a href="#" onClick={handleClick}><MenuItem primaryText="Log Out" /></a>
   </IconMenu>
 );
 
-Logged.muiName = 'IconMenu'
+/**
+ * CONTAINER
+*/
 
-export default Logged
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch(logout())
+    }
+  }
+}
+
+Logged.muiName = 'IconMenu'
+export default connect(null, mapDispatch)(Logged);
+
+/**
+ * PROP TYPES
+ */
+Logged.propTypes = {
+  handleClick: PropTypes.func.isRequired
+}

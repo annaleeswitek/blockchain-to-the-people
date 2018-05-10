@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import Toggle from 'material-ui/Toggle'; // leave this in for development
 import { AppBar, Drawer } from 'material-ui';
-import Login from './login';
 import Logged from './logged';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import LoginButton from './login-button';
 
 
 class NavBar extends Component {
@@ -17,7 +13,6 @@ class NavBar extends Component {
     super(props);
     this.state = {
       open: false,
-      logged: true
     };
 
   }
@@ -31,19 +26,20 @@ class NavBar extends Component {
   };
 
   render() {
+    console.log('userLogIn', this.props.isLoggedIn)
     return (
       <div>
-        <Toggle
+        {/* <Toggle
           label="Logged"
           defaultToggled={true}
           onToggle={this.handleChange}
           labelPosition="right"
           style={{margin: 20}}
-        />
+        /> */}
         <AppBar
           title="Blockchain to the People"
           onLeftIconButtonClick={this.handleToggle}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
         />
         <Drawer
           docked={false}
@@ -55,10 +51,23 @@ class NavBar extends Component {
         <Link to="/voting-booth"><MenuItem onClick={this.handleClose}>Voting Booth</MenuItem></Link>
         <Link to="/watch"><MenuItem onClick={this.handleClose}>Watch Room</MenuItem></Link>
         <Link to="/history"><MenuItem onClick={this.handleClose}>History</MenuItem></Link>
+        {
+          this.props.user.isAdmin ? <Link to="/create-election"><MenuItem onClick={this.handleClose}>Create Election</MenuItem></Link> : null
+        }
         </Drawer>
       </div>
     );
   }
 }
 
-export default NavBar;
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    user: state.user,
+    isLoggedIn: !!state.user.id
+  }
+}
+
+export default connect(mapState)(NavBar)

@@ -7,15 +7,19 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class LoginButton extends Component {
   static muiName = 'FlatButton';
 
   render() {
     return (
-      <FlatButton {...this.props} label="Login" />
+      <div>
+        <Link to="/login"><FlatButton {...this.props} label="Login" /></Link>
+        <Link to="/signup"><FlatButton {...this.props} label="Signup" /></Link>
+      </div>
     );
   }
 }
 
-export default Login;
+export default LoginButton;
