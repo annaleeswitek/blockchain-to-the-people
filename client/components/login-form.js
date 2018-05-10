@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {TextField, RaisedButton} from 'material-ui'
-import {auth} from '../store';
+import {login} from '../store';
 
 /**
  * COMPONENT
@@ -11,12 +11,13 @@ const style = {
   margin: 15,
  };
 
-const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+const LoginForm = (props) => {
+  const {name, handleSubmit, error} = props
 
   return (
     <div>
-      <h2>{displayName}</h2>
+        <h1>Log In</h1> 
+      <h2>Welcome Back</h2>
       <form onSubmit={handleSubmit} name={name}>
         <TextField
         hintText="Enter your Email"
@@ -32,7 +33,7 @@ const AuthForm = (props) => {
           />
         <br/>
           {/*<button type="submit">{displayName}</button>*/}
-          <RaisedButton type="submit" label={displayName} primary={true} style={style} />
+          <RaisedButton type="submit" label="Login" primary={true} style={style} />
         {error && error.response && <div> {error.response.data} </div>}
       </form>
   {/*<a href="/auth/google">{displayName} with Google</a>*/}
@@ -50,15 +51,6 @@ const AuthForm = (props) => {
 const mapLogin = (state) => {
   return {
     name: 'login',
-    displayName: 'Login',
-    error: state.user.error
-  }
-}
-
-const mapSignup = (state) => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
     error: state.user.error
   }
 }
@@ -70,20 +62,17 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(login(email, password))
     }
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
-
+export const Login = connect(mapLogin, mapDispatch)(LoginForm)
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
+LoginForm.propTypes = {
   name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }

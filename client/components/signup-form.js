@@ -2,22 +2,28 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {TextField, RaisedButton} from 'material-ui'
-import {auth} from '../store';
+import {signup} from '../store';
 
 /**
  * COMPONENT
  */
 const style = {
-  margin: 15,
+  margin: 15
  };
 
-const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+const SignUpForm = (props) => {
+  const {handleSubmit, error} = props
 
   return (
     <div>
-      <h2>{displayName}</h2>
-      <form onSubmit={handleSubmit} name={name}>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit}>
+      <TextField
+        hintText="Enter your Full Name"
+        floatingLabelText="Name"
+        name="name"
+        />
+        <br/>
         <TextField
         hintText="Enter your Email"
         floatingLabelText="Email"
@@ -25,14 +31,14 @@ const AuthForm = (props) => {
         />
         <br/>
         <TextField
-          // type="password"
+          type="password"
           hintText="Enter your Password"
           floatingLabelText="Password"
           name="password"
           />
         <br/>
           {/*<button type="submit">{displayName}</button>*/}
-          <RaisedButton type="submit" label={displayName} primary={true} style={style} />
+          <RaisedButton type="submit" label="Sign Up" primary={true} style={style} />
         {error && error.response && <div> {error.response.data} </div>}
       </form>
   {/*<a href="/auth/google">{displayName} with Google</a>*/}
@@ -47,18 +53,9 @@ const AuthForm = (props) => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = (state) => {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.user.error
-  }
-}
 
 const mapSignup = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
     error: state.user.error
   }
 }
@@ -67,23 +64,25 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit (evt) {
       evt.preventDefault()
-      const formName = evt.target.name
+     
+      const name = evt.target.name.value
+      
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+
+      console.log('name is', name); 
+      dispatch(signup(name, email, password))
     }
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignUpForm)
 
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
+SignUpForm.propTypes = {
+  // name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }

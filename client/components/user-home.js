@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
-
+  
 /**
  * COMPONENT
  */
@@ -13,6 +13,7 @@ class UserHome extends Component {
     this.props.getBlockchainElections();
   }
   render() {
+    console.log(this.props.state.blockchainElections)
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
     let upcoming = this.props.upcomingElections.filter(election => election.communityId === this.props.user.communityId)
 
