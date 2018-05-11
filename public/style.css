@@ -23,3 +23,18 @@ nav a {
 img {
   height: 100px;
 }
+
+#landingImg {
+  height: 600px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#chartButton {
+  top: 200px
+}
