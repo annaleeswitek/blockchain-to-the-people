@@ -16,23 +16,22 @@ const LoginForm = (props) => {
 
   return (
     <div>
-        <h1>Log In</h1> 
-      <h2>Welcome Back</h2>
+      <h1>Log In</h1>
+      <h2>Welcome Back!</h2>
       <form onSubmit={handleSubmit} name={name}>
         <TextField
         hintText="Enter your Email"
         floatingLabelText="Email"
         name="email"
         />
-        <br/>
+        <br />
         <TextField
-          // type="password"
+          type="password"
           hintText="Enter your Password"
           floatingLabelText="Password"
           name="password"
           />
-        <br/>
-          {/*<button type="submit">{displayName}</button>*/}
+        <br />
           <RaisedButton type="submit" label="Login" primary={true} style={style} />
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -50,7 +49,6 @@ const LoginForm = (props) => {
  */
 const mapLogin = (state) => {
   return {
-    name: 'login',
     error: state.user.error
   }
 }
@@ -59,7 +57,6 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit (evt) {
       evt.preventDefault()
-      const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(login(email, password))
@@ -72,7 +69,6 @@ export const Login = connect(mapLogin, mapDispatch)(LoginForm)
  * PROP TYPES
  */
 LoginForm.propTypes = {
-  name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }

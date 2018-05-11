@@ -23,21 +23,20 @@ const SignUpForm = (props) => {
         floatingLabelText="Name"
         name="name"
         />
-        <br/>
+        <br />
         <TextField
         hintText="Enter your Email"
         floatingLabelText="Email"
         name="email"
         />
-        <br/>
+        <br />
         <TextField
           type="password"
           hintText="Enter your Password"
           floatingLabelText="Password"
           name="password"
           />
-        <br/>
-          {/*<button type="submit">{displayName}</button>*/}
+        <br />
           <RaisedButton type="submit" label="Sign Up" primary={true} style={style} />
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -64,13 +63,9 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit (evt) {
       evt.preventDefault()
-     
       const name = evt.target.name.value
-      
       const email = evt.target.email.value
       const password = evt.target.password.value
-
-      console.log('name is', name); 
       dispatch(signup(name, email, password))
     }
   }
@@ -82,7 +77,6 @@ export const Signup = connect(mapSignup, mapDispatch)(SignUpForm)
  * PROP TYPES
  */
 SignUpForm.propTypes = {
-  // name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
