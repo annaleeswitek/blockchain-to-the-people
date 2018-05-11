@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PieChart, Pie } from 'recharts';
 import { fetchCandidates } from '../store/watch-party';
+import { getActiveElection, fetchActiveElection } from '../store/election'
 import Election from '../../ethereum/election';
 
 /**
@@ -17,12 +18,14 @@ class WatchParty extends Component {
     // console.log(election);
     // election
     // .then(this.props.getCandidates(election));
+    const userCommunityId = this.props.user.communityId;
     this.props.getCandidates(election);
+    this.props.getActiveElection(userCommunityId);
   }
 
   render () {
     console.log('CANDIDATES! ', this.props.candidates[0] && this.props.candidates[0].name)
-    let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
+    let activeElection = this.props.activeElection;
 
     const data = [{name: 'A1', value: 100},
                   {name: 'A2', value: 300}]
@@ -30,14 +33,12 @@ class WatchParty extends Component {
     return (
       <div>
           {
-            active.length
-            ? active.map(election => {
-              return (
-                <div key={election.id}>
-                  <h1>Welcome to the Watch Party for the {election.name}!</h1>
+            activeElection
+            ? (
+                <div key={activeElection.id}>
+                  <h1>Welcome to the Watch Party for the {activeElection.name}!</h1>
                 </div>
               )
-            })
             : <div>"There's no active election in your community!"</div>
           }
 
@@ -58,7 +59,8 @@ class WatchParty extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    activeElections: state.activeElections,
+    communityId: state.user.communityId,
+    activeElection: state.activeElection,
     candidates: state.candidates
   }
 }
@@ -67,6 +69,9 @@ const mapDispatch = (dispatch) => {
   return {
     getCandidates: (election) => {
       dispatch(fetchCandidates(election));
+    },
+    getActiveElection: (userCommunityId) => {
+      dispatch(fetchActiveElection(userCommunityId));
     }
   }
 }
