@@ -1,11 +1,17 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 contract ElectionFactory {
   address[] public deployedElections;
 
+  event ElectionLog(
+    address election
+  );
+
   function createElection (uint code) public {
-    address newElection = new Election(code, msg.sender);
-    deployedElections.push(newElection);
+    address electionAddress = new Election(code, msg.sender);
+    uint electionId = deployedElections.push(electionAddress)-1;
+    // emit the event based on the contract integer
+    emit ElectionLog(deployedElections[electionId]);
   }
 
   function getDeployedElections() public view returns (address[]) {
@@ -54,7 +60,7 @@ contract Election {
   function submitVote(uint voterCode, uint candidateIndex) public {
     require(voterCode == _code); //they have the code that allows them to vote
     require(!voters[msg.sender].voted); //they haven't voted yet
-    //change voted to true;
+    voters[msg.sender].voted = true;
     voters[msg.sender].vote = candidateIndex;
     candidates[candidateIndex].count++;
   }

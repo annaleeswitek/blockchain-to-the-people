@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
-import { fetchActiveElections, postBlockchainElection } from '../store/user-home';
+import { fetchActiveElections } from '../store/user-home';
+
+// import web3 from './web3';
+// import ElectionFactory from '../../ethereum/build/ElectionFactory.json';
+
+// const contractInstance = web3.eth.contract( ElectionFactory.interface)
+// const receiptAddress = contractInstance.at('0x2c681fADC9ff8A7490e8c63D3F2E2509aEDC7CC8');
 
 // const electionEvent = factory.ElectionLog();
 // electionEvent.watch((error, result) => console.log(error, result));
@@ -26,7 +32,21 @@ class CreateElection extends Component {
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleStartTime = this.handleStartTime.bind(this);
     this.handleEndTime = this.handleEndTime.bind(this);
+    // this.createdElectionEvt = null;
   }
+
+  async componentDidMount () {
+    const createdElectionEvt = await factory.events.ElectionLog({});
+    // console.log('hey! electionEvt! ', createdElectionEvt)
+    createdElectionEvt.on((error, result) => {
+      if(error) console.log('error here ', error);
+      // console.log("RESULT! ", result);
+    });
+  }
+
+  // componentWillUnmount () {
+  //   this.createdElectionEvt.stopWatching();
+  // }
 
   handleChange (event) {
     // this.setState({ [event.target.name]: event.target.value })
@@ -68,22 +88,17 @@ class CreateElection extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted')
-    web3.eth.getAccounts()
-      .then(accounts => {
-        return factory.methods
-        .createElection(this.state.code)
-        .send({
-          from: accounts[0]
-        })
-      })
-      .then(electionAddress => {
-        let electionData = this.state; 
-        electionData["address"] = electionAddress; 
-        this.props.addNewElection(electionData);
-        this.props.getActiveElections();
-      })
-      .catch(console.error)
+    console.log('event')
+    // web3.eth.getAccounts()
+    //   .then(accounts => {
+    //     return factory.methods
+    //     .createElection(this.state.code)
+    //     .send({
+    //       from: accounts[0]
+    //     })
+    //     .then(stuff => console.log(stuff.events.ElectionLog.returnValues.election))
+    //   })
+      // .catch(console.error)
   };
 
   render () {
@@ -124,10 +139,6 @@ const mapDispatch = (dispatch) => {
   return {
     getActiveElections: () => {
       dispatch(fetchActiveElections());
-    },
-    //***ADD? */
-    addNewElection: (election) => {
-      dispatch(postBlockchainElection(election));
     }
   }
 }
