@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCandidates } from '../store/watch-party';
-<<<<<<< HEAD
 // import Election from '../../ethereum/election';
 import DonutChart from './donut-chart';
 import BarGraph from './bar-chart';
 import { RaisedButton } from 'material-ui';
-=======
 import { fetchActiveElection } from '../store/election'
 import Election from '../../ethereum/election';
->>>>>>> master
 
 /**
  * COMPONENT
  */
 
 class WatchParty extends Component {
-<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +26,7 @@ class WatchParty extends Component {
               {name: 'Group F', value: 189, fill: '#d0ed57'}
             ]
     }
-=======
+  }
 
   async componentDidMount () {
     const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
@@ -42,7 +38,6 @@ class WatchParty extends Component {
     const userCommunityId = this.props.user.communityId;
     this.props.getCandidates(election);
     this.props.getActiveElection(userCommunityId);
->>>>>>> master
   }
 
   // async componentDidMount () {
