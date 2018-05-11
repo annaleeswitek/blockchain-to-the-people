@@ -86,7 +86,7 @@ class CreateElection extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log('event')
     // web3.eth.getAccounts()
