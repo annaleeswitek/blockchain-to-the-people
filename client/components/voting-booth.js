@@ -34,12 +34,14 @@ class VotingBooth extends Component {
 
     web3.eth.getAccounts()
     .then(accounts => {
-      this.election.methods.submitVote(1234, this.state.arrayIndex).send({
+      this.election.methods.submitVote(2345, this.state.arrayIndex).send({
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
+      .then(voteReceipt => console.log(voteReceipt))
+      //instead of just console.logging the voteReceipt, will want to hook up a listener that will
+      //end the wait spinner or whatever we have and give a message to the user that their vote was successful
     })
-    .then(voteReceipt => console.log(voteReceipt))
     .catch(console.error)
   }
 
