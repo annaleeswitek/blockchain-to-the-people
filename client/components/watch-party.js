@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCandidates } from '../store/watch-party';
-<<<<<<< HEAD
 // import Election from '../../ethereum/election';
 import DonutChart from './donut-chart';
 import BarGraph from './bar-chart';
 import { RaisedButton } from 'material-ui';
-=======
 import { fetchActiveElection } from '../store/election'
 import Election from '../../ethereum/election';
->>>>>>> master
+
 
 /**
  * COMPONENT
@@ -74,7 +72,7 @@ class WatchParty extends Component {
             this.state.GraphName
             ? <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
             : <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
-          }          
+          }
           {
             this.state.switchView
             ? <BarGraph data={this.state.data} />
