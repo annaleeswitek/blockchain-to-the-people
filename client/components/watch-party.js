@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PieChart, Pie } from 'recharts';
+import { PieChart, Pie, Legend, Tooltip } from 'recharts';
 import { fetchCandidates } from '../store/watch-party';
 import Election from '../../ethereum/election';
 
@@ -25,7 +25,10 @@ class WatchParty extends Component {
     let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
 
     const data = [{name: 'A1', value: 100},
-                  {name: 'A2', value: 300}]
+                  {name: 'A2', value: 300},
+                  {name: 'A3', value: 250},
+                  {name: 'A4', value: 600},
+                  {name: 'A5', value: 50}]
 
     return (
       <div>
@@ -35,18 +38,24 @@ class WatchParty extends Component {
               return (
                 <div key={election.id}>
                   <h1>Welcome to the Watch Party for the {election.name}!</h1>
+                  {/*<PieChart width={800} height={400}>
+                    {/*<Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+                    <Pie data={data} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" label />
+                    <Tooltip />
+                  </PieChart>*/}
+                  <hr />
+                  <div>{this.props.candidates[0] && `${this.props.candidates[0].name} ${this.props.candidates[0].count}`}</div>
+                  <div>{this.props.candidates[1] && `${this.props.candidates[1].name} ${this.props.candidates[1].count}`}</div>
                 </div>
               )
             })
             : <div>"There's no active election in your community!"</div>
           }
-
-          <PieChart width={730} height={250}>
-            <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+          <PieChart width={800} height={400}>
+            <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={300} innerRadius={40} outerRadius={80} fill="#82ca9d" label />
+            {/*<Pie data={data} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" label />*/}
+            <Tooltip />
           </PieChart>
-        <hr />
-        <div>{this.props.candidates[0] && `${this.props.candidates[0].name} ${this.props.candidates[0].count}`}</div>
-        <div>{this.props.candidates[1] && `${this.props.candidates[1].name} ${this.props.candidates[1].count}`}</div>
       </div>
     )
   }
