@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCandidates } from '../store/watch-party';
 import { fetchActiveElection } from '../store/election';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
@@ -14,14 +13,15 @@ class VotingBooth extends Component {
       message: '',
       arrayIndex: ''
     }
+    this.election = null
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   async componentDidMount() {
-    const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+    this.election = await Election(this.props.blockchainAddress);
+    console.log('election came back', this.election)
     const userCommunityId = this.props.user.communityId;
-    this.props.getCandidates(election);
     this.props.getActiveElection(userCommunityId);
   }
 
@@ -31,21 +31,22 @@ class VotingBooth extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
-    let active = this.props.activeElection;
-
-    const election = await Election(active.blockchainAddress)
 
     web3.eth.getAccounts()
     .then(accounts => {
-      election.methods.submitVote(5463, this.state.arrayIndex).send({
+      this.election.methods.submitVote(2345, this.state.arrayIndex).send({
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
+      .then(voteReceipt => console.log(voteReceipt))
+      //instead of just console.logging the voteReceipt, will want to hook up a listener that will
+      //end the wait spinner or whatever we have and give a message to the user that their vote was successful
     })
     .catch(console.error)
   }
 
   render() {
+    console.log('this.props', this.props)
     let activeElection = this.props.activeElection;
     console.log('candidates', this.props.candidates)
     return (
@@ -59,8 +60,8 @@ class VotingBooth extends Component {
             <h5>Cast your vote HERE!</h5>
             <form onSubmit={this.handleSubmit}>
             {
-              this.props.activeElectionCandidates
-              ? this.props.activeElectionCandidates.map(candidate => {
+              this.props.candidates
+              ? this.props.candidates.map(candidate => {
                 return (
                   <div key={candidate.id}>
                     <img src={candidate.imageURL} />
@@ -89,15 +90,13 @@ const mapState = (state) => {
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,
-    activeElectionCandidates: state.activeElection.candidates
+    candidates: state.activeElection.candidates,
+    blockchainAddress: state.activeElection.blockchainAddress
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    getCandidates: (election) => {
-      dispatch(fetchCandidates(election));
-    },
     getActiveElection: (userCommunityId) => {
       dispatch(fetchActiveElection(userCommunityId))
     }
