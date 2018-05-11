@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PieChart, Pie } from 'recharts';
 import { fetchCandidates } from '../store/watch-party';
-import { getActiveElection, fetchActiveElection } from '../store/election'
+import { fetchActiveElection } from '../store/election'
 import Election from '../../ethereum/election';
 
 /**
