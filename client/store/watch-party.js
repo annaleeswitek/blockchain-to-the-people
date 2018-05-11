@@ -23,7 +23,6 @@ export const fetchCandidates = (election) => {
           })
         }
         return candidates
-        console.log('candidates are!', candidates);
       })
       .then(candidates => dispatch(getCandidates(candidates)))
       .catch(console.error);
