@@ -67,8 +67,8 @@ class WatchParty extends Component {
           }
           {
             this.state.GraphName
-            ? <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
-            : <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
+            ? <RaisedButton primary={true} label="Switch to Pie Chart" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
+            : <RaisedButton primary={true} label="Switch to Bar Graph" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
           }          
           {
             this.state.switchView
