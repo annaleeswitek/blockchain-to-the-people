@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCandidates } from '../store/watch-party';
-// import Election from '../../ethereum/election';
 import DonutChart from './donut-chart';
 import BarGraph from './bar-chart';
 import { RaisedButton } from 'material-ui';
@@ -26,32 +25,38 @@ class WatchParty extends Component {
               {name: 'Group F', value: 189, fill: '#d0ed57'}
             ]
     }
+    this.election = null;
   }
 
-  async componentDidMount () {
-    const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+    async componentDidMount () {
+
+    // Promise.all([this.election, newVoteEvent])
+    //   .then(([foundElection, voteEvent]) => {
+    //     voteEvent.on((error, result) => {
+    //     if (error) console.log('error here', error);
+    //     console.log("hey! newVoteEvent was triggered! Yay ", result);
+    //   });
+    // })
+    // .catch(console.log('there is an error!'));
+    this.election = await Election(this.props.blockchainAddress);
+    const newVoteEvent = await this.election.events.CandidateLog({});
+
+    newVoteEvent.on((error, result) => {
+      if (error) console.log('error here', error);
+      console.log("hey! newVoteEvent was triggered! Yay ", result);
+    });
+
+
     // const count = await election.methods.candidates(3).call();
     // console.log(count);
     // console.log(election);
     // election
     // .then(this.props.getCandidates(election));
     const userCommunityId = this.props.user.communityId;
-    this.props.getCandidates(election);
     this.props.getActiveElection(userCommunityId);
   }
 
-  // async componentDidMount () {
-  //   const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
-  //   // const count = await election.methods.candidates(3).call();
-  //   // console.log(count);
-  //   // console.log(election);
-  //   // election
-  //   // .then(this.props.getCandidates(election));
-  //   this.props.getCandidates(election);
-  // }
-
   render () {
-    console.log('CANDIDATES! ', this.props.candidates[0] && this.props.candidates[0].name)
     let activeElection = this.props.activeElection;
 
     return (
@@ -88,15 +93,13 @@ const mapState = (state) => {
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,
-    candidates: state.candidates
+    candidates: state.activeElection.candidates,
+    blockchainAddress: state.activeElection.blockchainAddress
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    getCandidates: (election) => {
-      dispatch(fetchCandidates(election));
-    },
     getActiveElection: (userCommunityId) => {
       dispatch(fetchActiveElection(userCommunityId));
     }
