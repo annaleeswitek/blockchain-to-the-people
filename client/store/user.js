@@ -28,16 +28,27 @@ export const me = () =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
-export const auth = (email, password, method) =>
-  dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
-      .then(res => {
-        dispatch(getUser(res.data))
-        history.push('/home')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
-      })
-      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+export const signup = (name, email, password) =>
+ dispatch =>
+   axios.post('/auth/signup', { name, email, password })
+     .then(res => {
+       dispatch(getUser(res.data))
+       history.push('/home'); //do we want a different home for a newly signedup user?
+     }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+       dispatch(getUser({error: authError}))
+     })
+     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
+export const login = (email, password) =>
+ dispatch =>
+   axios.post('/auth/login', { email, password })
+     .then(res => {
+       dispatch(getUser(res.data))
+       history.push('/home');
+     }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+       dispatch(getUser({error: authError}))
+     })
+     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 export const logout = () =>
   dispatch =>

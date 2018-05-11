@@ -13,9 +13,9 @@ import './socket'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <MuiThemeProvider>
+    <MuiThemeProvider>
         <App />
-      </MuiThemeProvider>
+    </MuiThemeProvider>
     </Router>
   </Provider>,
   document.getElementById('app')

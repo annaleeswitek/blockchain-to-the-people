@@ -87,7 +87,7 @@ class CreateElection extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     let momentStartTime = moment(this.state.startTime);
     let momentEndTime = moment(this.state.endTime);

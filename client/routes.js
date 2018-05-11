@@ -7,7 +7,9 @@ import {me} from './store'
 
 /**
  * COMPONENT
+ * need to add a landing page component as a fallback
  */
+
 class Routes extends Component {
   componentDidMount () {
     this.props.loadInitialData()
@@ -33,7 +35,7 @@ class Routes extends Component {
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route  />
       </Switch>
     )
   }
