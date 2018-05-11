@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PieChart, Pie } from 'recharts';
 import { fetchCandidates } from '../store/watch-party';
+<<<<<<< HEAD
+// import Election from '../../ethereum/election';
+import DonutChart from './donut-chart';
+import BarGraph from './bar-chart';
+import { RaisedButton } from 'material-ui';
+=======
 import { fetchActiveElection } from '../store/election'
 import Election from '../../ethereum/election';
+>>>>>>> master
 
 /**
  * COMPONENT
  */
 
 class WatchParty extends Component {
+<<<<<<< HEAD
+  constructor(props) {
+    super(props);
+    this.state = {
+      switchView: false,
+      GraphName: false,
+      data: [ {name: 'Group A', value: 400, fill: '#8884d8'},
+              {name: 'Group B', value: 300, fill: '#9cacf1'},
+              {name: 'Group C', value: 300, fill: '#8dd1e1'},
+              {name: 'Group D', value: 200, fill: '#82ca9d'},
+              {name: 'Group E', value: 278, fill: '#a4de6c'},
+              {name: 'Group F', value: 189, fill: '#d0ed57'}
+            ]
+    }
+=======
 
   async componentDidMount () {
     const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
@@ -21,14 +42,22 @@ class WatchParty extends Component {
     const userCommunityId = this.props.user.communityId;
     this.props.getCandidates(election);
     this.props.getActiveElection(userCommunityId);
+>>>>>>> master
   }
+
+  // async componentDidMount () {
+  //   const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+  //   // const count = await election.methods.candidates(3).call();
+  //   // console.log(count);
+  //   // console.log(election);
+  //   // election
+  //   // .then(this.props.getCandidates(election));
+  //   this.props.getCandidates(election);
+  // }
 
   render () {
     console.log('CANDIDATES! ', this.props.candidates[0] && this.props.candidates[0].name)
     let activeElection = this.props.activeElection;
-
-    const data = [{name: 'A1', value: 100},
-                  {name: 'A2', value: 300}]
 
     return (
       <div>
@@ -41,13 +70,16 @@ class WatchParty extends Component {
               )
             : <div>"There's no active election in your community!"</div>
           }
-
-          <PieChart width={730} height={250}>
-            <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
-          </PieChart>
-        <hr />
-        <div>{this.props.candidates[0] && `${this.props.candidates[0].name} ${this.props.candidates[0].count}`}</div>
-        <div>{this.props.candidates[1] && `${this.props.candidates[1].name} ${this.props.candidates[1].count}`}</div>
+          {
+            this.state.GraphName
+            ? <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
+            : <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
+          }          
+          {
+            this.state.switchView
+            ? <BarGraph data={this.state.data} />
+            : <DonutChart data={this.state.data} />
+          }
       </div>
     )
   }
