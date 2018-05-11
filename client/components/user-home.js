@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { fetchActiveElections, fetchUpcomingElections, fetchBlockchainElections } from '../store/user-home';
-  
+import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
+
 /**
  * COMPONENT
  */
 class UserHome extends Component {
   async componentDidMount() {
-    this.props.getActiveElections();
-    this.props.getUpcomingElections();
+    const userCommunityId = this.props.user.communityId;
+    this.props.getActiveElection(userCommunityId);
+    this.props.getUpcomingElections(userCommunityId);
     this.props.getBlockchainElections();
   }
   render() {
-    console.log(this.props.state.blockchainElections)
-    let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
-    let upcoming = this.props.upcomingElections.filter(election => election.communityId === this.props.user.communityId)
+    let activeElection = this.props.activeElection
+    console.log('ACTIVE!!!! ', activeElection)
+    let upcomingElections = this.props.upcomingElections
 
   return (
     <div>
@@ -23,24 +24,22 @@ class UserHome extends Component {
       <hr />
       <h4>Active Election:</h4>
       {
-        active.length
-        ? active.map(election => {
-            return (
-              <div key={election.id}>
-                <h5>{election.name}</h5>
-                <h5>From: {election.startDate}</h5>
-                <h5>To: {election.endDate}</h5>
+        activeElection
+        ? (
+              <div key={activeElection.id}>
+                <h5>{activeElection.name}</h5>
+                <h5>From: {activeElection.startDate}</h5>
+                <h5>To: {activeElection.endDate}</h5>
                 <button onClick={() => this.props.history.push('/voting-booth')}>Vote Now!</button>
               </div>
             )
-          })
         : <div>"There's no active election in your community!"</div>
       }
       <hr />
       <h4>Upcoming Elections:</h4>
       {
-        upcoming.length
-        ? upcoming.map(election => {
+        upcomingElections.length
+        ? upcomingElections.map(election => {
             return (
               <div key={election.id}>
                 <h5>{election.name}</h5>
@@ -49,9 +48,9 @@ class UserHome extends Component {
               </div>
             )
           })
-        : <div>There's no upcoming elections in your community!</div>
+        : <div>There are no upcoming elections in your community!</div>
       }
-      <div>{this.props.state.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
+      <div>{this.props.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
     </div>
   )
 
@@ -64,10 +63,10 @@ class UserHome extends Component {
  */
 const mapState = (state) => {
   return {
-    state: state,
+    blockchainElections: state.blockchainElections,
     user: state.user,
-    activeElections: state.activeElections,
-    upcomingElections: state.upcomingElections
+    activeElection: state.activeElection,
+    upcomingElections: state.elections
   }
 }
 
@@ -76,11 +75,11 @@ const mapDispatch = (dispatch) => {
     getBlockchainElections: () => {
       dispatch(fetchBlockchainElections());
     },
-    getActiveElections: () => {
-      dispatch(fetchActiveElections());
+    getActiveElection: (userCommunityId) => {
+      dispatch(fetchActiveElection(userCommunityId));
     },
-    getUpcomingElections: () => {
-      dispatch(fetchUpcomingElections());
+    getUpcomingElections: (userCommunityId) => {
+      dispatch(fetchUpcomingElections(userCommunityId));
     }
   }
 }
