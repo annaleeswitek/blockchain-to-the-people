@@ -30,6 +30,12 @@ contract Election {
     uint vote;
   }
 
+    event CandidateLog(
+        string name,
+        uint count,
+        uint index
+    );
+
   mapping(address => Voter) voters;
   Candidate[] public candidates;
   address public admin;
@@ -40,7 +46,7 @@ contract Election {
     _;
   }
 
-  function Election(uint setCode, address creator) {
+  function Election(uint setCode, address creator) public {
     admin = creator;
     _code = setCode;
   }
@@ -63,6 +69,8 @@ contract Election {
     voters[msg.sender].voted = true;
     voters[msg.sender].vote = candidateIndex;
     candidates[candidateIndex].count++;
+
+    emit CandidateLog(candidates[candidateIndex].name, candidates[candidateIndex].count, candidateIndex);
   }
 
   function getCandidatesCount() public view returns (uint) {
