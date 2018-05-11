@@ -58,9 +58,9 @@ class VotingBooth extends Component {
             <h4>Voting period ends by {activeElection.endDate}</h4>
             <h5>Cast your vote HERE!</h5>
             <form onSubmit={this.handleSubmit}>
-            {/* {
-              this.props.candidates
-              ? this.props.candidates.map(candidate => {
+            {
+              this.props.activeElectionCandidates
+              ? this.props.activeElectionCandidates.map(candidate => {
                 return (
                   <div key={candidate.id}>
                     <img src={candidate.imageURL} />
@@ -72,7 +72,7 @@ class VotingBooth extends Component {
 
               })
               : null
-            } */}
+            }
             <button type="submit">Submit Vote</button>
             <div>{this.state.message}</div>
             </form>
@@ -89,7 +89,7 @@ const mapState = (state) => {
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,
-    candidates: state.candidates
+    activeElectionCandidates: state.activeElection.candidates
   }
 }
 
