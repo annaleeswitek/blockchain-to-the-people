@@ -36,7 +36,6 @@ class UserHome extends Component {
             <div className="container">
               <div>
                 <h2 style={styles.headline}>Active Election</h2>
-                <p>
                 <h4>Active Election</h4>
                     {
                       activeElection
@@ -50,14 +49,12 @@ class UserHome extends Component {
                         )
                       : <div>"There's no active election in your community!"</div>
                     }
-                </p>
               </div>
             </div>
           </Tab>
           <Tab label="Upcoming Elections" >
             <div>
               <h2 style={styles.headline}>Upcoming Elections</h2>
-              <p>
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
@@ -71,7 +68,6 @@ class UserHome extends Component {
                   })
                 : <div>There are no upcoming elections in your community!</div>
               }
-              </p>
             </div>
           </Tab>
         </Tabs>
