@@ -24,7 +24,17 @@ img {
   height: 100px;
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
+#landingImg {
+  height: 600px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#chartButton {
+  top: 200px
 }
