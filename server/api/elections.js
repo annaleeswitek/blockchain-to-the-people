@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
   })
     .then(elections => res.json(elections))
     .catch(next)
-})
+});
 
 router.get('/active', (req, res, next) => {
   Election.findAll({
@@ -25,7 +25,7 @@ router.get('/active', (req, res, next) => {
   })
     .then(election => res.json(election))
     .catch(next)
-})
+});
 
 router.get('/upcoming', (req, res, next) => {
   Election.findAll({
@@ -38,12 +38,11 @@ router.get('/upcoming', (req, res, next) => {
   })
     .then(election => res.json(election))
     .catch(next)
-})
+});
 
 router.get('/:id', (req, res, next) => {
   Election.findById(req.params.id, {include: [{model: Candidate}]
   })
     .then(election => res.json(election))
     .catch(next)
-})
-
+});
