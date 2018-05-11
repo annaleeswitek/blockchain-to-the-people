@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCandidates } from '../store/watch-party';
+<<<<<<< HEAD
 // import Election from '../../ethereum/election';
 import DonutChart from './donut-chart';
 import BarGraph from './bar-chart';
 import { RaisedButton } from 'material-ui';
+=======
+import { fetchActiveElection } from '../store/election'
+import Election from '../../ethereum/election';
+>>>>>>> master
 
 /**
  * COMPONENT
  */
 
 class WatchParty extends Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +30,19 @@ class WatchParty extends Component {
               {name: 'Group F', value: 189, fill: '#d0ed57'}
             ]
     }
+=======
+
+  async componentDidMount () {
+    const election = await Election('0xC14AD6de02704C2e805e0b383116FC0B373eFF3b');
+    // const count = await election.methods.candidates(3).call();
+    // console.log(count);
+    // console.log(election);
+    // election
+    // .then(this.props.getCandidates(election));
+    const userCommunityId = this.props.user.communityId;
+    this.props.getCandidates(election);
+    this.props.getActiveElection(userCommunityId);
+>>>>>>> master
   }
 
   // async componentDidMount () {
@@ -37,24 +56,18 @@ class WatchParty extends Component {
   // }
 
   render () {
-    // console.log('CANDIDATES! ', this.props.candidates[0] && this.props.candidates[0].name)
-    let active = this.props.activeElections.filter(election => election.communityId === this.props.user.communityId)
+    console.log('CANDIDATES! ', this.props.candidates[0] && this.props.candidates[0].name)
+    let activeElection = this.props.activeElection;
 
     return (
       <div>
           {
-            active.length
-            ? active.map(election => {
-              return (
-                <div key={election.id}>
-                  <h1>Welcome to the Watch Party for the {election.name}!</h1>
-                  {/*<DonutChart />*/}
-                  <hr />
-                  <div>{this.props.candidates[0] && `${this.props.candidates[0].name} ${this.props.candidates[0].count}`}</div>
-                  <div>{this.props.candidates[1] && `${this.props.candidates[1].name} ${this.props.candidates[1].count}`}</div>
+            activeElection
+            ? (
+                <div key={activeElection.id}>
+                  <h1>Welcome to the Watch Party for the {activeElection.name}!</h1>
                 </div>
               )
-            })
             : <div>"There's no active election in your community!"</div>
           }
           {
@@ -78,7 +91,8 @@ class WatchParty extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    activeElections: state.activeElections,
+    communityId: state.user.communityId,
+    activeElection: state.activeElection,
     candidates: state.candidates
   }
 }
@@ -87,6 +101,9 @@ const mapDispatch = (dispatch) => {
   return {
     getCandidates: (election) => {
       dispatch(fetchCandidates(election));
+    },
+    getActiveElection: (userCommunityId) => {
+      dispatch(fetchActiveElection(userCommunityId));
     }
   }
 }
