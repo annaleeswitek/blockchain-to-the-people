@@ -6,15 +6,6 @@ import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
 import moment from 'moment';
 
-// import web3 from './web3';
-// import ElectionFactory from '../../ethereum/build/ElectionFactory.json';
-
-// const contractInstance = web3.eth.contract( ElectionFactory.interface)
-// const receiptAddress = contractInstance.at('0x2c681fADC9ff8A7490e8c63D3F2E2509aEDC7CC8');
-
-// const electionEvent = factory.ElectionLog();
-// electionEvent.watch((error, result) => console.log(error, result));
-
 class CreateElection extends Component {
   constructor(){
     super();
@@ -61,32 +52,29 @@ class CreateElection extends Component {
     let currentState = this.state;
     currentState.startDate = date;
     this.setState(currentState);
-    console.log(this.state)
   }
 
   handleEndDate (event, date) {
     let currentState = this.state;
     currentState.endDate = date;
     this.setState(currentState);
-    console.log(this.state)
   }
 
   handleStartTime (event, time) {
     let currentState = this.state;
     currentState.startTime = time;
     this.setState(currentState);
-    console.log(this.state)
   }
 
   handleEndTime (event, time) {
     let currentState = this.state;
     currentState.endTime = time;
     this.setState(currentState);
-    console.log(this.state)
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     let momentStartTime = moment(this.state.startTime);
     let momentEndTime = moment(this.state.endTime);
     let momentStartDate = moment(this.state.startDate);
@@ -95,7 +83,7 @@ class CreateElection extends Component {
     let renderedStartDateTime = moment({
       year: momentStartDate.year(),
       month: momentStartDate.month(),
-      day: momentStartDate.day(),
+      day: momentStartDate.date(),
       hour: momentStartTime.hours(),
       minute: momentStartTime.minutes()
     });
@@ -103,7 +91,7 @@ class CreateElection extends Component {
     let renderedEndDateTime = moment({
       year: momentEndDate.year(),
       month: momentEndDate.month(),
-      day: momentEndDate.day(),
+      day: momentEndDate.date(),
       hour: momentEndTime.hours(),
       minute: momentEndTime.minutes()
     });
@@ -116,7 +104,6 @@ class CreateElection extends Component {
           from: accounts[0]
         })
         .then(newElectionAddress => {
-          console.log('newElectionADDRESSSSSSS ', newElectionAddress)
           const address = newElectionAddress.events.ElectionLog.returnValues.election;
           const objToSend = {
             name: this.state.name,
@@ -127,13 +114,9 @@ class CreateElection extends Component {
           }
           this.props.postNewElection(objToSend ,this.props.communityId)
           this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null });
-          console.log('Finally done!');
         })
       })
       .catch(console.error)
-
-      // this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null })
-      // console.log('Finally done!');
   };
 
   render () {
@@ -172,8 +155,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    postNewElection: (obj) => {
-      dispatch(postNewElection(obj));
+    postNewElection: (obj, communityId) => {
+      dispatch(postNewElection(obj, communityId));
     }
   }
 }
