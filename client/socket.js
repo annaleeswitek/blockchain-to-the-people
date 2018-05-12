@@ -1,9 +1,18 @@
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import store from './store';
+import { newVoteSocket }  from './store/watch-party';
 
-const socket = io(window.location.origin)
+const socket = io(window.location.origin);
 
 socket.on('connect', () => {
-  console.log('Connected!')
-})
+  console.log('Connected!');
 
-export default socket
+  socket.on('newVote', function (data) {
+    store.dispatch(newVoteSocket(data));
+    console.log('triggered in socket! Here is data: ', data);
+  });
+
+});
+
+
+export default socket;

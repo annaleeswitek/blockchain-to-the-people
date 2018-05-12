@@ -4,6 +4,7 @@ import { fetchActiveElection } from '../store/election';
 import { giveWatchPartyCounts } from '../store/watch-party';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
+import socket from '../socket';
 
 class VotingBooth extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class VotingBooth extends Component {
         console.log(voteReceipt);
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendCandidateLog({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+        socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
       })
     })
     .catch(console.error)

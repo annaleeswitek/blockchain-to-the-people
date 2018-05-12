@@ -4,6 +4,7 @@ import Election from '../../ethereum/election';
 //Action Types
 const GET_CANDIDATES = 'GET_CANDIDATES';
 const GIVE_WATCH_PARTY_COUNTS = 'GIVE_WATCH_PARTY_COUNTS';
+const NEW_VOTE_SOCKET = 'NEW_VOTE_SOCKET';
 
 //Action Creators
 const getCandidates = (candidates) => {
@@ -13,6 +14,10 @@ const getCandidates = (candidates) => {
 export const giveWatchPartyCounts = (candidateLog) => {
   return { type: GIVE_WATCH_PARTY_COUNTS, candidateLog }
 };
+
+export const newVoteSocket = (candidateLog) => {
+  return { type: NEW_VOTE_SOCKET, candidateLog }
+}
 
 //Thunks!
 export const fetchCandidates = (election) => {
