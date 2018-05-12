@@ -38,10 +38,8 @@ class CreateElection extends Component {
 
   async componentDidMount () {
     const createdElectionEvt = await factory.events.ElectionLog({});
-    // console.log('hey! electionEvt! ', createdElectionEvt)
     createdElectionEvt.on((error, result) => {
       if(error) console.log('error here ', error);
-      // console.log("RESULT! ", result);
     });
   }
 

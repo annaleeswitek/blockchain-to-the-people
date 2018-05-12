@@ -1,5 +1,6 @@
 import axios from 'axios';
 import factory from '../../ethereum/factory';
+import Election from '../../ethereum/election';
 
 //action types
 const GET_BLOCKCHAIN_ELECTIONS = 'GET_BLOCKCHAIN_ELECTIONS';
@@ -43,7 +44,10 @@ export const fetchActiveElection = (userCommunityId) => {
   return dispatch => {
     axios.get(`/api/community/${userCommunityId}/active`)
       .then(res => res.data)
-      .then(activeElection => dispatch(getActiveElection(activeElection)))
+      .then(activeElection => {
+        console.log("IN THUNK activeElection", activeElection),
+        dispatch(getActiveElection(activeElection))
+      })
       .catch(console.error);
   }
 };
@@ -83,7 +87,7 @@ export function activeElectionReducer(activeElection = {}, action) {
     default:
       return activeElection
   }
-}
+};
 
 export function electionsReducer(elections = [], action) {
   switch (action.type) {
@@ -96,14 +100,14 @@ export function electionsReducer(elections = [], action) {
     default:
       return elections
   }
-}
+};
 
-export function blockchainElectionReducer(blockainElection = [], action) {
+export function blockchainElectionReducer(blockchainElection = [], action) {
   switch (action.type) {
     case GET_BLOCKCHAIN_ELECTIONS:
       return action.elections
     default:
-      return blockainElection
+      return blockchainElection
   }
-}
+};
 

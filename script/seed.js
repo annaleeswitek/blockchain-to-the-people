@@ -117,10 +117,10 @@ async function seed () {
   );
 
   const addUsersToCommunities = await Promise.all([
-    User.findById(1).then(category => category.setCommunity(1)),
-    User.findById(2).then(category => category.setCommunity(1)),
-    User.findById(3).then(category => category.setCommunity(2)),
-    User.findById(4).then(category => category.setCommunity(2)),
+    User.findById(1).then(category => category.setCommunity(3)),
+    User.findById(2).then(category => category.setCommunity(3)),
+    User.findById(3).then(category => category.setCommunity(3)),
+    User.findById(4).then(category => category.setCommunity(3)),
     User.findById(5).then(category => category.setCommunity(3)),
   ]);
 
@@ -163,8 +163,8 @@ async function seed () {
   ]);
 
   const addElectionsToCommunities = await Promise.all([
-    Election.findById(1).then(election => election.setCommunity(1)),
-    Election.findById(2).then(election => election.setCommunity(2)),
+    Election.findById(1).then(election => election.setCommunity(3)),
+    Election.findById(2).then(election => election.setCommunity(3)),
     Election.findById(3).then(election => election.setCommunity(3))
   ]);
 
