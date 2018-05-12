@@ -5,8 +5,6 @@ import Routes from './routes'
 import NavBar from './components/app-bar';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-
-
 const App = () => {
   return (
     <div>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
+import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections, fetchActiveElectionFromBlockchain } from '../store/election';
 import { Slider, Tab, Tabs } from 'material-ui';
+// import Election from '../../ethereum/election';
 
 const styles = {
   headline: {
@@ -19,9 +20,13 @@ const styles = {
 class UserHome extends Component {
   async componentDidMount() {
     const userCommunityId = this.props.user.communityId;
-    this.props.getActiveElection(userCommunityId);
+    this.props.getActiveElection(userCommunityId)
+    // this.props.getActiveElectionFromBlockchain(this.props.activeElection.blockchainAddress);
     this.props.getUpcomingElections(userCommunityId);
     this.props.getBlockchainElections();
+
+    // console.log('blockchain address for active election', this.props.activeElection.blockchainAddress)
+    // this.election = await Election(this.props.blockchainAddress);
   }
   render() {
     let activeElection = this.props.activeElection
@@ -71,6 +76,7 @@ class UserHome extends Component {
             </div>
           </Tab>
         </Tabs>
+        <div>{this.props.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
       </div>
     )
   }
@@ -81,6 +87,7 @@ class UserHome extends Component {
  */
 const mapState = (state) => {
   return {
+    // blockchainActiveElection: state.blockchainActiveElection,
     blockchainElections: state.blockchainElections,
     user: state.user,
     activeElection: state.activeElection,
@@ -98,7 +105,10 @@ const mapDispatch = (dispatch) => {
     },
     getUpcomingElections: (userCommunityId) => {
       dispatch(fetchUpcomingElections(userCommunityId));
-    }
+    },
+    // getActiveElectionFromBlockchain: (address) => {
+    //   dispatch(fetchActiveElectionFromBlockchain(address));
+    // }
   }
 }
 

@@ -39,12 +39,12 @@ class WatchParty extends Component {
     // })
     // .catch(console.log('there is an error!'));
     this.election = await Election(this.props.blockchainAddress);
-    const newVoteEvent = await this.election.events.CandidateLog({});
+    // const newVoteEvent = await this.election.events.CandidateLog({});
 
-    newVoteEvent.on((error, result) => {
-      if (error) console.log('error here', error);
-      console.log("hey! newVoteEvent was triggered! Yay ", result);
-    });
+    // newVoteEvent.on((error, result) => {
+    //   if (error) console.log('error here', error);
+    //   console.log("hey! newVoteEvent was triggered! Yay ", result);
+    // });
 
 
     // const count = await election.methods.candidates(3).call();
@@ -57,6 +57,8 @@ class WatchParty extends Component {
   }
 
   render () {
+
+    console.log("LOOKING FOR CANDIDATE LOG", this.props.watchPartyCounts)
     let activeElection = this.props.activeElection;
 
     return (
@@ -90,6 +92,7 @@ class WatchParty extends Component {
  */
 const mapState = (state) => {
   return {
+    watchPartyCounts: state.watchPartyCounts,
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,

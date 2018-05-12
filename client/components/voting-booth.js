@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
+import { giveWatchPartyCounts } from '../store/watch-party';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 
@@ -20,14 +21,18 @@ class VotingBooth extends Component {
 
   async componentDidMount() {
     this.election = await Election(this.props.blockchainAddress);
-    console.log('election came back', this.election)
-    const userCommunityId = this.props.user.communityId;
-    this.props.getActiveElection(userCommunityId);
+    console.log('election came back', this.election);
+
+    const newVoteEvent = await this.election.events.CandidateLog({});
+    newVoteEvent.on((error, result) => {
+      if (error) console.log('error here', error);
+      console.log("hey! newVoteEvent was triggered! Yay ", result);
+    });
   }
 
   handleChange(evt) {
     this.setState({[evt.target.name]: evt.target.value})
-  }
+  };
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -38,17 +43,18 @@ class VotingBooth extends Component {
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
-      .then(voteReceipt => console.log(voteReceipt))
-      //instead of just console.logging the voteReceipt, will want to hook up a listener that will
-      //end the wait spinner or whatever we have and give a message to the user that their vote was successful
+      .then(voteReceipt => {
+        console.log(voteReceipt);
+        const candidateLog = voteReceipt.events.CandidateLog.returnValues;
+        this.props.sendCandidateLog({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+      })
     })
     .catch(console.error)
-  }
+  };
 
   render() {
     console.log('this.props', this.props)
     let activeElection = this.props.activeElection;
-    console.log('candidates', this.props.candidates)
     return (
       <div>
         {
@@ -83,24 +89,28 @@ class VotingBooth extends Component {
       </div>
     )
   }
-}
+};
 
 const mapState = (state) => {
   return {
+    blockchainActiveElection: state.blockchainActiveElection,
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,
     candidates: state.activeElection.candidates,
     blockchainAddress: state.activeElection.blockchainAddress
   }
-}
+};
 
 const mapDispatch = (dispatch) => {
   return {
     getActiveElection: (userCommunityId) => {
       dispatch(fetchActiveElection(userCommunityId))
+    },
+    sendCandidateLog: (candidateLog) => {
+      dispatch(giveWatchPartyCounts(candidateLog))
     }
   }
-}
+};
 
-export default connect(mapState, mapDispatch)(VotingBooth)
+export default connect(mapState, mapDispatch)(VotingBooth);
