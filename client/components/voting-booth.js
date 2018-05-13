@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
-import { postVote } from '../store/watch-party';
+import { postVote } from '../store/candidate';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import socket from '../socket';

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import store from './store';
-import { newVoteSocket }  from './store/watch-party';
+import { newVoteSocket }  from './store/candidate';
 
 const socket = io(window.location.origin);
 
