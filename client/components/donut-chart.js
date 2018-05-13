@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {PieChart, Pie, Legend, Tooltip} from 'recharts';
-import { connect } from 'react-redux'
+import {PieChart, Pie, Tooltip} from 'recharts';
+import { connect } from 'react-redux';
 
 class DonutChart extends Component {
 
