@@ -7,5 +7,6 @@ export {default as History} from './history';
 export { Login } from './login-form';
 export { Signup } from './signup-form';
 export { Instructions } from './instructions';
-export { LandingPage } from './landing-page'
+export { LandingPage } from './landing-page'; 
+export { default as CreateCandidate } from './create-candidate'; 
 

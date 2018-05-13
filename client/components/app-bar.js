@@ -58,6 +58,9 @@ class NavBar extends Component {
               {
                 this.props.user.isAdmin ? <Link to="/create-election"><MenuItem onClick={this.handleClose}>Create Election</MenuItem></Link> : null
               }
+               {
+                this.props.user.isAdmin ? <Link to="/create-candidate"><MenuItem onClick={this.handleClose}>Add Candidate</MenuItem></Link> : null
+              }
           </Drawer>
           </div>
           :

@@ -19,6 +19,9 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => (
           {
             user.isAdmin ? <Link to="/create-election">Create Election</Link> : null
           }
+           {
+            user.isAdmin ? <Link to="/create-candidate">Create Candidate</Link> : null 
+          }
           <a href="#" onClick={handleClick}>
             Logout
           </a>
