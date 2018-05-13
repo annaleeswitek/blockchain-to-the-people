@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
-import { giveWatchPartyCounts } from '../store/watch-party';
+import { postVote } from '../store/watch-party';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import socket from '../socket';
+//export const newVoteSocket
 
 class VotingBooth extends Component {
   constructor(props) {
@@ -13,11 +14,13 @@ class VotingBooth extends Component {
     this.state = {
       candidateName: '',
       message: '',
-      arrayIndex: ''
+      arrayIndex: '',
+      candidateId: ''
     }
-    this.election = null
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.election = null;
+    this.selectedCandidateArrayIndex = null;
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
@@ -32,11 +35,21 @@ class VotingBooth extends Component {
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.value})
+    this.selectedCandidateArrayIndex = evt.target.value;
+    console.log("HERE is EVT target val", evt.target.value)
+    this.setState({[evt.target.name]: evt.target.value});
+    // this.setState({
+    //   arrayIndex: evt.target.value.arrayIndex,
+    //   candidateId: evt.target.value.candidateId
+    // })
+    console.log('state in change', this.state);
   };
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
+    // console.log('this.selectedCandidateArray in Submit', this.selectedCandidateArrayIndex);
+    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
+    // console.log('selectedCandidate.id', selectedCandidate.id)
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -47,7 +60,7 @@ class VotingBooth extends Component {
       .then(voteReceipt => {
         console.log(voteReceipt);
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
-        this.props.sendCandidateLog({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+        this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
       })
     })
@@ -55,7 +68,7 @@ class VotingBooth extends Component {
   };
 
   render() {
-    console.log('this.props', this.props)
+    // console.log('this.props.candidates', this.props.candidates)
     let activeElection = this.props.activeElection;
     return (
       <div>
@@ -70,15 +83,15 @@ class VotingBooth extends Component {
             {
               this.props.candidates
               ? this.props.candidates.map(candidate => {
+                // this.state.candidates.push({ candidateName: candidate.name, candidateId: candidate.id, arrayIndex: candidate.arrayIndex })
                 return (
                   <div key={candidate.id}>
                     <img src={candidate.imageURL} />
                     <h3>{candidate.name}</h3>
                     <h4>{candidate.affiliation}</h4>
-                    <input type="checkbox" onChange={this.handleChange} name ="arrayIndex" value={candidate.arrayIndex} />
+                    <input type="checkbox" onChange={this.handleChange} name="arrayIndex" value={candidate.arrayIndex} />
                   </div>
                 )
-
               })
               : null
             }
@@ -109,8 +122,8 @@ const mapDispatch = (dispatch) => {
     getActiveElection: (userCommunityId) => {
       dispatch(fetchActiveElection(userCommunityId))
     },
-    sendCandidateLog: (candidateLog) => {
-      dispatch(giveWatchPartyCounts(candidateLog))
+    sendNewVote: (candidateLog, arrayIndex) => {
+      dispatch(postVote(candidateLog, arrayIndex))
     }
   }
 };

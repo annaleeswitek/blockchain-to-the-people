@@ -3,7 +3,7 @@ import ElectionFactory from './build/ElectionFactory.json';
 
 const contractInstance = new web3.eth.Contract(
   JSON.parse(ElectionFactory.interface),
-  '0x9016ed32Ec5823dcFc64BEE01443c53Ed0dD1789'
+  '0x3F75BB69778a548318c27a7D9FFC7aE9589388DC'
 );
 
 export default contractInstance;

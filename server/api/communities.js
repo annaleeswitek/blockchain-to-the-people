@@ -83,4 +83,4 @@ router.post('/:id/newElection', (req, res, next) => {
     })
     .then(finishedElection => res.json(finishedElection))
     .catch(next);
-})
+});
