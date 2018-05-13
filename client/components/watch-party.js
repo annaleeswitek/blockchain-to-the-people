@@ -17,7 +17,7 @@ class WatchParty extends Component {
     this.state = {
       switchView: false,
       GraphName: false,
-      data: [ {name: 'Group A', value: 400, fill: '#8884d8'},
+      data: [ {name: 'Group A', value: 400, fill:         '#8884d8'},
               {name: 'Group B', value: 300, fill: '#9cacf1'},
               {name: 'Group C', value: 300, fill: '#8dd1e1'},
               {name: 'Group D', value: 200, fill: '#82ca9d'},
@@ -29,36 +29,12 @@ class WatchParty extends Component {
   }
 
     async componentDidMount () {
-
-    // Promise.all([this.election, newVoteEvent])
-    //   .then(([foundElection, voteEvent]) => {
-    //     voteEvent.on((error, result) => {
-    //     if (error) console.log('error here', error);
-    //     console.log("hey! newVoteEvent was triggered! Yay ", result);
-    //   });
-    // })
-    // .catch(console.log('there is an error!'));
     this.election = await Election(this.props.blockchainAddress);
-    // const newVoteEvent = await this.election.events.CandidateLog({});
-
-    // newVoteEvent.on((error, result) => {
-    //   if (error) console.log('error here', error);
-    //   console.log("hey! newVoteEvent was triggered! Yay ", result);
-    // });
-
-
-    // const count = await election.methods.candidates(3).call();
-    // console.log(count);
-    // console.log(election);
-    // election
-    // .then(this.props.getCandidates(election));
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId);
   }
 
   render () {
-
-    console.log("LOOKING FOR CANDIDATE LOG", this.props.newVotes)
     let activeElection = this.props.activeElection;
 
     return (
