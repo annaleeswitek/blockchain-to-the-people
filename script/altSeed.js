@@ -50,37 +50,37 @@ async function seed () {
     {
       name: 'Bernie Sanders',
       affiliation: 'Democrat',
-      voteCount: 500,
+      voteCount: 200,
       arrayIndex: 1
     },
     {
       name: 'Kieth Ellison',
       affiliation: 'Democrat',
-      voteCount: 550,
+      voteCount: 300,
       arrayIndex: 1
     },
     {
       name: 'Elizabeth Warren',
       affiliation: 'Democrat',
-      voteCount: 100,
+      voteCount: 350,
       arrayIndex: 1
     },
     {
       name: 'Mark Zuckerberg',
       affiliation: 'Democrat',
-      voteCount: 50,
+      voteCount: 300,
       arrayIndex: 1
     },
     {
       name: 'Lord Voldemort',
       affiliation: 'Republican',
-      voteCount: 10,
+      voteCount: 200,
       arrayIndex: 1
     },
     {
       name: 'Jill Stein',
       affiliation: 'Green Party',
-      voteCount: 50,
+      voteCount: 300,
       arrayIndex: 1
     }
 
@@ -96,19 +96,9 @@ async function seed () {
 
   const communitiesList = [
     {
-      name: 'City of Philadelphia',
-      location: 'Philadelphia',
+      name: 'Generic Progressive Org',
+      location: 'New York',
       timeZone: 'EST'
-    },
-    {
-      name: 'Occupy Walstreet',
-      location: 'New York City',
-      timeZone: 'EST'
-    },
-    {
-      name: 'Board of Directors of Google',
-      location: 'Mountain View',
-      timeZone: 'PST'
     }
   ];
 
@@ -117,11 +107,11 @@ async function seed () {
   );
 
   const addUsersToCommunities = await Promise.all([
-    User.findById(1).then(category => category.setCommunity(3)),
-    User.findById(2).then(category => category.setCommunity(3)),
-    User.findById(3).then(category => category.setCommunity(3)),
-    User.findById(4).then(category => category.setCommunity(3)),
-    User.findById(5).then(category => category.setCommunity(3)),
+    User.findById(1).then(category => category.setCommunity(1)),
+    User.findById(2).then(category => category.setCommunity(1)),
+    User.findById(3).then(category => category.setCommunity(1)),
+    User.findById(4).then(category => category.setCommunity(1)),
+    User.findById(5).then(category => category.setCommunity(1)),
   ]);
 
   console.log(`seeded ${communities.length} communities`);
@@ -130,22 +120,10 @@ async function seed () {
 
   const electionsList = [
     {
-      name: 'Spring 2018 Primary',
-      startDate: 'Fri May 08 2018 16:21:00 EST-0400 (EST)',
-      endDate: 'Fri May 09 2018 08:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
-    },
-    {
-      name: 'Vote on who should be president of the pidgeon committee',
-      startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Sun May 15 2018 08:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
-    },
-    {
-      name: 'New Board Member Vote',
-      startDate: 'Mon May 29 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Tues May 30 2018 08:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+      name: 'New Steering Committee Member Vote',
+      startDate: 'Sun May 13 2018 08:00:00 EST-0400 (EST)',
+      endDate: 'Wed May 30 2018 08:00:00 EST-0400 (EST)',
+      blockchainAddress: '0x19B61a60f265EA37194826d752E5699bF382091D'
     }
   ];
 
@@ -156,16 +134,14 @@ async function seed () {
   const addCandidatesToElections = await Promise.all([
     Candidate.findById(1).then(candidate => candidate.setElection(1)),
     Candidate.findById(2).then(candidate => candidate.setElection(1)),
-    Candidate.findById(3).then(candidate => candidate.setElection(2)),
-    Candidate.findById(4).then(candidate => candidate.setElection(2)),
-    Candidate.findById(5).then(candidate => candidate.setElection(3)),
-    Candidate.findById(6).then(candidate => candidate.setElection(3)),
+    Candidate.findById(3).then(candidate => candidate.setElection(1)),
+    Candidate.findById(4).then(candidate => candidate.setElection(1)),
+    Candidate.findById(5).then(candidate => candidate.setElection(1)),
+    Candidate.findById(6).then(candidate => candidate.setElection(1)),
   ]);
 
   const addElectionsToCommunities = await Promise.all([
-    Election.findById(1).then(election => election.setCommunity(3)),
-    Election.findById(2).then(election => election.setCommunity(3)),
-    Election.findById(3).then(election => election.setCommunity(3))
+    Election.findById(1).then(election => election.setCommunity(1))
   ]);
 
   console.log(`seeded ${elections.length} elections`);

@@ -17,13 +17,6 @@ class WatchParty extends Component {
     this.state = {
       switchView: false,
       GraphName: false,
-      data: [ {name: 'Group A', value: 400, fill: '#8884d8'},
-              {name: 'Group B', value: 300, fill: '#9cacf1'},
-              {name: 'Group C', value: 300, fill: '#8dd1e1'},
-              {name: 'Group D', value: 200, fill: '#82ca9d'},
-              {name: 'Group E', value: 278, fill: '#a4de6c'},
-              {name: 'Group F', value: 189, fill: '#d0ed57'}
-            ]
     }
     this.election = null;
   }
@@ -54,8 +47,8 @@ class WatchParty extends Component {
           }
           {
             this.state.switchView
-            ? <BarGraph data={this.state.data} />
-            : <DonutChart data={this.state.data} />
+            ? <BarGraph />
+            : <DonutChart />
           }
       </div>
     )
