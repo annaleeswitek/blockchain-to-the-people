@@ -36,7 +36,6 @@ class WatchParty extends Component {
 
   render () {
     let activeElection = this.props.activeElection;
-
     return (
       <div>
           {
