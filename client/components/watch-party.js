@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCandidates } from '../store/candidate';
 import DonutChart from './donut-chart';
 import BarGraph from './bar-chart';
 import { RaisedButton } from 'material-ui';
@@ -16,7 +15,7 @@ class WatchParty extends Component {
     super(props);
     this.state = {
       switchView: false,
-      GraphName: false,
+      GraphName: false
     }
     this.election = null;
   }
