@@ -17,7 +17,7 @@ class WatchParty extends Component {
     this.state = {
       switchView: false,
       GraphName: false,
-      data: [ {name: 'Group A', value: 400, fill:         '#8884d8'},
+      data: [ {name: 'Group A', value: 400, fill: '#8884d8'},
               {name: 'Group B', value: 300, fill: '#9cacf1'},
               {name: 'Group C', value: 300, fill: '#8dd1e1'},
               {name: 'Group D', value: 200, fill: '#82ca9d'},
