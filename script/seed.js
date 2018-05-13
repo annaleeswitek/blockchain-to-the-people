@@ -96,8 +96,8 @@ async function seed () {
 
   const communitiesList = [
     {
-      name: 'City of Philadelphia',
-      location: 'Philadelphia',
+      name: 'Board of Directors for Imaginary Corp',
+      location: 'New York City',
       timeZone: 'EST'
     },
     {
