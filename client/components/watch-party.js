@@ -58,7 +58,7 @@ class WatchParty extends Component {
 
   render () {
 
-    console.log("LOOKING FOR CANDIDATE LOG", this.props.watchPartyCounts)
+    console.log("LOOKING FOR CANDIDATE LOG", this.props.newVotes)
     let activeElection = this.props.activeElection;
 
     return (
@@ -92,7 +92,7 @@ class WatchParty extends Component {
  */
 const mapState = (state) => {
   return {
-    watchPartyCounts: state.watchPartyCounts,
+    newVotes: state.newVotes,
     user: state.user,
     communityId: state.user.communityId,
     activeElection: state.activeElection,
