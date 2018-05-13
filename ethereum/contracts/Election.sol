@@ -57,6 +57,7 @@ contract Election {
       count: 0
     });
     candidates.push(newCandidate);
+    emit CandidateLog(newCandidate.name, newCandidate.count, candidates.length-1);
   }
 
   function code() public view restricted returns (uint) {
