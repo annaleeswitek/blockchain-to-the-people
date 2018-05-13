@@ -1,7 +1,7 @@
 //not using these routes
 const Sequelize = require('sequelize');
 const router = require('express').Router();
-const {Candidate} = require('../db/models');
+const { Candidate } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -20,9 +20,16 @@ router.get('/:electionId', (req, res, next) => {
     .catch(next)
 });
 
+router.post('/:electionId', (req, res, next) => {
+  console.log('req body here, ', req.body);
+  console.log('req.params here, ', req.params);
+  Candidate.create(req.body)
+    .then(createdCandidate => createdCandidate.setElection(req.params.electionId))
+    .then(finished => res.json(finished))
+    .catch(next);
+})
+
 router.put('/:candidateId', (req, res, next) => {
-  // console.log('req.params', req.params)
-  // console.log('here is req.body', req.body);
   Candidate.update({voteCount: req.body.count}, {
     where: {id: req.params.candidateId},
     returning: true

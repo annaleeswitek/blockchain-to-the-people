@@ -4,6 +4,7 @@ import { RaisedButton, SelectField, TextField, MenuItem } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import { fetchUpcomingElections } from '../store/election';
+import { postNewCandidate } from '../store/candidate';
 
 class CreateCandidate extends Component {
   constructor(){
@@ -14,7 +15,7 @@ class CreateCandidate extends Component {
       imageURL: '',
       affiliation: '',
     }
-    // this.election = null;
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleElectionChange = this.handleElectionChange.bind(this);
@@ -25,25 +26,21 @@ class CreateCandidate extends Component {
     this.props.getUpcomingElections(userCommunityId);
   }
 
-  // componentWillUnmount () {
-  //   this.createdElectionEvt.stopWatching();
-  // }
-
   handleElectionChange(event, index, value) {
       let selectedElectionName = this.props.upcomingElections[index].name;
       let address = value;
       this.setState({ electionName: selectedElectionName, electionAddress: address });
-      // this.election = Election(this.state.electionAddress);
   }
 
-  handleChange (event) {
-    this.setState({[event.target.name]: event.target.value})
+  handleChange (evt) {
+    this.setState({[evt.target.name]: evt.target.value})
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault();
+  handleSubmit = async (evt) => {
+    evt.preventDefault();
+
     const election = await Election(this.state.electionAddress);
-    console.log("STATE BEFORE POST IS", this.state);
+    const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress == this.state.electionAddress);
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -51,7 +48,6 @@ class CreateCandidate extends Component {
         from: accounts[0],
       })
       .then(candidateReceipt => {
-        console.log('candidateReceipt', candidateReceipt);
         const candidateLog = candidateReceipt.events.CandidateLog.returnValues;
         const newCandidate = {
           name: this.state.name,
@@ -60,8 +56,7 @@ class CreateCandidate extends Component {
           voteCount: 0,
           arrayIndex: candidateLog.index
         }
-      console.log('Here is newCandiate!', newCandidate)
-        //post to db w/ candidate name and blockchain name
+      this.props.sendNewCandidate(newCandidate, selectedElection[0].id)
       })
     })
     .catch(console.error)
@@ -72,7 +67,7 @@ class CreateCandidate extends Component {
       <div>
         <h1>Add Election Candidate</h1>
           <form onSubmit={this.handleSubmit}>
-           <TextField
+          <TextField
             floatingLabelText= "candidate name"
             value= {this.state.name}
             name="name"
@@ -84,7 +79,7 @@ class CreateCandidate extends Component {
             name="imageURL"
             onChange= {this.handleChange}
             /><br />
-             <TextField
+            <TextField
             floatingLabelText= "candidate affiliation"
             value= {this.state.affiliation}
             name="affiliation"
@@ -117,11 +112,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    // postNewElection: (obj, communityId) => {
-    //   dispatch(postNewElection(obj, communityId));
-    // },
     getUpcomingElections: (userCommunityId) => {
         dispatch(fetchUpcomingElections(userCommunityId));
+    },
+    sendNewCandidate: (newCandidateObj, electionId) => {
+      dispatch(postNewCandidate(newCandidateObj, electionId))
     }
   }
 }
