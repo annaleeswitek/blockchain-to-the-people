@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
 import { postVote } from '../store/candidate';
 import web3 from '../../ethereum/web3';
-import { CircularProgress, Snackbar, Dialog } from 'material-ui'; 
+import { CircularProgress, Snackbar, Dialog } from 'material-ui';
 import Election from '../../ethereum/election';
 import socket from '../socket';
 //export const newVoteSocket
@@ -16,9 +16,9 @@ class VotingBooth extends Component {
       candidateName: '',
       message: '',
       arrayIndex: '',
-      candidateId: '', 
-      isLoading: false, 
-      open: false 
+      candidateId: '',
+      isLoading: false,
+      open: false
     }
     this.election = null;
     this.selectedCandidateArrayIndex = null;
@@ -39,15 +39,15 @@ class VotingBooth extends Component {
   }
 
   handleClick = () => {
-    this.setState({ 
+    this.setState({
       open: true
-    }); 
-  }; 
+    });
+  };
 
   handleRequestClose = () => {
-    this.setState({ 
-      open: false 
-    }); 
+    this.setState({
+      open: false
+    });
   }
 
   handleChange(evt) {
@@ -61,27 +61,26 @@ class VotingBooth extends Component {
     console.log('state in change', this.state);
   };
 
-  handleSubmit = async (evt) => {
+  handleSubmit = (evt) => {
     evt.preventDefault();
-    
+
     // console.log('this.selectedCandidateArray in Submit', this.selectedCandidateArrayIndex);
     const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
     // console.log('selectedCandidate.id', selectedCandidate.id)
 
     web3.eth.getAccounts()
     .then(accounts => {
-      this.setState({ isLoading: true, open: true}); 
+      this.setState({ isLoading: true, open: true});
       this.election.methods.submitVote(1234, this.state.arrayIndex).send({
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
       .then(voteReceipt => {
-        console.log(voteReceipt);
+        console.log('VOTING BOOTH voteReciept', voteReceipt);
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
-        socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
-        this.setState({ isLoading: false, open: false }); 
-
+        // socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+        this.setState({ isLoading: false, open: false });
       })
     })
     .catch(console.error)
@@ -119,19 +118,19 @@ class VotingBooth extends Component {
             <div>{this.state.message}</div>
             </form>
 
-            { this.state.isLoading ? 
-            <div > 
-            <CircularProgress size={55} thickness={5}/> 
+            { this.state.isLoading ?
+            <div >
+            <CircularProgress size={55} thickness={5}/>
             <h1>Your vote is being added to the blockchain.</h1>
             </div>
-  
+
             : null }
-            <Snackbar 
+            <Snackbar
                 open={this.state.open}
-                message="Click 'submit' in MetaMask to add your vote to the blockchain!" 
+                message="Click 'submit' in MetaMask to add your vote to the blockchain!"
                 autoHideDuration={4000}
                 onRequestClose={this.handleRequestClose}
-              /> 
+              />
           </div>
           : <div>There's no election active at this time!</div>
         }
@@ -164,13 +163,13 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(VotingBooth);
 
-// { this.state.isLoading ? 
-//   <Dialog 
+// { this.state.isLoading ?
+//   <Dialog
 //     title="Transaction Pending"
-//     open={this.state.open} 
+//     open={this.state.open}
 //   >
-//   <CircularProgress size={30} thickness={5}/> 
+//   <CircularProgress size={30} thickness={5}/>
 //   <h1>Your vote is being added to the blockchain.</h1>
-//   </Dialog> 
+//   </Dialog>
 
 //   : null }

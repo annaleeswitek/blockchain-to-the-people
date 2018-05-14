@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Election from '../../ethereum/election';
+import socket from '../socket';
 
 //Action Types
 const GET_CANDIDATES = 'GET_CANDIDATES';
@@ -39,7 +40,11 @@ export const postVote = (newVoteObj, candidateId) => {
   return dispatch => {
     axios.put(`/api/candidates/${candidateId}`, newVoteObj)
       .then(res => res.data)
-      .then(updated => console.log("new vote posted! ", updated))
+      .then(updated => {
+        console.log("new vote posted! ", updated);
+        dispatch(newVoteSocket(updated))
+        socket.emit('newVote', updated);
+      })
       .catch(console.error);
   }
 };
