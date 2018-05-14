@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchActiveElection } from '../store/election';
-import { postVote } from '../store/candidate';
+import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
 import { LinearProgress, Snackbar, Dialog } from 'material-ui';
 import Election from '../../ethereum/election';

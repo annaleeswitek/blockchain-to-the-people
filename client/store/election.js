@@ -104,7 +104,9 @@ export function activeElectionReducer(activeElection = {}, action) {
     case GET_ACTIVE_ELECTION:
       return action.activeElection
     case UPDATE_CANDIDATE:
-      return [...activeElection.candidates, action.updatedCandidate ]
+      let updatedCandidatesArray = activeElection.candidates.map(c => c.id === action.updatedCandidate.id ? action.updatedCandidate : c)
+      activeElection.candidates = updatedCandidatesArray;
+      return activeElection
     default:
       return activeElection
   }

@@ -5,10 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import { activeElectionReducer, electionsReducer, blockchainElectionReducer } from './election';
 // import { giveWatchPartyCountsReducer } from './watch-party';
-import { candidatesReducer, newVoteSocketsReducer } from './candidate';
+import { candidatesReducer } from './candidate';
 
-const reducer = combineReducers({ user, activeElection: activeElectionReducer, elections: electionsReducer, blockchainElections: blockchainElectionReducer, candidates: candidatesReducer,
-  newVotes: newVoteSocketsReducer })
+const reducer = combineReducers({ user, activeElection: activeElectionReducer, elections: electionsReducer, blockchainElections: blockchainElectionReducer, candidates: candidatesReducer })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
