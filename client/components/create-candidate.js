@@ -7,13 +7,12 @@ import { fetchUpcomingElections } from '../store/election';
 import { postNewCandidate } from '../store/candidate';
 
 const buttonStyle = {
-  margin: 15
+  margin: 45
  };
 
 const style = {
-  height: 450,
-  width: 400,
-  margin: 15,
+  width: '65%',
+  margin: '0 auto',
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -117,6 +116,7 @@ class CreateCandidate extends Component {
     return (
       <div className="form">
         <Paper style={style} zDepth={2}>
+        <br></br>
           <h1>Add Election Candidate</h1>
           <form onSubmit={this.handleSubmit}>
             <TextField
