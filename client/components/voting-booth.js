@@ -56,6 +56,7 @@ class VotingBooth extends Component {
     this.setState({[evt.target.name]: evt.target.value});
   };
 
+
   handleSubmit = async (evt) => {
     evt.preventDefault();
 
@@ -128,7 +129,7 @@ class VotingBooth extends Component {
       </div>
     )
   }
-};
+}
 
 const mapState = (state) => {
   return {
