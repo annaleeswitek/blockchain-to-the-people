@@ -35,15 +35,15 @@ class CreateCandidate extends Component {
   }
 
   handleClick = () => {
-    this.setState({ 
+    this.setState({
       open: true
-    }); 
-  }; 
+    });
+  };
 
   handleRequestClose = () => {
-    this.setState({ 
-      open: false 
-    }); 
+    this.setState({
+      open: false
+    });
   }
 
   handleChange (evt) {
