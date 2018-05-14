@@ -34,17 +34,17 @@ class CreateCandidate extends Component {
       this.setState({ electionName: selectedElectionName, electionAddress: address });
   }
 
-  handleClick = () => {
-    this.setState({ 
-      open: true
-    }); 
-  }; 
+  // handleClick = () => {
+  //   this.setState({
+  //     open: true
+  //   });
+  // };
 
-  handleRequestClose = () => {
-    this.setState({ 
-      open: false 
-    }); 
-  }
+  // handleRequestClose = () => {
+  //   this.setState({
+  //     open: false
+  //   });
+  // }
 
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
