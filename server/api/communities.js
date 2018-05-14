@@ -75,7 +75,7 @@ router.get('/:id/history', (req, res, next) => {
 router.post('/:id/newElection', (req, res, next) => {
   console.log("REQ BODY ", req.body)
   console.log("REQ PARAMS", req.params.id)
-  Election.create({name: req.body.name, startDate: req.body.startDate, endDate: req.body.endDate, blockchainAddress: req.body.blockchainAddress})
+  Election.create({name: req.body.name, description: req.body.description, startDate: req.body.startDate, endDate: req.body.endDate, blockchainAddress: req.body.blockchainAddress})
     .then(returnedElection => {
       console.log('went down to post in db', returnedElection)
       console.log('req params again', req.params.id)

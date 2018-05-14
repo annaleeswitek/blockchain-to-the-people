@@ -24,6 +24,9 @@ const Candidate = db.define('candidate', {
     validate: {
       min: 0
     }
+  },
+  description: {
+    type: Sequelize.TEXT
   }
 });
 

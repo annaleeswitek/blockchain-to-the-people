@@ -15,9 +15,11 @@ class CreateElection extends Component {
       startDate: null,
       endDate: null,
       startTime: null,
-      endTime: null
+      endTime: null,
+      description: ''
     }
     this.handleName = this.handleName.bind(this);
+    this.handleDescription = this.handleDescription.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleStartDate = this.handleStartDate.bind(this);
@@ -43,6 +45,9 @@ class CreateElection extends Component {
     this.setState({name: event.target.value});
   }
 
+  handleDescription(event) {
+    this.setState({description: event.target.value})
+  }
 
   handleCodeChange(event) {
       this.setState({ code: event.target.value })
@@ -107,6 +112,7 @@ class CreateElection extends Component {
           const address = newElectionAddress.events.ElectionLog.returnValues.election;
           const objToSend = {
             name: this.state.name,
+            description: this.state.description,
             startDate: renderedStartDateTime._d,
             endDate: renderedEndDateTime._d,
             blockchainAddress: address,
@@ -114,6 +120,8 @@ class CreateElection extends Component {
           }
           this.props.postNewElection(objToSend ,this.props.communityId)
           this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null });
+          alert("New Election Added!");
+          this.props.history.push('/home');
         })
       })
       .catch(console.error)
@@ -128,7 +136,14 @@ class CreateElection extends Component {
               floatingLabelText="name"
               value={this.state.name}
               onChange={this.handleName}
-            />
+            /><br />
+            <TextField
+            floatingLabelText="election description"
+            multiLine={true}
+            value={this.state.description}
+            name="description"
+            onChange={this.handleDescription}
+            /><br />
             <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
             <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
             <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
@@ -137,8 +152,8 @@ class CreateElection extends Component {
               floatingLabelText="code"
               value={this.state.code}
               onChange={this.handleCodeChange}
-            />
-          <RaisedButton type="submit">Submit</RaisedButton>
+            /><br />
+            <RaisedButton type="submit">Submit</RaisedButton>
           </form>
       </div>
   )

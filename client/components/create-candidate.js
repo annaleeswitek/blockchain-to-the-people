@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, SelectField, TextField, MenuItem } from 'material-ui';
+import { RaisedButton, SelectField, TextField, MenuItem, Dialog } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import { fetchUpcomingElections } from '../store/election';
@@ -14,6 +14,9 @@ class CreateCandidate extends Component {
       electionAddress: '',
       imageURL: '',
       affiliation: '',
+      message: '',
+      description: '',
+      open: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,6 +27,10 @@ class CreateCandidate extends Component {
   async componentDidMount () {
     const userCommunityId = this.props.user.communityId;
     this.props.getUpcomingElections(userCommunityId);
+  }
+
+  handleClose = () => {
+    this.setState({open: false});
   }
 
   handleElectionChange(event, index, value) {
@@ -54,9 +61,28 @@ class CreateCandidate extends Component {
           imageURL: this.state.imageURL,
           affiliation: this.state.affiliation,
           voteCount: 0,
-          arrayIndex: candidateLog.index
+          arrayIndex: candidateLog.index,
+          description: this.state.description
         }
-      this.props.sendNewCandidate(newCandidate, selectedElection[0].id)
+      this.props.sendNewCandidate(newCandidate, selectedElection[0].id);
+
+        this.setState({
+          name: '',
+          electionAddress: '',
+          imageURL: '',
+          affiliation: '',
+          message: '',
+          description: '',
+          open: true
+        });
+        //{
+        //   <Dialog
+        //     open={this.state.open}
+        //     onRequestClose={this.handleClose}
+        //   />
+        // }
+      alert("New Candidate Added!");
+      this.props.history.push('/home');
       })
     })
     .catch(console.error)
@@ -84,6 +110,13 @@ class CreateCandidate extends Component {
             value= {this.state.affiliation}
             name="affiliation"
             onChange= {this.handleChange}
+            /><br />
+            <TextField
+            floatingLabelText="candidate description"
+            multiLine={true}
+            value={this.state.description}
+            name="description"
+            onChange={this.handleChange}
             /><br />
             <SelectField
                 value={this.state.electionAddress}
