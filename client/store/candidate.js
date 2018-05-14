@@ -55,6 +55,7 @@ export const postNewCandidate = (newCandidateObj, electionId) => {
 //do we need an action creator to update the candidates array with the new candidate now?
 
 
+
 //Reducer
 export function candidatesReducer(candidates = {}, action) {
   switch (action.type) {
