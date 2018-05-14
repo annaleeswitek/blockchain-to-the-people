@@ -28,7 +28,7 @@ class CreateElection extends Component {
     this.handleStartTime = this.handleStartTime.bind(this);
     this.handleEndTime = this.handleEndTime.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
     // this.createdElectionEvt = null;
   }
 
