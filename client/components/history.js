@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import PastDonutChart from './past-donut-chart';
+import DonutChart from './donut-chart';
 import { fetchPastElections } from '../store/election';
 
 
-class History extends Component {
+class ElectionHistory extends Component {
 
   componentDidMount() {
     this.props.getHistory(this.props.user.communityId);
@@ -18,12 +20,21 @@ class History extends Component {
         pastElections.length
           ? pastElections.map(election => {
             return (
-              <div key={election.id}>
+                <div key={election.id}>
+
                 <h5>{election.name}</h5>
+                <h5>Candidates: {election.candidates.map(candidate => {
+                    return (<li> 
+                       {`${candidate.name} (${candidate.affiliation})`}
+                       </li> 
+                    )
+                })} </h5> 
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
+                <PastDonutChart idx={election.id}/>
               </div>
             )
+
           })
           : <div>There are no past elections in your community!</div>
         }
@@ -51,4 +62,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(History)
+export default connect(mapState, mapDispatch)(ElectionHistory)

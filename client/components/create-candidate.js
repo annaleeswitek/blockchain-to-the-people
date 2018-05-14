@@ -14,6 +14,8 @@ class CreateCandidate extends Component {
       electionAddress: '',
       imageURL: '',
       affiliation: '',
+      isLoading: false,
+      open: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +32,18 @@ class CreateCandidate extends Component {
       let selectedElectionName = this.props.upcomingElections[index].name;
       let address = value;
       this.setState({ electionName: selectedElectionName, electionAddress: address });
+  }
+
+  handleClick = () => {
+    this.setState({ 
+      open: true
+    }); 
+  }; 
+
+  handleRequestClose = () => {
+    this.setState({ 
+      open: false 
+    }); 
   }
 
   handleChange (evt) {
@@ -97,6 +111,7 @@ class CreateCandidate extends Component {
           <RaisedButton type="submit">Submit</RaisedButton>
           </form>
       </div>
+
   )
   }
 }
