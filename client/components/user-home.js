@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections, fetchActiveElectionFromBlockchain } from '../store/election';
-import { Slider, Tab, Tabs } from 'material-ui';
+import { Slider, Tab, Tabs, Paper } from 'material-ui';
 // import Election from '../../ethereum/election';
 
 const styles = {
@@ -12,6 +12,14 @@ const styles = {
     marginBottom: 12,
     fontWeight: 400,
   },
+};
+
+const style = {
+  height: 400,
+  width: 400,
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
 };
 
 /**
