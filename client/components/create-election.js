@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
+import { RaisedButton, TextField, DatePicker, TimePicker, Paper } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
 import moment from 'moment';
+
+const buttonStyle = {
+  margin: 15
+ };
+
+const style = {
+  height: 520,
+  width: 400,
+  margin: 15,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class CreateElection extends Component {
   constructor(){
@@ -121,8 +133,9 @@ class CreateElection extends Component {
 
   render () {
     return (
-      <div>
-        <h1>New Election</h1>
+      <div className="form">
+        <Paper style={style} zDepth={2}>
+          <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
             <TextField
               floatingLabelText="name"
@@ -140,8 +153,9 @@ class CreateElection extends Component {
             />
             <br />
             <br />
-          <RaisedButton type="submit">Submit</RaisedButton>
+          <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
           </form>
+        </Paper>
       </div>
   )
   }
