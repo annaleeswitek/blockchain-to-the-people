@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
 import { postVote } from '../store/candidate';
 import web3 from '../../ethereum/web3';
+import { CircularProgress, Snackbar, Dialog } from 'material-ui'; 
 import Election from '../../ethereum/election';
 import socket from '../socket';
 //export const newVoteSocket
@@ -15,12 +16,15 @@ class VotingBooth extends Component {
       candidateName: '',
       message: '',
       arrayIndex: '',
-      candidateId: ''
+      candidateId: '', 
+      isLoading: false, 
+      open: false 
     }
     this.election = null;
     this.selectedCandidateArrayIndex = null;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
@@ -32,6 +36,18 @@ class VotingBooth extends Component {
       if (error) console.log('error here', error);
       console.log("hey! newVoteEvent was triggered! Yay ", result);
     });
+  }
+
+  handleClick = () => {
+    this.setState({ 
+      open: true
+    }); 
+  }; 
+
+  handleRequestClose = () => {
+    this.setState({ 
+      open: false 
+    }); 
   }
 
   handleChange(evt) {
@@ -47,12 +63,14 @@ class VotingBooth extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
+    
     // console.log('this.selectedCandidateArray in Submit', this.selectedCandidateArrayIndex);
     const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
     // console.log('selectedCandidate.id', selectedCandidate.id)
 
     web3.eth.getAccounts()
     .then(accounts => {
+      this.setState({ isLoading: true, open: true}); 
       this.election.methods.submitVote(1234, this.state.arrayIndex).send({
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
@@ -62,6 +80,8 @@ class VotingBooth extends Component {
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+        this.setState({ isLoading: false, open: false }); 
+
       })
     })
     .catch(console.error)
@@ -95,9 +115,23 @@ class VotingBooth extends Component {
               })
               : null
             }
-            <button type="submit">Submit Vote</button>
+            <button type="submit" onClick={this.handleClick} label = "submit vote">Submit Vote</button>
             <div>{this.state.message}</div>
             </form>
+
+            { this.state.isLoading ? 
+            <div > 
+            <CircularProgress size={55} thickness={5}/> 
+            <h1>Your vote is being added to the blockchain.</h1>
+            </div>
+  
+            : null }
+            <Snackbar 
+                open={this.state.open}
+                message="Click 'submit' in MetaMask to add your vote to the blockchain!" 
+                autoHideDuration={4000}
+                onRequestClose={this.handleRequestClose}
+              /> 
           </div>
           : <div>There's no election active at this time!</div>
         }
@@ -129,3 +163,14 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(VotingBooth);
+
+// { this.state.isLoading ? 
+//   <Dialog 
+//     title="Transaction Pending"
+//     open={this.state.open} 
+//   >
+//   <CircularProgress size={30} thickness={5}/> 
+//   <h1>Your vote is being added to the blockchain.</h1>
+//   </Dialog> 
+
+//   : null }

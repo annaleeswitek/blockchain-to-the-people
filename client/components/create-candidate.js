@@ -16,6 +16,7 @@ class CreateCandidate extends Component {
       affiliation: '',
       message: '',
       description: '',
+      isLoading: false,
       open: false
     }
 
@@ -38,6 +39,18 @@ class CreateCandidate extends Component {
       let address = value;
       this.setState({ electionName: selectedElectionName, electionAddress: address });
   }
+
+  // handleClick = () => {
+  //   this.setState({
+  //     open: true
+  //   });
+  // };
+
+  // handleRequestClose = () => {
+  //   this.setState({
+  //     open: false
+  //   });
+  // }
 
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
@@ -130,6 +143,7 @@ class CreateCandidate extends Component {
           <RaisedButton type="submit">Submit</RaisedButton>
           </form>
       </div>
+
   )
   }
 }

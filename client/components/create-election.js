@@ -16,7 +16,8 @@ class CreateElection extends Component {
       endDate: null,
       startTime: null,
       endTime: null,
-      description: ''
+      description: '',
+      isLoading: false
     }
     this.handleName = this.handleName.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -26,6 +27,8 @@ class CreateElection extends Component {
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleStartTime = this.handleStartTime.bind(this);
     this.handleEndTime = this.handleEndTime.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     // this.createdElectionEvt = null;
   }
 
@@ -70,6 +73,20 @@ class CreateElection extends Component {
     currentState.startTime = time;
     this.setState(currentState);
   }
+
+
+  handleClick = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false
+    });
+  }
+
 
   handleEndTime (event, time) {
     let currentState = this.state;
@@ -155,6 +172,7 @@ class CreateElection extends Component {
             /><br />
             <RaisedButton type="submit">Submit</RaisedButton>
           </form>
+
       </div>
   )
   }
