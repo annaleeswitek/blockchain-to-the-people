@@ -110,10 +110,12 @@ class VotingBooth extends Component {
             <button type="submit" onClick={this.handleClick} label = "submit vote">Submit Vote</button>
             <div>{this.state.message}</div>
             </form>
-
+            <br /> 
+            <br /> 
             { this.state.isLoading ?
             <div >
-            <LinearProgress mode={"indeterminate"}/>
+            <h4>Loading...</h4> 
+            <LinearProgress mode={"indeterminate"} /> 
             </div>
 
             : null }
