@@ -24,11 +24,11 @@ class ElectionHistory extends Component {
 
                 <h5>{election.name}</h5>
                 <h5>Candidates: {election.candidates.map(candidate => {
-                    return (<li> 
-                       {`${candidate.name} (${candidate.affiliation})`}
-                       </li> 
+                    return (<ul key={candidate.id}>
+                      {`${candidate.name} (${candidate.affiliation})`}
+                      </ul>
                     )
-                })} </h5> 
+                })} </h5>
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
                 <PastDonutChart idx={election.id}/>

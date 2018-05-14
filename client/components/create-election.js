@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, TextField, DatePicker, TimePicker } from 'material-ui';
+import { RaisedButton, TextField, DatePicker, TimePicker, Paper, LinearProgress } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
 import moment from 'moment';
+
+const buttonStyle = {
+  margin: 45
+};
+
+const style = {
+  width: '70%',
+  margin: '0 auto',
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class CreateElection extends Component {
   constructor(){
@@ -16,9 +27,12 @@ class CreateElection extends Component {
       endDate: null,
       startTime: null,
       endTime: null,
-      isLoading: false
+      description: '',
+      isLoading: false,
+      open: false
     }
     this.handleName = this.handleName.bind(this);
+    this.handleDescription = this.handleDescription.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleStartDate = this.handleStartDate.bind(this);
@@ -32,7 +46,7 @@ class CreateElection extends Component {
   async componentDidMount () {
     const createdElectionEvt = await factory.events.ElectionLog({});
     createdElectionEvt.on((error, result) => {
-      if(error) console.log('error here ', error);
+      if (error) console.log('error here ', error);
     });
   }
 
@@ -40,11 +54,15 @@ class CreateElection extends Component {
   //   this.createdElectionEvt.stopWatching();
   // }
 
+
   handleName(event) {
     // this.setState({ [event.target.name]: event.target.value });
     this.setState({name: event.target.value});
   }
 
+  handleDescription(event) {
+    this.setState({description: event.target.value})
+  }
 
   handleCodeChange(event) {
       this.setState({ code: event.target.value })
@@ -123,13 +141,16 @@ class CreateElection extends Component {
           const address = newElectionAddress.events.ElectionLog.returnValues.election;
           const objToSend = {
             name: this.state.name,
+            description: this.state.description,
             startDate: renderedStartDateTime._d,
             endDate: renderedEndDateTime._d,
             blockchainAddress: address,
             foreignId: this.props.communityId
           }
-          this.props.postNewElection(objToSend ,this.props.communityId)
+          this.props.postNewElection(objToSend, this.props.communityId)
           this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null });
+          alert("New Election Added!");
+          this.props.history.push('/home');
         })
       })
       .catch(console.error)
@@ -137,26 +158,37 @@ class CreateElection extends Component {
 
   render () {
     return (
-      <div>
-        <h1>New Election</h1>
+      <div className="form">
+        <Paper style={style} zDepth={2}>
+        <br /><br/>
+          <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
+            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate} />
+            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
+            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
+            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
+            <br />
             <TextField
               floatingLabelText="name"
               value={this.state.name}
               onChange={this.handleName}
-            />
-            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
-            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
-            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
-            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
+            /><br />
             <TextField
               floatingLabelText="code"
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
-          <RaisedButton type="submit">Submit</RaisedButton>
+            <br />
+            <TextField
+              floatingLabelText="election description"
+              multiLine={true}
+              value={this.state.description}
+              name="description"
+              onChange={this.handleDescription}
+            /><br />
+          <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
           </form>
-
+        </Paper>
       </div>
   )
   }

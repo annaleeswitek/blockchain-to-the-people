@@ -1,46 +1,57 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {TextField, RaisedButton} from 'material-ui'
+import {TextField, RaisedButton, Paper} from 'material-ui'
 import {signup} from '../store';
 
 /**
  * COMPONENT
  */
-const style = {
+const buttonStyle = {
   margin: 15
  };
+
+const style = {
+  height: 400,
+  width: 400,
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 const SignUpForm = (props) => {
   const {handleSubmit, error} = props
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-      <TextField
-        hintText="Enter your Full Name"
-        floatingLabelText="Name"
-        name="name"
-        />
+    <div className="form">
+      <Paper style={style} zDepth={2}>
         <br />
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSubmit}>
         <TextField
-        hintText="Enter your Email"
-        floatingLabelText="Email"
-        name="email"
-        />
-        <br />
-        <TextField
-          type="password"
-          hintText="Enter your Password"
-          floatingLabelText="Password"
-          name="password"
+          hintText="Enter your Full Name"
+          floatingLabelText="Name"
+          name="name"
           />
-        <br />
-          <RaisedButton type="submit" label="Sign Up" primary={true} style={style} />
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-  {/*<a href="/auth/google">{displayName} with Google</a>*/}
+          <br />
+          <TextField
+          hintText="Enter your Email"
+          floatingLabelText="Email"
+          name="email"
+          />
+          <br />
+          <TextField
+            type="password"
+            hintText="Enter your Password"
+            floatingLabelText="Password"
+            name="password"
+            />
+          <br />
+            <RaisedButton type="submit" label="Sign Up" primary={true} style={buttonStyle} />
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+    {/*<a href="/auth/google">{displayName} with Google</a>*/}
+      </Paper>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchActiveElection } from '../store/election';
 import { postVote } from '../store/candidate';
 import web3 from '../../ethereum/web3';
-import { CircularProgress, Snackbar, Dialog } from 'material-ui';
+import { LinearProgress, Snackbar, Dialog } from 'material-ui';
 import Election from '../../ethereum/election';
 import socket from '../socket';
 //export const newVoteSocket
@@ -56,19 +56,13 @@ class VotingBooth extends Component {
     this.selectedCandidateArrayIndex = evt.target.value;
     console.log("HERE is EVT target val", evt.target.value)
     this.setState({[evt.target.name]: evt.target.value});
-    // this.setState({
-    //   arrayIndex: evt.target.value.arrayIndex,
-    //   candidateId: evt.target.value.candidateId
-    // })
-    console.log('state in change', this.state);
   };
 
-  handleSubmit = (evt) => {
+
+  handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    // console.log('this.selectedCandidateArray in Submit', this.selectedCandidateArrayIndex);
     const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
-    // console.log('selectedCandidate.id', selectedCandidate.id)
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -81,7 +75,7 @@ class VotingBooth extends Component {
         console.log('VOTING BOOTH voteReciept', voteReceipt);
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
-        // socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
+        socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
         this.setState({ isLoading: false, open: false });
       })
     })
@@ -89,7 +83,6 @@ class VotingBooth extends Component {
   };
 
   render() {
-    // console.log('this.props.candidates', this.props.candidates)
     let activeElection = this.props.activeElection;
     return (
       <div>
@@ -122,15 +115,14 @@ class VotingBooth extends Component {
 
             { this.state.isLoading ?
             <div >
-            <CircularProgress size={55} thickness={5}/>
-            <h1>Your vote is being added to the blockchain.</h1>
+            <LinearProgress mode={"indeterminate"}/>
             </div>
 
             : null }
             <Snackbar
                 open={this.state.open}
-                message="Click 'submit' in MetaMask to add your vote to the blockchain!"
-                autoHideDuration={4000}
+                message="Click 'submit' in MetaMask to add your vote to the blockchain! It'll take a minute!"
+                autoHideDuration={10000}
                 onRequestClose={this.handleRequestClose}
               />
           </div>
@@ -139,7 +131,7 @@ class VotingBooth extends Component {
       </div>
     )
   }
-};
+}
 
 const mapState = (state) => {
   return {

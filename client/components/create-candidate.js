@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, SelectField, TextField, MenuItem } from 'material-ui';
+import { RaisedButton, SelectField, TextField, MenuItem, Paper } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import { fetchUpcomingElections } from '../store/election';
 import { postNewCandidate } from '../store/candidate';
+
+const buttonStyle = {
+  margin: 45
+ };
+
+const style = {
+  width: '65%',
+  margin: '0 auto',
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class CreateCandidate extends Component {
   constructor(){
@@ -14,6 +25,8 @@ class CreateCandidate extends Component {
       electionAddress: '',
       imageURL: '',
       affiliation: '',
+      message: '',
+      description: '',
       isLoading: false,
       open: false
     }
@@ -26,6 +39,10 @@ class CreateCandidate extends Component {
   async componentDidMount () {
     const userCommunityId = this.props.user.communityId;
     this.props.getUpcomingElections(userCommunityId);
+  }
+
+  handleClose = () => {
+    this.setState({open: false});
   }
 
   handleElectionChange(event, index, value) {
@@ -54,7 +71,7 @@ class CreateCandidate extends Component {
     evt.preventDefault();
 
     const election = await Election(this.state.electionAddress);
-    const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress == this.state.electionAddress);
+    const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress === this.state.electionAddress);
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -68,9 +85,28 @@ class CreateCandidate extends Component {
           imageURL: this.state.imageURL,
           affiliation: this.state.affiliation,
           voteCount: 0,
-          arrayIndex: candidateLog.index
+          arrayIndex: candidateLog.index,
+          description: this.state.description
         }
-      this.props.sendNewCandidate(newCandidate, selectedElection[0].id)
+      this.props.sendNewCandidate(newCandidate, selectedElection[0].id);
+
+        this.setState({
+          name: '',
+          electionAddress: '',
+          imageURL: '',
+          affiliation: '',
+          message: '',
+          description: '',
+          open: true
+        });
+        //{
+        //   <Dialog
+        //     open={this.state.open}
+        //     onRequestClose={this.handleClose}
+        //   />
+        // }
+      alert("New Candidate Added!");
+      this.props.history.push('/home');
       })
     })
     .catch(console.error)
@@ -78,38 +114,48 @@ class CreateCandidate extends Component {
 
   render () {
     return (
-      <div>
-        <h1>Add Election Candidate</h1>
+      <div className="form">
+        <Paper style={style} zDepth={2}>
+        <br></br>
+          <h1>Add Election Candidate</h1>
           <form onSubmit={this.handleSubmit}>
-          <TextField
-            floatingLabelText= "candidate name"
-            value= {this.state.name}
-            name="name"
-            onChange= {this.handleChange}
-            /><br />
             <TextField
-            floatingLabelText= "candidate image URL"
-            value= {this.state.imageURL}
-            name="imageURL"
-            onChange= {this.handleChange}
-            /><br />
-            <TextField
-            floatingLabelText= "candidate affiliation"
-            value= {this.state.affiliation}
-            name="affiliation"
-            onChange= {this.handleChange}
-            /><br />
-            <SelectField
-                value={this.state.electionAddress}
-                name="blockchainAddress"
-                onChange={this.handleElectionChange}
-                floatingLabelText={"election name"}>
-                {this.props.upcomingElections && this.props.upcomingElections.map(function(election) {
-              return <MenuItem key = {election.id} value={election.blockchainAddress} primaryText={election.name}/>
-            })}
-          </SelectField><br />
-          <RaisedButton type="submit">Submit</RaisedButton>
+              floatingLabelText= "candidate name"
+              value= {this.state.name}
+              name="name"
+              onChange= {this.handleChange}
+              /><br />
+              <TextField
+              floatingLabelText="candidate description"
+              multiLine={true}
+              value={this.state.description}
+              name="description"
+              onChange={this.handleChange}
+              /><br />
+              <TextField
+              floatingLabelText= "candidate image URL"
+              value= {this.state.imageURL}
+              name="imageURL"
+              onChange= {this.handleChange}
+              /><br />
+              <TextField
+              floatingLabelText= "candidate affiliation"
+              value= {this.state.affiliation}
+              name="affiliation"
+              onChange= {this.handleChange}
+              /><br />
+              <SelectField
+                  value={this.state.electionAddress}
+                  name="blockchainAddress"
+                  onChange={this.handleElectionChange}
+                  floatingLabelText={'election name'}>
+                  {this.props.upcomingElections && this.props.upcomingElections.map(function(election) {
+                return <MenuItem key = {election.id} value={election.blockchainAddress} primaryText={election.name} />
+              })}
+            </SelectField><br />
+            <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
           </form>
+        </Paper>
       </div>
 
   )
