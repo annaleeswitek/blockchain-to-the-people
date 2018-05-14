@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, TextField, DatePicker, TimePicker, Paper } from 'material-ui';
+import { RaisedButton, TextField, DatePicker, TimePicker, Paper, LinearProgress } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
 import moment from 'moment';
 
 const buttonStyle = {
-  margin: 15
- };
+  margin: 45
+};
 
 const style = {
-  height: 520,
-  width: 400,
-  margin: 15,
+  width: '70%',
+  margin: '0 auto',
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -29,7 +28,8 @@ class CreateElection extends Component {
       startTime: null,
       endTime: null,
       description: '',
-      isLoading: false
+      isLoading: false,
+      open: false
     }
     this.handleName = this.handleName.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -53,6 +53,7 @@ class CreateElection extends Component {
   // componentWillUnmount () {
   //   this.createdElectionEvt.stopWatching();
   // }
+
 
   handleName(event) {
     // this.setState({ [event.target.name]: event.target.value });
@@ -159,31 +160,32 @@ class CreateElection extends Component {
     return (
       <div className="form">
         <Paper style={style} zDepth={2}>
+        <br /><br/>
           <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
+            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate} />
+            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
+            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
+            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
+            <br />
             <TextField
               floatingLabelText="name"
               value={this.state.name}
               onChange={this.handleName}
             /><br />
             <TextField
-            floatingLabelText="election description"
-            multiLine={true}
-            value={this.state.description}
-            name="description"
-            onChange={this.handleDescription}
-            /><br />
-            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
-            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
-            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
-            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
-            <TextField
               floatingLabelText="code"
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
             <br />
-            <br />
+            <TextField
+              floatingLabelText="election description"
+              multiLine={true}
+              value={this.state.description}
+              name="description"
+              onChange={this.handleDescription}
+            /><br />
           <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
           </form>
         </Paper>
