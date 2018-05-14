@@ -9,6 +9,9 @@ const Election = db.define('election', {
       notEmpty: true
     }
   },
+  description: {
+    type: Sequelize.TEXT
+  },
   startDate: {
     type: Sequelize.DATE
   },

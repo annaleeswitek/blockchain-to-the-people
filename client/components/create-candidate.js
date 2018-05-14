@@ -26,6 +26,8 @@ class CreateCandidate extends Component {
       electionAddress: '',
       imageURL: '',
       affiliation: '',
+      message: '',
+      description: '',
       isLoading: false,
       open: false
     }
@@ -38,6 +40,10 @@ class CreateCandidate extends Component {
   async componentDidMount () {
     const userCommunityId = this.props.user.communityId;
     this.props.getUpcomingElections(userCommunityId);
+  }
+
+  handleClose = () => {
+    this.setState({open: false});
   }
 
   handleElectionChange(event, index, value) {
@@ -80,9 +86,28 @@ class CreateCandidate extends Component {
           imageURL: this.state.imageURL,
           affiliation: this.state.affiliation,
           voteCount: 0,
-          arrayIndex: candidateLog.index
+          arrayIndex: candidateLog.index,
+          description: this.state.description
         }
-      this.props.sendNewCandidate(newCandidate, selectedElection[0].id)
+      this.props.sendNewCandidate(newCandidate, selectedElection[0].id);
+
+        this.setState({
+          name: '',
+          electionAddress: '',
+          imageURL: '',
+          affiliation: '',
+          message: '',
+          description: '',
+          open: true
+        });
+        //{
+        //   <Dialog
+        //     open={this.state.open}
+        //     onRequestClose={this.handleClose}
+        //   />
+        // }
+      alert("New Candidate Added!");
+      this.props.history.push('/home');
       })
     })
     .catch(console.error)
@@ -99,6 +124,13 @@ class CreateCandidate extends Component {
               value= {this.state.name}
               name="name"
               onChange= {this.handleChange}
+              /><br />
+              <TextField
+              floatingLabelText="candidate description"
+              multiLine={true}
+              value={this.state.description}
+              name="description"
+              onChange={this.handleChange}
               /><br />
               <TextField
               floatingLabelText= "candidate image URL"
