@@ -31,8 +31,10 @@ class VotingBooth extends Component {
     this.election = await Election(this.props.blockchainAddress);
     console.log('election came back', this.election);
 
-    const newVoteEvent = await this.election.events.CandidateLog({});
-    newVoteEvent.on((error, result) => {
+    const newVoteEvent = await this.election.events.CandidateLog();
+    window.election = this.election
+    window.nve = newVoteEvent
+    newVoteEvent.on('data', (error, result) => {
       if (error) console.log('error here', error);
       console.log("hey! newVoteEvent was triggered! Yay ", result);
     });

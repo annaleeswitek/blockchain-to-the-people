@@ -1,13 +1,15 @@
 import axios from 'axios';
 import factory from '../../ethereum/factory';
-import Election from '../../ethereum/election';
+import socket from '../socket';
 
 //action types
 const GET_BLOCKCHAIN_ELECTIONS = 'GET_BLOCKCHAIN_ELECTIONS';
 const GET_ACTIVE_ELECTION = 'GET_ACTIVE_ELECTION';
+const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE'
 const GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS';
 const GET_PAST_ELECTIONS = 'GET_PAST_ELECTIONS';
 const POST_NEW_ELECTION = 'POST_NEW_ELECTION';
+
 
 //action creators
 const getBlockchainElections = (elections) => {
@@ -17,6 +19,10 @@ const getBlockchainElections = (elections) => {
 const getActiveElection = (activeElection) => {
   return { type: GET_ACTIVE_ELECTION, activeElection }
 };
+
+const updateActiveElectionCandidates = (updatedCandidate) => {
+  return { type: UPDATE_CANDIDATE, updatedCandidate }
+}
 
 const getUpcomingElections = (upcomingElections) => {
   return { type: GET_UPCOMING_ELECTIONS, upcomingElections }
@@ -79,11 +85,26 @@ export const postNewElection = (obj, userCommunityId) => {
   }
 }
 
+export const postVote = (newVoteObj, candidateId) => {
+  return dispatch => {
+    axios.put(`/api/candidates/${candidateId}`, newVoteObj)
+      .then(res => res.data)
+      .then(updated => {
+        console.log("new vote posted! ", updated);
+        dispatch(updateActiveElectionCandidates(updated))
+        socket.emit('newVote', updated);
+      })
+      .catch(console.error);
+  }
+};
+
 //reducers
 export function activeElectionReducer(activeElection = {}, action) {
   switch (action.type) {
     case GET_ACTIVE_ELECTION:
       return action.activeElection
+    case UPDATE_CANDIDATE:
+      return [...activeElection.candidates, action.updatedCandidate ]
     default:
       return activeElection
   }

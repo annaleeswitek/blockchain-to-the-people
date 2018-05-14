@@ -10,6 +10,8 @@ import Election from '../../ethereum/election';
  * COMPONENT
  */
 
+window.Election = Election
+
 class WatchParty extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ class WatchParty extends Component {
     this.election = await Election(this.props.blockchainAddress);
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId);
+    console.log('this.props.state', this.props.state);
   }
 
   render () {
@@ -59,6 +62,7 @@ class WatchParty extends Component {
  */
 const mapState = (state) => {
   return {
+    state: state,
     newVotes: state.newVotes,
     user: state.user,
     communityId: state.user.communityId,
