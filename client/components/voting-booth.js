@@ -43,7 +43,7 @@ class VotingBooth extends Component {
     //   candidateId: evt.target.value.candidateId
     // })
     console.log('state in change', this.state);
-  };
+  }
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -104,7 +104,7 @@ class VotingBooth extends Component {
       </div>
     )
   }
-};
+}
 
 const mapState = (state) => {
   return {
