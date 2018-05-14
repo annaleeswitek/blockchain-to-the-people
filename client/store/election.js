@@ -9,6 +9,7 @@ const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE'
 const GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS';
 const GET_PAST_ELECTIONS = 'GET_PAST_ELECTIONS';
 const POST_NEW_ELECTION = 'POST_NEW_ELECTION';
+const ADD_NEW_CANDIDATE = 'ADD_NEW_CANDIDATE';
 
 
 //action creators
@@ -29,12 +30,16 @@ const getUpcomingElections = (upcomingElections) => {
 };
 
 const getPastElections = (pastElections) => {
-  return {type: GET_PAST_ELECTIONS, pastElections}
+  return { type: GET_PAST_ELECTIONS, pastElections }
 };
 
 const gotBackNewElection = (newElection) => {
-  return { type: POST_NEW_ELECTION, newElection}
+  return { type: POST_NEW_ELECTION, newElection }
 };
+
+const addNewCandidate = (newCandidate) => {
+  return { type: ADD_NEW_CANDIDATE, newCandidate }
+}
 
 //thunks
 export const fetchBlockchainElections = () => {
@@ -51,7 +56,7 @@ export const fetchActiveElection = (userCommunityId) => {
     axios.get(`/api/community/${userCommunityId}/active`)
       .then(res => res.data)
       .then(activeElection => {
-        console.log("IN THUNK activeElection", activeElection),
+        console.log("IN THUNK activeElection", activeElection)
         dispatch(getActiveElection(activeElection))
       })
       .catch(console.error);
@@ -98,6 +103,15 @@ export const postVote = (newVoteObj, candidateId) => {
   }
 };
 
+export const postNewCandidate = (newCandidateObj, electionId) => {
+  return dispatch => {
+    axios.post(`/api/candidates/${electionId}`, newCandidateObj)
+      .then(res => res.data)
+      .then(createdCandidate => dispatch(addNewCandidate(createdCandidate)))
+      .catch(console.error);
+  }
+};
+
 //reducers
 export function activeElectionReducer(activeElection = {}, action) {
   switch (action.type) {
@@ -116,6 +130,10 @@ export function electionsReducer(elections = [], action) {
   switch (action.type) {
     case GET_UPCOMING_ELECTIONS:
       return action.upcomingElections
+    // case ADD_NEW_CANDIDATE:
+    //   let candidatesArray = [...elections.candidates, action.newCandidate]
+    //   elections.candidates = candidatesArray
+    //   return [...elections.candidates, action.newCandidate]
     case POST_NEW_ELECTION:
       return [...elections, action.newElection]
     case GET_PAST_ELECTIONS:
