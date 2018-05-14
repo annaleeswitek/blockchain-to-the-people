@@ -30,7 +30,7 @@ class CreateElection extends Component {
   async componentDidMount () {
     const createdElectionEvt = await factory.events.ElectionLog({});
     createdElectionEvt.on((error, result) => {
-      if(error) console.log('error here ', error);
+      if (error) console.log('error here ', error);
     });
   }
 
@@ -112,7 +112,7 @@ class CreateElection extends Component {
             blockchainAddress: address,
             foreignId: this.props.communityId
           }
-          this.props.postNewElection(objToSend ,this.props.communityId)
+          this.props.postNewElection(objToSend, this.props.communityId)
           this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null });
         })
       })
@@ -138,6 +138,8 @@ class CreateElection extends Component {
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
+            <br />
+            <br />
           <RaisedButton type="submit">Submit</RaisedButton>
           </form>
       </div>
