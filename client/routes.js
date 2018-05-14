@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, WatchParty, VotingBooth, CreateElection, CreateCandidate, History, Instructions, LandingPage} from './components'
+import {Login, Signup, UserHome, WatchParty, VotingBooth, PastDonutChart, CreateElection, CreateCandidate, ElectionHistory, Instructions, LandingPage} from './components'
 import {me} from './store'
 
 /**
@@ -33,7 +33,7 @@ class Routes extends Component {
               <Route path="/create-election" component={CreateElection} />
               <Route path="/create-candidate" component={CreateCandidate} /> 
               <Route path="/voting-booth" component={VotingBooth} />
-              <Route path="/history" component={History} />
+              <Route path="/history" component={ElectionHistory} />
               <Route path="/instructions" component={Instructions} />
             </Switch>
         }
