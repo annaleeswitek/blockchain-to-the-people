@@ -10,7 +10,7 @@ const buttonStyle = {
  };
 
 const style = {
-  height: 550,
+  height: 570,
   width: 420,
   margin: 15,
   textAlign: 'center',
