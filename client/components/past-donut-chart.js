@@ -17,7 +17,7 @@ class PastDonutChart extends Component {
       idx++
       return dataObj;
     }) : null
-    return ( 
+    return (
       <PieChart width={350} height={350}>
         <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={90} outerRadius={110} fill="#82ca9d" label />
         <Tooltip />
@@ -29,8 +29,8 @@ class PastDonutChart extends Component {
 const mapState = (state, ownProps) => {
   return {
     candidates: state.activeElection.candidates,
-    pastElections: state.elections.find(election => {
-        return election.id === +ownProps.idx 
+    pastElections: state.pastElections.find(election => {
+        return election.id === +ownProps.idx
     })
   }
 }

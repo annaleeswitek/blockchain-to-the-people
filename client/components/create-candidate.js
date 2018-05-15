@@ -10,7 +10,7 @@ const buttonStyle = {
  };
 
 const style = {
-  height: 550,
+  height: 570,
   width: 420,
   margin: 15,
   textAlign: 'center',
@@ -98,8 +98,8 @@ class CreateCandidate extends Component {
           affiliation: '',
           message: '',
           description: '',
-          open: false, 
-          isLoading: false 
+          open: false,
+          isLoading: false
         });
       alert("New Candidate Added!");
       this.props.history.push('/home');
@@ -153,11 +153,11 @@ class CreateCandidate extends Component {
           </form>
             { this.state.isLoading ?
             <div >
-            <h4>Processing blockchain vote...</h4> 
-            <LinearProgress mode={"indeterminate"} /> 
-            <br /> 
-            <br /> 
-            <br /> 
+            <h4>Processing blockchain vote...</h4>
+            <LinearProgress mode={"indeterminate"} />
+            <br />
+            <br />
+            <br />
             </div>
             : null }
             <Snackbar
@@ -178,7 +178,7 @@ const mapState = (state) => {
     user: state.user,
     communityId: state.user.communityId,
     // activeElection: state.activeElection,
-    upcomingElections: state.elections
+    upcomingElections: state.upcomingElections
   }
 }
 

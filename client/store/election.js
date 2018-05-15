@@ -5,11 +5,11 @@ import socket from '../socket';
 //action types
 const GET_BLOCKCHAIN_ELECTIONS = 'GET_BLOCKCHAIN_ELECTIONS';
 const GET_ACTIVE_ELECTION = 'GET_ACTIVE_ELECTION';
-const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE'
 const GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS';
 const GET_PAST_ELECTIONS = 'GET_PAST_ELECTIONS';
 const POST_NEW_ELECTION = 'POST_NEW_ELECTION';
 const ADD_NEW_CANDIDATE = 'ADD_NEW_CANDIDATE';
+const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE';
 
 
 //action creators
@@ -23,7 +23,7 @@ const getActiveElection = (activeElection) => {
 
 const updateActiveElectionCandidates = (updatedCandidate) => {
   return { type: UPDATE_CANDIDATE, updatedCandidate }
-}
+};
 
 const getUpcomingElections = (upcomingElections) => {
   return { type: GET_UPCOMING_ELECTIONS, upcomingElections }
@@ -126,20 +126,26 @@ export function activeElectionReducer(activeElection = {}, action) {
   }
 };
 
-export function electionsReducer(elections = [], action) {
+export function upcomingElectionsReducer(upcomingElections = [], action) {
   switch (action.type) {
     case GET_UPCOMING_ELECTIONS:
       return action.upcomingElections
-    // case ADD_NEW_CANDIDATE:
-    //   let candidatesArray = [...elections.candidates, action.newCandidate]
-    //   elections.candidates = candidatesArray
-    //   return [...elections.candidates, action.newCandidate]
     case POST_NEW_ELECTION:
-      return [...elections, action.newElection]
+      return [...upcomingElections, action.newElection]
+    //case ADD_NEW_CANDIDATE:
+      // upcomingElections.candidates.push(action.newCandidate);
+      //return upcomingElections
+    default:
+      return upcomingElections
+  }
+};
+
+export function pastElectionsReducer(pastElections = [], action) {
+  switch (action.type) {
     case GET_PAST_ELECTIONS:
       return action.pastElections
     default:
-      return elections
+      return pastElections
   }
 };
 
