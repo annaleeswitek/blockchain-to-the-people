@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
-import { LinearProgress, Snackbar, Dialog, Paper } from 'material-ui';
+import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-ui';
 import Election from '../../ethereum/election';
 import socket from '../socket';
 //export const newVoteSocket
@@ -101,7 +101,6 @@ class VotingBooth extends Component {
             {
               this.props.candidates
               ? this.props.candidates.map(candidate => {
-                // this.state.candidates.push({ candidateName: candidate.name, candidateId: candidate.id, arrayIndex: candidate.arrayIndex })
                 return (
                   <Paper className="ballot-candidate" key={candidate.id} style={style} zDepth={2}>
                   <div className="container">
@@ -115,7 +114,7 @@ class VotingBooth extends Component {
               })
               : null
             }
-            <button type="submit" onClick={this.handleClick} label = "submit vote">Submit Vote</button>
+            <RaisedButton type="submit" onClick={this.handleClick} label = "SUBMIT VOTE" primary={true} />
             <div>{this.state.message}</div>
             </form>
             <br />
@@ -123,7 +122,7 @@ class VotingBooth extends Component {
             { this.state.isLoading ?
             <div >
             <h4>Processing your vote to the blockchain</h4>
-            <LinearProgress mode={"indeterminate"} />
+            <LinearProgress mode={'indeterminate'} />
             </div>
 
             : null }

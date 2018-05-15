@@ -1,6 +1,7 @@
 body {
   font-family: 'Libre Baskerville', sans-serif;
-  font-weight: bold
+  background-image: url("ecailles_@2X.png");
+  background-repeat: repeat
 }
 
 a {
