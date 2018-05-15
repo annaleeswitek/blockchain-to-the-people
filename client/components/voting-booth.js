@@ -60,7 +60,7 @@ class VotingBooth extends Component {
     this.selectedCandidateArrayIndex = evt.target.value;
     console.log("HERE is EVT target val", evt.target.value)
     this.setState({[evt.target.name]: evt.target.value});
-  };
+  }
 
 
   handleSubmit = async (evt) => {

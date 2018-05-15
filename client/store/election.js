@@ -124,7 +124,7 @@ export function activeElectionReducer(activeElection = {}, action) {
     default:
       return activeElection
   }
-};
+}
 
 export function upcomingElectionsReducer(upcomingElections = [], action) {
   switch (action.type) {
@@ -138,7 +138,7 @@ export function upcomingElectionsReducer(upcomingElections = [], action) {
     default:
       return upcomingElections
   }
-};
+}
 
 export function pastElectionsReducer(pastElections = [], action) {
   switch (action.type) {
@@ -147,7 +147,7 @@ export function pastElectionsReducer(pastElections = [], action) {
     default:
       return pastElections
   }
-};
+}
 
 export function blockchainElectionReducer(blockchainElection = [], action) {
   switch (action.type) {
@@ -156,5 +156,5 @@ export function blockchainElectionReducer(blockchainElection = [], action) {
     default:
       return blockchainElection
   }
-};
+}
 

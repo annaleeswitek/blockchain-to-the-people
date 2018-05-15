@@ -16,10 +16,6 @@ nav a {
   margin: 1em;
 }
 
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 img {
   height: 100px;
@@ -28,13 +24,6 @@ img {
 #landingImg {
   height: 600px;
 }
-
-/* .full {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width:90%;
-} */
 
 .center {
   display: block;
@@ -61,8 +50,11 @@ img {
 
 .user-greeting {
   position: absolute;
-  right: 25px;
-  top: 50%;
+  right: 60px;
+  top: 40%;
+  color: white;
+  font-family: "Baskerville", sans-serif;
+  font-weight: 10;
 }
 
 .ballot {
@@ -75,6 +67,12 @@ img {
 .ballot-candidate {
   width: 50vw;
   padding: 9px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
 /* .container {

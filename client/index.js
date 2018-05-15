@@ -16,9 +16,10 @@ const muiTheme = getMuiTheme({
   fontFamily: '"Open Sans", sans-serif',
   palette: {
     primary1Color: blue500,
-    accent1Color: black,
-    textColor: black,
   },
+  appBar: {
+    height: 70,
+  }
 });
 // establishes socket connection
 import './socket'
