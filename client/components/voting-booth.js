@@ -115,7 +115,7 @@ class VotingBooth extends Component {
             <br /> 
             { this.state.isLoading ?
             <div >
-            <h4>Loading...</h4> 
+            <h4>Processing your vote to the blockchain</h4> 
             <LinearProgress mode={"indeterminate"} /> 
             </div>
 
