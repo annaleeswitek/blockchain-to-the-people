@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, SelectField, TextField, MenuItem, Paper } from 'material-ui';
+import { RaisedButton, SelectField, TextField, MenuItem, Paper, Snackbar, LinearProgress } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
 import { fetchUpcomingElections, postNewCandidate } from '../store/election';
@@ -68,6 +68,7 @@ class CreateCandidate extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
+    this.setState({ isLoading: true, open: true});
 
     const election = await Election(this.state.electionAddress);
     const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress === this.state.electionAddress);
@@ -96,14 +97,9 @@ class CreateCandidate extends Component {
           affiliation: '',
           message: '',
           description: '',
-          open: true
+          open: false, 
+          isLoading: false 
         });
-        //{
-        //   <Dialog
-        //     open={this.state.open}
-        //     onRequestClose={this.handleClose}
-        //   />
-        // }
       alert("New Candidate Added!");
       this.props.history.push('/home');
       })
@@ -154,6 +150,21 @@ class CreateCandidate extends Component {
             </SelectField><br />
             <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
           </form>
+            { this.state.isLoading ?
+            <div >
+            <h4>Processing blockchain vote...</h4> 
+            <LinearProgress mode={"indeterminate"} /> 
+            <br /> 
+            <br /> 
+            <br /> 
+            </div>
+            : null }
+            <Snackbar
+                open={this.state.open}
+                message="Click 'submit' in MetaMask to add your vote to the blockchain! It'll take a minute!"
+                autoHideDuration={10000}
+                onRequestClose={this.handleRequestClose}
+              />
         </Paper>
       </div>
 
