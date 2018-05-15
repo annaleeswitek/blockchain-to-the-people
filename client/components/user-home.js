@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections, fetchActiveElectionFromBlockchain } from '../store/election';
-import { Slider, Tab, Tabs, RaisedButton} from 'material-ui';
+import { Slider, Tab, Tabs, RaisedButton, Paper} from 'material-ui';
 // import Election from '../../ethereum/election';
 
 const styles = {
@@ -14,6 +14,13 @@ const styles = {
   },
 };
 
+const style = {
+  height: 400,
+  width: 680,
+  margin: 15,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 /**
  * COMPONENT
  */
@@ -34,10 +41,11 @@ class UserHome extends Component {
     let upcomingElections = this.props.upcomingElections
 
     return (
-      <div>
-        <h3>Welcome, {this.props.user.name}</h3>
+      <div className="center">
+        <h3>Welcome, {this.props.user.name}!</h3>
         <Tabs>
           <Tab label="Active Election" >
+          <Paper style={style} zDepth={2}>
             <div className="container">
               <div>
                 <h2 style={styles.headline}>Active Election</h2>
@@ -56,8 +64,10 @@ class UserHome extends Component {
                     }
               </div>
             </div>
+            </Paper>
           </Tab>
           <Tab label="Upcoming Elections" >
+          <Paper style={style} zDepth={2}>
             <div>
               <h2 style={styles.headline}>Upcoming Elections</h2>
               {
@@ -74,6 +84,7 @@ class UserHome extends Component {
                 : <div>There are no upcoming elections in your community!</div>
               }
             </div>
+            </Paper>
           </Tab>
         </Tabs>
         <div>{this.props.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
