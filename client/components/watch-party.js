@@ -16,17 +16,26 @@ class WatchParty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      switchView: false,
-      GraphName: false
+      switchView: null,
+      GraphName: null
     }
     this.election = null;
   }
 
     async componentDidMount () {
+      setTimeout(this.toogleView, 50);
     this.election = await Election(this.props.blockchainAddress);
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId);
     console.log('this.props.state', this.props.state);
+  }
+
+  toogleView = () => {
+    console.log('In toogleView')
+    this.setState(({GraphName, switchView}) => ({
+      switchView: !switchView,
+      GraphName: !GraphName
+    }))
   }
 
   render () {
@@ -49,8 +58,8 @@ class WatchParty extends Component {
           }
           {
             this.state.switchView
-            ? <BarGraph />
-            : <DonutChart />
+            ? <DonutChart />
+            : <BarGraph />
           }
       </div>
     )
