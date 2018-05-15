@@ -10,8 +10,9 @@ const buttonStyle = {
  };
 
 const style = {
-  width: '65%',
-  margin: '0 auto',
+  height: 550,
+  width: 420,
+  margin: 15,
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -109,9 +110,9 @@ class CreateCandidate extends Component {
 
   render () {
     return (
-      <div className="form">
+      <div className="electionForm">
         <Paper style={style} zDepth={2}>
-        <br></br>
+          <br />
           <h1>Add Election Candidate</h1>
           <form onSubmit={this.handleSubmit}>
             <TextField
@@ -148,7 +149,7 @@ class CreateCandidate extends Component {
                 return <MenuItem key = {election.id} value={election.blockchainAddress} primaryText={election.name} />
               })}
             </SelectField><br />
-            <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
+            <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
           </form>
             { this.state.isLoading ?
             <div >

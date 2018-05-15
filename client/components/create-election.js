@@ -11,8 +11,8 @@ const buttonStyle = {
 };
 
 const style = {
-  width: '70%',
-  margin: '0 auto',
+  height: 600,
+  width: 450,
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -161,35 +161,35 @@ class CreateElection extends Component {
 
   render () {
     return (
-      <div className="form">
+      <div className="electionForm">
         <Paper style={style} zDepth={2}>
         <br /><br/>
           <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
-            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate} />
-            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
-            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
-            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
-            <br />
             <TextField
               floatingLabelText="name"
               value={this.state.name}
               onChange={this.handleName}
-            /><br />
+            />
+            <TextField
+            floatingLabelText="election description"
+            multiLine={true}
+            value={this.state.description}
+            name="description"
+            onChange={this.handleDescription}
+            />
+            <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
+            <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
+            <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
+            <TimePicker hintText="end time" value={this.state.endTime} onChange={this.handleEndTime} />
             <TextField
               floatingLabelText="code"
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
             <br />
-            <TextField
-              floatingLabelText="election description"
-              multiLine={true}
-              value={this.state.description}
-              name="description"
-              onChange={this.handleDescription}
-            /><br />
-          <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
+            <br />
+          <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
           </form>
             { this.state.isLoading ?
             <div >
