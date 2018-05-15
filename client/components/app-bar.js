@@ -36,7 +36,7 @@ class NavBar extends Component {
           labelPosition="right"
           style={{margin: 20}}
         /> */}
-        
+
         {
           this.props.isLoggedIn
           ?
@@ -45,7 +45,7 @@ class NavBar extends Component {
           title={<img src="logo.png" style={{height: '80px'}} />}
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
-        />
+          ><span className="user-greeting">Welcome, {this.props.user.name}!</span></AppBar>
           <Drawer
             docked={false}
             width={200}
@@ -58,8 +58,11 @@ class NavBar extends Component {
               {
                 this.props.user.isAdmin ? <Link to="/create-election"><MenuItem onClick={this.handleClose}>Create Election</MenuItem></Link> : null
               }
-               {
+              {
                 this.props.user.isAdmin ? <Link to="/create-candidate"><MenuItem onClick={this.handleClose}>Add Candidate</MenuItem></Link> : null
+              }
+              {
+                this.props.user.isAdmin ? <Link to="/community-members"><MenuItem onClick={this.handleClose}>Community Members</MenuItem></Link> : null
               }
           </Drawer>
           </div>

@@ -8,8 +8,6 @@ import socket from '../socket';
 //export const newVoteSocket
 
 const style = {
-  height: 200,
-  width: 680,
   margin: 15
 }
 
@@ -33,6 +31,7 @@ class VotingBooth extends Component {
   }
 
   async componentDidMount() {
+    this.props.getActiveElection(this.props.user.communityId);
     this.election = await Election(this.props.blockchainAddress);
     console.log('election came back', this.election);
 
@@ -94,17 +93,17 @@ class VotingBooth extends Component {
         {
           activeElection
           ?
-          <div className="center" style={{textAlign: 'center'}}>
+          <div>
             <h1>{activeElection.name}</h1>
             <h4>Voting period ends by {activeElection.endDate}</h4>
             <h5>Cast your vote HERE!</h5>
-            <form onSubmit={this.handleSubmit}>
+            <form className="ballot" onSubmit={this.handleSubmit}>
             {
               this.props.candidates
               ? this.props.candidates.map(candidate => {
                 // this.state.candidates.push({ candidateName: candidate.name, candidateId: candidate.id, arrayIndex: candidate.arrayIndex })
                 return (
-                  <Paper key={candidate.id} style={style} zDepth={2}>
+                  <Paper className="ballot-candidate" key={candidate.id} style={style} zDepth={2}>
                   <div className="container">
                     <img src={candidate.imageURL} className="flexBallot" />
                     <h3 className="flexBallot">{candidate.name}</h3>
@@ -119,12 +118,12 @@ class VotingBooth extends Component {
             <button type="submit" onClick={this.handleClick} label = "submit vote">Submit Vote</button>
             <div>{this.state.message}</div>
             </form>
-            <br /> 
-            <br /> 
+            <br />
+            <br />
             { this.state.isLoading ?
             <div >
-            <h4>Processing your vote to the blockchain</h4> 
-            <LinearProgress mode={"indeterminate"} /> 
+            <h4>Processing your vote to the blockchain</h4>
+            <LinearProgress mode={"indeterminate"} />
             </div>
 
             : null }

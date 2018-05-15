@@ -29,11 +29,18 @@ img {
   height: 600px;
 }
 
+/* .full {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:90%;
+} */
+
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 65%;
 }
 
 #chartButton {
@@ -52,10 +59,28 @@ img {
   margin-right: auto;
 }
 
+.user-greeting {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+}
+
+.ballot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ballot-candidate {
+  width: 50vw;
+  padding: 9px;
+}
+
 /* .container {
   display: flex
 } */
-/* 
+/*
 .flexBallot {
   flex-direction: row
 } */

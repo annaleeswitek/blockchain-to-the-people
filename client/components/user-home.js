@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
-import { Tab, Tabs, RaisedButton} from 'material-ui';
+import { Paper, Tab, Tabs, RaisedButton, GridList, GridTile} from 'material-ui';
 import moment from 'moment';
 // import Election from '../../ethereum/election';
+
+const gridStyles = {
+  root: {
+    paddingTop: 16,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    height: 650,
+    width: 1275,
+    overflowY: 'auto',
+  }
+};
 
 const styles = {
   headline: {
@@ -36,20 +50,14 @@ class UserHome extends Component {
     console.log('Upcoming ', this.props.upcomingElections)
     console.log("blockchain addresses, ", this.props.blockchainElections.map((election, idx) => election));
     let upcomingElections = this.props.upcomingElections
-    const startDate = activeElection.startDate ? activeElection.startDate.slice(0, 10) : null
-    const startTime = activeElection.startDate ? activeElection.startDate.slice(11, 16) : null
-    const endDate = activeElection.startDate ? activeElection.endDate.slice(0, 10) : null
-    const endTime = activeElection.startDate ? activeElection.endDate.slice(11, 16) : null
 
     return (
       <div className="center">
-        <h3>Welcome, {this.props.user.name}!</h3>
-        <Tabs>
-          <Tab label="Active Election">
+
           <Paper style={style} zDepth={2}>
-            <div className="container">
+            <div className="center">
               <div>
-                <h2 style={styles.headline}>Active Election</h2>
+                <h2 style={styles.headline}>{activeElection.name}</h2>
                     {
                       activeElection
                       ?
@@ -66,30 +74,31 @@ class UserHome extends Component {
               </div>
             </div>
             </Paper>
-          </Tab>
-          <Tab label="Upcoming Elections">
-          <Paper style={style} zDepth={2}>
-            <div>
-              <h2 style={styles.headline}>Upcoming Elections</h2>
+          <div style={gridStyles.root}>
+          <GridList
+            cellHeight='auto'
+            style={gridStyles.gridList}
+            cols={1}
+            >
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
                     let startDate = moment(election.startDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
                     let endDate = moment(election.endDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
                     return (
-                      <div key={election.id}>
+                      <GridTile
+                      key={election.id}
+                      >
                         <h5>{election.name}</h5>
                         <h5>From: {startDate}</h5>
                         <h5>To: {endDate}</h5>
-                      </div>
+                      </GridTile>
                     )
                   })
                 : <div>There are no upcoming elections in your community!</div>
               }
+            </GridList>
             </div>
-            </Paper>
-          </Tab>
-        </Tabs>
       </div>
     )
   }
