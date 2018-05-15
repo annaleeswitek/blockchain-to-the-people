@@ -53,9 +53,7 @@ class UserHome extends Component {
 
     return (
       <div className="center">
-        <h3>Welcome, {this.props.user.name}!</h3>
-        <Tabs>
-          <Tab label="Active Election">
+
           <Paper style={style} zDepth={2}>
             <div className="center">
               <div>
@@ -76,8 +74,6 @@ class UserHome extends Component {
               </div>
             </div>
             </Paper>
-          </Tab>
-          <Tab label="Upcoming Elections">
           <div style={gridStyles.root}>
           <GridList
             cellHeight='auto'
@@ -103,8 +99,6 @@ class UserHome extends Component {
               }
             </GridList>
             </div>
-          </Tab>
-        </Tabs>
       </div>
     )
   }
