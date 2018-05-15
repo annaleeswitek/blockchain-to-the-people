@@ -48,14 +48,12 @@ class UserHome extends Component {
   render() {
     let activeElection = this.props.activeElection
     console.log('Upcoming ', this.props.upcomingElections)
+    console.log('ACTIVE ELECTION', this.props.activeElection);
     console.log("blockchain addresses, ", this.props.blockchainElections.map((election, idx) => election));
     let upcomingElections = this.props.upcomingElections
 
     return (
       <div className="center">
-        <h3>Welcome, {this.props.user.name}!</h3>
-        <Tabs>
-          <Tab label="Active Election">
           <Paper style={style} zDepth={2}>
             <div className="center">
               <div>
@@ -76,8 +74,6 @@ class UserHome extends Component {
               </div>
             </div>
             </Paper>
-          </Tab>
-          <Tab label="Upcoming Elections">
           <div style={gridStyles.root}>
           <GridList
             cellHeight='auto'
@@ -103,8 +99,6 @@ class UserHome extends Component {
               }
             </GridList>
             </div>
-          </Tab>
-        </Tabs>
       </div>
     )
   }

@@ -15,7 +15,7 @@ class DonutChart extends Component {
       idx++
       return dataObj;
     }) : null
-
+    console.log('Here is data! ', data);
     return (
       <PieChart width={1000} height={1000}>
         <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={300} innerRadius={150} outerRadius={200} fill="#82ca9d" label />
