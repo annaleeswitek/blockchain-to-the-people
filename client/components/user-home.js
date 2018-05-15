@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections, fetchActiveElectionFromBlockchain } from '../store/election';
-import { Slider, Tab, Tabs, RaisedButton, Paper} from 'material-ui';
-// import Election from '../../ethereum/election';
+import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
+import { Tab, Tabs, RaisedButton, Paper } from 'material-ui';
 
 const styles = {
   headline: {
@@ -25,38 +23,38 @@ const style = {
  * COMPONENT
  */
 class UserHome extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId)
-    // this.props.getActiveElectionFromBlockchain(this.props.activeElection.blockchainAddress);
     this.props.getUpcomingElections(userCommunityId);
     this.props.getBlockchainElections();
-
-    // console.log('blockchain address for active election', this.props.activeElection.blockchainAddress)
-    // this.election = await Election(this.props.blockchainAddress);
   }
   render() {
     let activeElection = this.props.activeElection
     console.log('ACTIVE!!!! ', activeElection)
     let upcomingElections = this.props.upcomingElections
+    const startDate = activeElection.startDate ? activeElection.startDate.slice(0, 10) : null
+    const startTime = activeElection.startDate ? activeElection.startDate.slice(11, 16) : null
+    const endDate = activeElection.startDate ? activeElection.endDate.slice(0, 10) : null
+    const endTime = activeElection.startDate ? activeElection.endDate.slice(11, 16) : null
 
     return (
       <div className="center">
         <h3>Welcome, {this.props.user.name}!</h3>
         <Tabs>
-          <Tab label="Active Election" >
+          <Tab label="Active Election">
           <Paper style={style} zDepth={2}>
             <div className="container">
               <div>
                 <h2 style={styles.headline}>Active Election</h2>
-                <h4>Active Election</h4>
                     {
                       activeElection
                       ? (
                           <div key={activeElection.id}>
-                            <h5>{activeElection.name}</h5>
-                            <h5>From: {activeElection.startDate}</h5>
-                            <h5>To: {activeElection.endDate}</h5>
+                            <h3>{activeElection.name}</h3>
+                            <h5>From: {startDate} at {startTime}</h5>
+                            <h5>To: {endDate} at {endTime}</h5>
+                            <p>{activeElection.description}</p>
                             <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
                           </div>
                         )
@@ -66,7 +64,7 @@ class UserHome extends Component {
             </div>
             </Paper>
           </Tab>
-          <Tab label="Upcoming Elections" >
+          <Tab label="Upcoming Elections">
           <Paper style={style} zDepth={2}>
             <div>
               <h2 style={styles.headline}>Upcoming Elections</h2>
@@ -75,9 +73,10 @@ class UserHome extends Component {
                 ? upcomingElections.map(election => {
                     return (
                       <div key={election.id}>
-                        <h5>{election.name}</h5>
+                        <h3>{election.name}</h3>
                         <h5>From: {election.startDate}</h5>
                         <h5>To: {election.endDate}</h5>
+                        <p>{election.description}</p>
                       </div>
                     )
                   })
@@ -98,7 +97,6 @@ class UserHome extends Component {
  */
 const mapState = (state) => {
   return {
-    // blockchainActiveElection: state.blockchainActiveElection,
     blockchainElections: state.blockchainElections,
     user: state.user,
     activeElection: state.activeElection,
@@ -117,17 +115,7 @@ const mapDispatch = (dispatch) => {
     getUpcomingElections: (userCommunityId) => {
       dispatch(fetchUpcomingElections(userCommunityId));
     },
-    // getActiveElectionFromBlockchain: (address) => {
-    //   dispatch(fetchActiveElectionFromBlockchain(address));
-    // }
   }
 }
 
 export default connect(mapState, mapDispatch)(UserHome)
-
-/**
- * PROP TYPES
- */
-// UserHome.propTypes = {
-
-// }

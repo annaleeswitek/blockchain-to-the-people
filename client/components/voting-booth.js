@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
-import { LinearProgress, Snackbar, Dialog } from 'material-ui';
+import { LinearProgress, Snackbar, Dialog, Paper } from 'material-ui';
 import Election from '../../ethereum/election';
 import socket from '../socket';
 //export const newVoteSocket
+
+const style = {
+  height: 200,
+  width: 680,
+  margin: 15
+}
 
 class VotingBooth extends Component {
   constructor(props) {
@@ -88,7 +94,7 @@ class VotingBooth extends Component {
         {
           activeElection
           ?
-          <div>
+          <div className="center" style={{textAlign: 'center'}}>
             <h1>{activeElection.name}</h1>
             <h4>Voting period ends by {activeElection.endDate}</h4>
             <h5>Cast your vote HERE!</h5>
@@ -98,12 +104,14 @@ class VotingBooth extends Component {
               ? this.props.candidates.map(candidate => {
                 // this.state.candidates.push({ candidateName: candidate.name, candidateId: candidate.id, arrayIndex: candidate.arrayIndex })
                 return (
-                  <div key={candidate.id}>
-                    <img src={candidate.imageURL} />
-                    <h3>{candidate.name}</h3>
-                    <h4>{candidate.affiliation}</h4>
-                    <input type="checkbox" onChange={this.handleChange} name="arrayIndex" value={candidate.arrayIndex} />
+                  <Paper key={candidate.id} style={style} zDepth={2}>
+                  <div className="container">
+                    <img src={candidate.imageURL} className="flexBallot" />
+                    <h3 className="flexBallot">{candidate.name}</h3>
+                    <h4 className="flexBallot">{candidate.affiliation}</h4>
+                    <input type="checkbox" onChange={this.handleChange} name="arrayIndex" value={candidate.arrayIndex} className="flexBallot" />
                   </div>
+                  </Paper>
                 )
               })
               : null
