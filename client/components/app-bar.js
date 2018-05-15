@@ -32,7 +32,7 @@ class NavBar extends Component {
         {
           this.props.isLoggedIn
           ?
-          <div>
+          <div className="app-bar">
           <AppBar
           title={<img src="logo.png" style={{height: '80px'}} />}
           onLeftIconButtonClick={this.handleToggle}
