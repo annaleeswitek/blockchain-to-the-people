@@ -11,9 +11,8 @@ const buttonStyle = {
  };
 
 const style = {
-  height: 520,
-  width: 400,
-  margin: 15,
+  height: 600,
+  width: 450,
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -157,7 +156,7 @@ class CreateElection extends Component {
 
   render () {
     return (
-      <div className="form">
+      <div className="electionForm">
         <Paper style={style} zDepth={2}>
           <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
@@ -165,14 +164,14 @@ class CreateElection extends Component {
               floatingLabelText="name"
               value={this.state.name}
               onChange={this.handleName}
-            /><br />
+            />
             <TextField
             floatingLabelText="election description"
             multiLine={true}
             value={this.state.description}
             name="description"
             onChange={this.handleDescription}
-            /><br />
+            />
             <DatePicker hintText="start date" value={this.state.startDate} onChange={this.handleStartDate}  />
             <DatePicker hintText="end date" value={this.state.endDate} onChange={this.handleEndDate} />
             <TimePicker hintText="start time" value={this.state.startTime} onChange={this.handleStartTime} />
@@ -184,7 +183,7 @@ class CreateElection extends Component {
             />
             <br />
             <br />
-          <RaisedButton type="submit" primary={true} style={buttonStyle}>Submit</RaisedButton>
+          <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
           </form>
         </Paper>
       </div>

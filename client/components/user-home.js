@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections, fetchActiveElectionFromBlockchain } from '../store/election';
-import { Slider, Tab, Tabs, Paper } from 'material-ui';
+import { Slider, Tab, Tabs, RaisedButton} from 'material-ui';
 // import Election from '../../ethereum/election';
 
 const styles = {
@@ -12,14 +12,6 @@ const styles = {
     marginBottom: 12,
     fontWeight: 400,
   },
-};
-
-const style = {
-  height: 400,
-  width: 400,
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
 };
 
 /**
@@ -57,7 +49,7 @@ class UserHome extends Component {
                             <h5>{activeElection.name}</h5>
                             <h5>From: {activeElection.startDate}</h5>
                             <h5>To: {activeElection.endDate}</h5>
-                            <button onClick={() => this.props.history.push('/voting-booth')}>Vote Now!</button>
+                            <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
                           </div>
                         )
                       : <div>"There's no active election in your community!"</div>
@@ -125,6 +117,6 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+// UserHome.propTypes = {
 
-}
+// }

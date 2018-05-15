@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class DonutChart extends Component {
 
   render (){
-    const colorArray = ['#8884d8', '#9cacf1', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57']
+    const colorArray = ['#8884d8', '#8dd1e1', '#9cacf1', '#82ca9d', '#a4de6c', '#d0ed57']
     let idx = 0;
 
     const data = this.props.candidates ? this.props.candidates.map(candidate => {
