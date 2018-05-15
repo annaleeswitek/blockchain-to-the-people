@@ -50,7 +50,7 @@ class ElectionHistory extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    pastElections: state.elections
+    pastElections: state.pastElections
   }
 }
 

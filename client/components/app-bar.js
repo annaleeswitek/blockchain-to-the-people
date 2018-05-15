@@ -42,7 +42,7 @@ class NavBar extends Component {
           ?
           <div>
           <AppBar
-          title="Blockchain to the People"
+          title={<img src="logo.png" style={{height: '80px'}} />}
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
         />
@@ -65,7 +65,7 @@ class NavBar extends Component {
           </div>
           :
           <AppBar
-          title="Blockchain to the People"
+          title={<img src="logo.png" style={{height: '80px'}} />}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
         />
         }
