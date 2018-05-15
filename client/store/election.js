@@ -1,13 +1,16 @@
 import axios from 'axios';
 import factory from '../../ethereum/factory';
-import Election from '../../ethereum/election';
+import socket from '../socket';
 
 //action types
 const GET_BLOCKCHAIN_ELECTIONS = 'GET_BLOCKCHAIN_ELECTIONS';
 const GET_ACTIVE_ELECTION = 'GET_ACTIVE_ELECTION';
+const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE'
 const GET_UPCOMING_ELECTIONS = 'GET_UPCOMING_ELECTIONS';
 const GET_PAST_ELECTIONS = 'GET_PAST_ELECTIONS';
 const POST_NEW_ELECTION = 'POST_NEW_ELECTION';
+const ADD_NEW_CANDIDATE = 'ADD_NEW_CANDIDATE';
+
 
 //action creators
 const getBlockchainElections = (elections) => {
@@ -18,17 +21,25 @@ const getActiveElection = (activeElection) => {
   return { type: GET_ACTIVE_ELECTION, activeElection }
 };
 
+const updateActiveElectionCandidates = (updatedCandidate) => {
+  return { type: UPDATE_CANDIDATE, updatedCandidate }
+}
+
 const getUpcomingElections = (upcomingElections) => {
   return { type: GET_UPCOMING_ELECTIONS, upcomingElections }
 };
 
 const getPastElections = (pastElections) => {
-  return {type: GET_PAST_ELECTIONS, pastElections}
+  return { type: GET_PAST_ELECTIONS, pastElections }
 };
 
 const gotBackNewElection = (newElection) => {
-  return { type: POST_NEW_ELECTION, newElection}
+  return { type: POST_NEW_ELECTION, newElection }
 };
+
+const addNewCandidate = (newCandidate) => {
+  return { type: ADD_NEW_CANDIDATE, newCandidate }
+}
 
 //thunks
 export const fetchBlockchainElections = () => {
@@ -45,7 +56,7 @@ export const fetchActiveElection = (userCommunityId) => {
     axios.get(`/api/community/${userCommunityId}/active`)
       .then(res => res.data)
       .then(activeElection => {
-        console.log("IN THUNK activeElection", activeElection),
+        console.log("IN THUNK activeElection", activeElection)
         dispatch(getActiveElection(activeElection))
       })
       .catch(console.error);
@@ -79,11 +90,37 @@ export const postNewElection = (obj, userCommunityId) => {
   }
 }
 
+export const postVote = (newVoteObj, candidateId) => {
+  return dispatch => {
+    axios.put(`/api/candidates/${candidateId}`, newVoteObj)
+      .then(res => res.data)
+      .then(updated => {
+        console.log("new vote posted! ", updated);
+        dispatch(updateActiveElectionCandidates(updated))
+        socket.emit('newVote', updated);
+      })
+      .catch(console.error);
+  }
+};
+
+export const postNewCandidate = (newCandidateObj, electionId) => {
+  return dispatch => {
+    axios.post(`/api/candidates/${electionId}`, newCandidateObj)
+      .then(res => res.data)
+      .then(createdCandidate => dispatch(addNewCandidate(createdCandidate)))
+      .catch(console.error);
+  }
+};
+
 //reducers
 export function activeElectionReducer(activeElection = {}, action) {
   switch (action.type) {
     case GET_ACTIVE_ELECTION:
       return action.activeElection
+    case UPDATE_CANDIDATE:
+      let updatedCandidatesArray = activeElection.candidates.map(c => c.id === action.updatedCandidate.id ? action.updatedCandidate : c)
+      activeElection.candidates = updatedCandidatesArray;
+      return activeElection
     default:
       return activeElection
   }
@@ -93,6 +130,10 @@ export function electionsReducer(elections = [], action) {
   switch (action.type) {
     case GET_UPCOMING_ELECTIONS:
       return action.upcomingElections
+    // case ADD_NEW_CANDIDATE:
+    //   let candidatesArray = [...elections.candidates, action.newCandidate]
+    //   elections.candidates = candidatesArray
+    //   return [...elections.candidates, action.newCandidate]
     case POST_NEW_ELECTION:
       return [...elections, action.newElection]
     case GET_PAST_ELECTIONS:

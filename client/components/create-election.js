@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, TextField, DatePicker, TimePicker, Paper } from 'material-ui';
+import { RaisedButton, TextField, DatePicker, TimePicker, Paper, LinearProgress } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
 import moment from 'moment';
 
 const buttonStyle = {
-  margin: 15
- };
+  margin: 45
+};
 
 const style = {
   height: 600,
@@ -28,7 +28,8 @@ class CreateElection extends Component {
       startTime: null,
       endTime: null,
       description: '',
-      isLoading: false
+      isLoading: false,
+      open: false
     }
     this.handleName = this.handleName.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -52,6 +53,7 @@ class CreateElection extends Component {
   // componentWillUnmount () {
   //   this.createdElectionEvt.stopWatching();
   // }
+
 
   handleName(event) {
     // this.setState({ [event.target.name]: event.target.value });
@@ -158,6 +160,7 @@ class CreateElection extends Component {
     return (
       <div className="electionForm">
         <Paper style={style} zDepth={2}>
+        <br /><br/>
           <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
             <TextField

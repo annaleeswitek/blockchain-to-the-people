@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchActiveElection } from '../store/election';
-import { postVote } from '../store/candidate';
+import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
 import { LinearProgress, Snackbar, Dialog } from 'material-ui';
 import Election from '../../ethereum/election';
@@ -31,8 +30,10 @@ class VotingBooth extends Component {
     this.election = await Election(this.props.blockchainAddress);
     console.log('election came back', this.election);
 
-    const newVoteEvent = await this.election.events.CandidateLog({});
-    newVoteEvent.on((error, result) => {
+    const newVoteEvent = await this.election.events.CandidateLog();
+    window.election = this.election
+    window.nve = newVoteEvent
+    newVoteEvent.on('data', (error, result) => {
       if (error) console.log('error here', error);
       console.log("hey! newVoteEvent was triggered! Yay ", result);
     });
@@ -70,7 +71,7 @@ class VotingBooth extends Component {
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
       .then(voteReceipt => {
-        console.log(voteReceipt);
+        console.log('VOTING BOOTH voteReciept', voteReceipt);
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});

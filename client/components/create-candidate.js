@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { RaisedButton, SelectField, TextField, MenuItem, Paper } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import Election from '../../ethereum/election';
-import { fetchUpcomingElections } from '../store/election';
-import { postNewCandidate } from '../store/candidate';
+import { fetchUpcomingElections, postNewCandidate } from '../store/election';
 
 const buttonStyle = {
-  margin: 15
+  margin: 45
  };
 
 const style = {
