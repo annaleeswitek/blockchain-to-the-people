@@ -123,13 +123,8 @@ class VotingBooth extends Component {
             <br />
             { this.state.isLoading ?
             <div >
-<<<<<<< HEAD
-            <h4>Loading...</h4>
+            <h4>Processing your vote to the blockchain</h4>
             <LinearProgress mode={"indeterminate"} />
-=======
-            <h4>Processing your vote to the blockchain</h4> 
-            <LinearProgress mode={"indeterminate"} /> 
->>>>>>> master
             </div>
 
             : null }
