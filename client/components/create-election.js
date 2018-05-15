@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RaisedButton, TextField, DatePicker, TimePicker, Paper, LinearProgress } from 'material-ui';
+import { RaisedButton, TextField, DatePicker, TimePicker, Paper, LinearProgress, Snackbar } from 'material-ui';
 import web3 from '../../ethereum/web3';
 import factory from '../../ethereum/factory';
 import { postNewElection } from '../store/election';
@@ -108,6 +108,7 @@ class CreateElection extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({open: true, isLoading: true})
 
     let momentStartTime = moment(this.state.startTime);
     let momentEndTime = moment(this.state.endTime);
@@ -132,6 +133,7 @@ class CreateElection extends Component {
 
     web3.eth.getAccounts()
       .then(accounts => {
+        
         return factory.methods
         .createElection(this.state.code)
         .send({
@@ -147,8 +149,9 @@ class CreateElection extends Component {
             blockchainAddress: address,
             foreignId: this.props.communityId
           }
+          
           this.props.postNewElection(objToSend, this.props.communityId)
-          this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null });
+          this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null, isLoading: false, open: false});
           alert("New Election Added!");
           this.props.history.push('/home');
         })
@@ -187,6 +190,22 @@ class CreateElection extends Component {
             <br />
           <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
           </form>
+            { this.state.isLoading ?
+            <div >
+            <h4>Processing blockchain vote...</h4> 
+            <LinearProgress mode={"indeterminate"} /> 
+            <br /> 
+            <br /> 
+            <br /> 
+            </div>
+
+            : null }
+            <Snackbar
+                open={this.state.open}
+                message="Click 'submit' in MetaMask to add your vote to the blockchain! It'll take a minute!"
+                autoHideDuration={10000}
+                onRequestClose={this.handleRequestClose}
+              />
         </Paper>
       </div>
   )

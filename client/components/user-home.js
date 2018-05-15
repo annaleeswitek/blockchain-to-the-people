@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
-import { Tab, Tabs, RaisedButton, Paper } from 'material-ui';
+import { Tab, Tabs, RaisedButton} from 'material-ui';
+import moment from 'moment';
+// import Election from '../../ethereum/election';
 
 const styles = {
   headline: {
@@ -31,7 +33,8 @@ class UserHome extends Component {
   }
   render() {
     let activeElection = this.props.activeElection
-    console.log('ACTIVE!!!! ', activeElection)
+    console.log('Upcoming ', this.props.upcomingElections)
+    console.log("blockchain addresses, ", this.props.blockchainElections.map((election, idx) => election));
     let upcomingElections = this.props.upcomingElections
     const startDate = activeElection.startDate ? activeElection.startDate.slice(0, 10) : null
     const startTime = activeElection.startDate ? activeElection.startDate.slice(11, 16) : null
@@ -49,12 +52,12 @@ class UserHome extends Component {
                 <h2 style={styles.headline}>Active Election</h2>
                     {
                       activeElection
-                      ? (
+                      ?
+                      (
                           <div key={activeElection.id}>
-                            <h3>{activeElection.name}</h3>
-                            <h5>From: {startDate} at {startTime}</h5>
-                            <h5>To: {endDate} at {endTime}</h5>
-                            <p>{activeElection.description}</p>
+                            <h5>{activeElection.name}</h5>
+                            <h5>From: {moment(activeElection.startDate).format("dddd, MMMM Do YYYY, h:mm:ss a")}</h5>
+                            <h5>To: {moment(activeElection.endDate).format("dddd, MMMM Do YYYY, h:mm:ss a")}</h5>
                             <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
                           </div>
                         )
@@ -71,12 +74,13 @@ class UserHome extends Component {
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
+                    let startDate = moment(election.startDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
+                    let endDate = moment(election.endDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
                     return (
                       <div key={election.id}>
-                        <h3>{election.name}</h3>
-                        <h5>From: {election.startDate}</h5>
-                        <h5>To: {election.endDate}</h5>
-                        <p>{election.description}</p>
+                        <h5>{election.name}</h5>
+                        <h5>From: {startDate}</h5>
+                        <h5>To: {endDate}</h5>
                       </div>
                     )
                   })
@@ -86,7 +90,6 @@ class UserHome extends Component {
             </Paper>
           </Tab>
         </Tabs>
-        <div>{this.props.blockchainElections.map((election, idx) => <div key={idx}>{election}</div>)}</div>
       </div>
     )
   }
@@ -100,7 +103,7 @@ const mapState = (state) => {
     blockchainElections: state.blockchainElections,
     user: state.user,
     activeElection: state.activeElection,
-    upcomingElections: state.elections
+    upcomingElections: state.upcomingElections
   }
 }
 
