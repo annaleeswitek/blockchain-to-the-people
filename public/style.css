@@ -59,6 +59,24 @@ img {
   margin-right: auto;
 }
 
+.user-greeting {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+}
+
+.ballot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ballot-candidate {
+  width: 50vw;
+  padding: 9px;
+}
+
 /* .container {
   display: flex
 } */
