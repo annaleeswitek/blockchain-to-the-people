@@ -16,19 +16,8 @@ const muiTheme = getMuiTheme({
   fontFamily: '"Open Sans", sans-serif',
   palette: {
     primary1Color: blue500,
-    // primary2Color: blueGrey400,
-    // primary3Color: grey500,
     accent1Color: black,
-    // accent2Color: lightBlue600,
-    // accent3Color: teal300,
     textColor: black,
-    // alternateTextColor: white,
-    // canvasColor: grey100,
-    // borderColor: grey300,
-    // // disabledColor: fade(darkBlack, 0.3),
-    // pickerHeaderColor: '#d0ed57',
-    // // clockCircleColor: fade(darkBlack, 0.07),
-    // shadowColor: fullBlack,
   },
 });
 // establishes socket connection

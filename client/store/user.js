@@ -1,22 +1,22 @@
-import axios from 'axios'
-import history from '../history'
+import axios from 'axios';
+import history from '../history';
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
+const GET_USER = 'GET_USER';
+const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {};
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+const getUser = user => ({type: GET_USER, user});
+const removeUser = () => ({type: REMOVE_USER});
 
 /**
  * THUNK CREATORS
@@ -26,7 +26,7 @@ export const me = () =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 
 export const signup = (name, email, password) =>
  dispatch =>
@@ -37,7 +37,7 @@ export const signup = (name, email, password) =>
      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
        dispatch(getUser({error: authError}))
      })
-     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const login = (email, password) =>
  dispatch =>
@@ -48,7 +48,7 @@ export const login = (email, password) =>
      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
        dispatch(getUser({error: authError}))
      })
-     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const logout = () =>
   dispatch =>
@@ -57,7 +57,7 @@ export const logout = () =>
         dispatch(removeUser())
         history.push('/')
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 
 /**
  * REDUCER
@@ -71,4 +71,4 @@ export default function (state = defaultUser, action) {
     default:
       return state
   }
-}
+};
