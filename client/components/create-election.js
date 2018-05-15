@@ -11,7 +11,7 @@ const buttonStyle = {
 };
 
 const style = {
-  height: 600,
+  height: 620,
   width: 450,
   textAlign: 'center',
   display: 'inline-block',
@@ -163,7 +163,7 @@ class CreateElection extends Component {
     return (
       <div className="electionForm">
         <Paper style={style} zDepth={2}>
-        <br /><br/>
+        <br />
           <h1>New Election</h1>
           <form onSubmit={this.handleSubmit}>
             <TextField
@@ -187,7 +187,6 @@ class CreateElection extends Component {
               value={this.state.code}
               onChange={this.handleCodeChange}
             />
-            <br />
             <br />
           <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
           </form>
