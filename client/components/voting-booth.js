@@ -4,11 +4,15 @@ import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
 import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-ui';
 import Election from '../../ethereum/election';
+import Checkbox from 'material-ui/Checkbox'
 import socket from '../socket';
 //export const newVoteSocket
 
 const style = {
-  margin: 15
+  margin: 15,
+  checkbox: {
+    marginBottom: 16,
+  },
 }
 
 class VotingBooth extends Component {
@@ -66,7 +70,7 @@ class VotingBooth extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
+    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex === this.selectedCandidateArrayIndex);
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -107,7 +111,13 @@ class VotingBooth extends Component {
                     <img src={candidate.imageURL} className="flexBallot" />
                     <h3 className="flexBallot">{candidate.name}</h3>
                     <h4 className="flexBallot">{candidate.affiliation}</h4>
-                    <input type="checkbox" onChange={this.handleChange} name="arrayIndex" value={candidate.arrayIndex} className="flexBallot" />
+                    <Checkbox
+                      onCheck={this.handleChange}
+                      value={candidate.arrayIndex}
+                      className="flexBallot"
+                      style={style.checkbox}
+                    />
+                    {/*<input type="checkbox" onChange= name="arrayIndex"  />*/}
                   </div>
                   </Paper>
                 )
