@@ -17,8 +17,18 @@ router.get('/', (req, res, next) => {
     }]
   })
     .then(users => res.json(users))
-    .catch(next)
-})
+    .catch(next);
+});
+
+router.get('/community/:id', (req, res, next) => {
+  User.findAll({
+    where: {
+      communityId: req.params.id
+    }
+  })
+  .then(communityMembers => res.json(communityMembers))
+  .catch(next);
+});
 
 router.get('/:id', (req, res, next) => {
   User.findById(req.params.id, {include: [{
@@ -30,5 +40,5 @@ router.get('/:id', (req, res, next) => {
   }]
   })
     .then(user => res.json(user))
-    .catch(next)
-})
+    .catch(next);
+});
