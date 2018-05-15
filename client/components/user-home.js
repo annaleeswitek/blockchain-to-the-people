@@ -54,7 +54,6 @@ class UserHome extends Component {
 
     return (
       <div className="center">
-        <h3>Welcome, {this.props.user.name}!</h3>
           <Paper style={style} zDepth={2}>
             <div className="center">
               <div>

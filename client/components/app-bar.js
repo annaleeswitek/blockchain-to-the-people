@@ -45,7 +45,7 @@ class NavBar extends Component {
           title={<img src="logo.png" style={{height: '80px'}} />}
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
-        />
+          ><span className="user-greeting">Welcome, {this.props.user.name}!</span></AppBar>
           <Drawer
             docked={false}
             width={200}
