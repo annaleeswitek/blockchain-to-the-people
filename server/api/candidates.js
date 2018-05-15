@@ -20,6 +20,7 @@ router.get('/:electionId', (req, res, next) => {
     .catch(next)
 });
 
+// need /election/:electionId
 router.post('/:electionId', (req, res, next) => {
   console.log('req body here, ', req.body);
   console.log('req.params here, ', req.params);
