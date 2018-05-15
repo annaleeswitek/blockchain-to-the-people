@@ -9,3 +9,5 @@ export { Signup } from './signup-form';
 export { Instructions } from './instructions';
 export { LandingPage } from './landing-page'; 
 export { default as CreateCandidate } from './create-candidate'; 
+export { default as Stepper } from './stepper-admin'; 
+export { default as StepperUser } from './stepper-user'; 
