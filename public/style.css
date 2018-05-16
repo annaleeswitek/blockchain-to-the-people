@@ -23,7 +23,7 @@ img {
 }
 
 #landingImg {
-  height: 600px;
+  height: 550px;
 }
 
 .center {
@@ -113,11 +113,20 @@ img {
   align-items: center;
   flex-direction: column;
 }
-
-/* .container {
-  display: flex
+/* .app-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
 } */
-/*
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center
+}
+
 .flexBallot {
   flex-direction: row
-} */
+}
