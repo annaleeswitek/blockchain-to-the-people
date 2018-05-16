@@ -140,13 +140,42 @@ class VotingBooth extends Component {
             </form>
             <br />
             <br />
-            { this.state.isLoading ?
-            <div >
-            <h4>Processing your vote on the blockchain</h4>
-            <LinearProgress mode={'indeterminate'} />
-            </div>
+            <div className="ballot">
+              <form onSubmit={this.handleSubmit}>
+              <div className="ballot-wrapper">
+              {
+                this.props.candidates
+                ? this.props.candidates.map(candidate => {
+                  return (
+                    <div className="ballot-box" key={candidate.id}>
+                      <img src="Icon1.png" className="flexBallot" />
+                      <h2>{candidate.name}</h2>
+                      <h4>{candidate.affiliation}</h4>
+                      <Checkbox
+                      onCheck={this.handleChange}
+                      value={candidate.arrayIndex}
+                      className="flexBallot"
+                      style={style.checkbox}
+                      />
+                    </div>
+                  )
+                })
+                : null
+              }
+              </div>
+              <RaisedButton type="submit" onClick={this.handleClick} label = "SUBMIT VOTE" primary={true} />
+              <div>{this.state.message}</div>
+              </form>
+              <br />
+              <br />
+              { this.state.isLoading ?
+              <div >
+              <h4>Processing your vote on the blockchain</h4>
+              <LinearProgress mode={'indeterminate'} />
+              </div>
 
-            : null }
+              : null }
+            </div>
             <Snackbar
                 open={this.state.open}
                 message="Click 'submit' in MetaMask to add your vote to the blockchain!"
