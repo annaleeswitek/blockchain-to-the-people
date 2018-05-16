@@ -1,7 +1,7 @@
 body {
   font-family: 'Libre Baskerville', sans-serif;
+  background-repeat: repeat;
   background-image: url("ecailles_@2X.png");
-  background-repeat: repeat
 }
 
 a {
@@ -70,6 +70,64 @@ img {
   padding: 9px;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.election-box {
+  width: 700px;
+  height: 250px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: white;
+}
+
+.center-text {
+  width: 700px;
+  height: 250px;
+  text-align: center;
+}
+
+.watchParty-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 380px
+}
+
+.history-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ballot-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 600px;
+  height: 100px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: white;
+}
 /* .app-bar {
   position: fixed;
   top: 0;
@@ -79,12 +137,22 @@ img {
 .container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
   align-items: center
 }
 
 .flexBallot {
-  margin: 9px;
-  padding: 15px
+  flex-direction: row
+
 }
+
+.candidate-name-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.ballot-wrapper {
+  padding-bottom: 50px;
+}
+
