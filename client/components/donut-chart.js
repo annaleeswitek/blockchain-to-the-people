@@ -19,7 +19,7 @@ class DonutChart extends Component {
     return (
         <div className="chart-wrapper">
           <PieChart width={1000} height={1000}>
-            <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={300} innerRadius={150} outerRadius={200} fill="#82ca9d" label />
+            <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={250} innerRadius={150} outerRadius={200} fill="#82ca9d" label />
             <Tooltip />
           </PieChart>
         </div>
