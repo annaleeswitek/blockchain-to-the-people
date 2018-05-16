@@ -112,7 +112,33 @@ class VotingBooth extends Component {
                 value={this.state.code}
                 name="code"
                 onChange={this.handleChange}
-            />
+            /><br />
+            <form className="ballot" onSubmit={this.handleSubmit}>
+            <div className="ballot-wrapper">
+            {
+              this.props.candidates
+              ? this.props.candidates.map(candidate => {
+                return (
+                  <div className="ballot-box" key={candidate.id}>
+                    <img src={candidate.imageURL} className="flexBallot" />
+                    <h2>{candidate.name}</h2>
+                    <h4>{candidate.affiliation}</h4>
+                    <Checkbox
+                    onCheck={this.handleChange}
+                    value={candidate.arrayIndex}
+                    className="flexBallot"
+                    style={style.checkbox}
+                    />
+                  </div>
+                )
+              })
+              : null
+            }
+            </div>
+            <RaisedButton type="submit" onClick={this.handleClick} label = "SUBMIT VOTE" primary={true} />
+            <div>{this.state.message}</div>
+            </form>
+            <br />
             <br />
             <div className="ballot">
               <form onSubmit={this.handleSubmit}>
