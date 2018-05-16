@@ -6,6 +6,7 @@ import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-
 import Election from '../../ethereum/election';
 import Checkbox from 'material-ui/Checkbox'
 import socket from '../socket';
+import moment from 'moment';
 //export const newVoteSocket
 
 const style = {
@@ -99,7 +100,7 @@ class VotingBooth extends Component {
           ?
           <div>
             <h1>{activeElection.name}</h1>
-            <h4>Voting period ends by {activeElection.endDate}</h4>
+            <h4>Voting period ends by {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</h4>
             <h5>Cast your vote HERE!</h5>
             <form className="ballot" onSubmit={this.handleSubmit}>
             {
@@ -108,7 +109,7 @@ class VotingBooth extends Component {
                 return (
                   <Paper className="ballot-candidate" key={candidate.id} style={style} zDepth={2}>
                   <div className="container">
-                    <img src={candidate.imageURL} className="flexBallot" />
+                    <img src="Icon1.png" className="flexBallot" />
                     <h3 className="flexBallot">{candidate.name}</h3>
                     <h4 className="flexBallot">{candidate.affiliation}</h4>
                     <Checkbox

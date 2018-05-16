@@ -76,7 +76,7 @@ class UserHome extends Component {
             </Paper>
           <div style={gridStyles.root}>
           <GridList
-            cellHeight='auto'
+            cellHeight="auto"
             style={gridStyles.gridList}
             cols={1}
             >

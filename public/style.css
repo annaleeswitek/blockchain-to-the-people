@@ -23,7 +23,7 @@ img {
 }
 
 #landingImg {
-  height: 600px;
+  height: 550px;
 }
 
 .center {
@@ -70,16 +70,21 @@ img {
   padding: 9px;
 }
 
-.app-bar {
+/* .app-bar {
   position: fixed;
   top: 0;
   width: 100%;
+} */
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center
 }
 
-/* .container {
-  display: flex
-} */
-/*
 .flexBallot {
-  flex-direction: row
-} */
+  margin: 9px;
+  padding: 15px
+}
