@@ -120,7 +120,7 @@ class VotingBooth extends Component {
               ? this.props.candidates.map(candidate => {
                 return (
                   <div className="ballot-box" key={candidate.id}>
-                    <img src="Icon1.png" className="flexBallot" />
+                    <img src={candidate.imageURL} className="flexBallot" />
                     <h2>{candidate.name}</h2>
                     <h4>{candidate.affiliation}</h4>
                     <Checkbox

@@ -96,6 +96,56 @@ async function seed () {
       arrayIndex: 1
     },
   ]
+  const activeCandidatesList = [
+    {
+      name: 'Rosa Franklin',
+      affiliation: 'Scientist',
+      voteCount: 0,
+      arrayIndex: 0,
+      description: "It may have taken humanity much, much longer to discover the double-helix structure of DNA without Rosalind Franklin’s work. In fact, it has been suggested that she could have discovered the entire double-helix model on her own within a year, if a parallel discovery had not been made based (partially) on her research data.",
+      imageURL:'https://upload.wikimedia.org/wikipedia/en/e/e9/Rosalind_Franklin_%281920-1958%29.jpg'
+    },
+    {
+      name: 'Sappho',
+      affiliation: 'Poet',
+      voteCount: 0,
+      arrayIndex: 1,
+      description: '(630 and 612 BC)- Included among the nine lyric poets of ancient Greece, little of Sappho\'s writing has survived; but what has survived is a rich influence on western society and a provocative philosophy and lifestyle that challenges us even today.',
+      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-8e166d74a6e7e1b8ff6e8d84e84af88c'
+    },
+    {
+      name: 'Flannery O\'Conner',
+      affiliation: 'Writer',
+      voteCount: 0,
+      arrayIndex: 2,
+      description: '(1925-1964)- Leading member of the Southern Gothic movement, the American master of prose both in the short and long form. Along with William Faulkner, O\'Conner perhaps grasped the Southern experience like few others.Her short story A Good Man is Hard to Find is considered a landmark for the short form.',
+      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-8dc8ebab32e1e311c96778aff425e75f'
+    },
+    {
+      name: 'Frida Kahlo',
+      affiliation: 'Artist',
+      voteCount: 0,
+      arrayIndex: 3,
+      description: '(1907-1957)- Shocking, controversial, and thought provoking both in her art and in her personal life. Frida\'s many self portraits challenged what should be at the center of a work of art, and her style often challenged how an artist should depict it.',
+      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-9590bb2a08ae42ad56f1730e6b233c4d'
+    },
+    {
+      name: 'Maryam Mirzakhani',
+      affiliation: 'Mathematician',
+      voteCount: 0,
+      arrayIndex: 4,
+      description: 'She is an Iranian mathematician who serves as a professor of mathematics at Stanford University. She is the the first woman and Iranian to win the Fields Medal, the most prestigious award in mathematics. The Fields Medal and the Abel Prize have often been described as the "mathematician\'s Nobel Prize"',
+      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-90d6c37b286d5be2e131fa4d58ada603-c'
+    },
+    {
+      name: 'Rear Admiral Dr. Grace Hopper',
+      affiliation: 'Computer Science',
+      voteCount: 0,
+      arrayIndex: 5,
+      description: ' Grace Hopper was one of the most accomplished women in computer science. She held a Ph.D. in mathematics and taught at Vassar until she joined the Navy during World War II. She served in the Naval Reserves for most of her life, eventually achieving the rank of Rear Admiral.',
+      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-08742725c88e7d39c39b839c2f73044f-c'
+    }
+  ]
 
   // const candidates = await Promise.all(
   //   candidatesList.map(candidate => Candidate.create(candidate))
@@ -106,6 +156,11 @@ async function seed () {
   )
 
   console.log(`seeded ${pastCandidates.length} candidates`);
+  const activeCandidates = await Promise.all(
+    activeCandidatesList.map(candidate => Candidate.create(candidate))
+  );
+
+  console.log(`seeded ${activeCandidates.length} activeCandidates`);
 
   // -- COMMUNITIES --
 
@@ -154,9 +209,15 @@ async function seed () {
       name: 'New York State Senate Special Elections, District 26',
       startDate: 'Tue Nov 07 2017 08:00:00 EST-0400 (EST)',
       endDate: 'Tue Nov 07 2017 18:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     }
-  ];
+  ]
+
+  const activeElectionInfo = {
+      name: 'Earth\'s Philosopher Queen',
+      startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
+      endDate: 'Sun May 25 2018 08:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+    };
 
   const pastElections = await Promise.all(
     pastElectionsList.map(election => Election.create(election))
@@ -176,12 +237,27 @@ async function seed () {
   // ]);
 
   const addElectionsToCommunities = await Promise.all([
-    // Election.findById(1).then(election => election.setCommunity(3)),
-    Election.findById(2).then(election => election.setCommunity(3)),
-    Election.findById(3).then(election => election.setCommunity(3))
+    Election.findById(1).then(election => election.setCommunity(3)),
+    // Election.findById(2).then(election => election.setCommunity(3)),
+    // Election.findById(3).then(election => election.setCommunity(3))
   ]);
 
   console.log(`seeded ${pastElections.length} elections`);
+  const activeElection = await Election.create(activeElectionInfo);
+
+  const addCandidatesToActiveElection = await Promise.all([
+    Candidate.findById(1).then(candidate => candidate.setElection(1)),
+    Candidate.findById(2).then(candidate => candidate.setElection(1)),
+    Candidate.findById(3).then(candidate => candidate.setElection(1)),
+    Candidate.findById(4).then(candidate => candidate.setElection(1)),
+    Candidate.findById(5).then(candidate => candidate.setElection(1)),
+    Candidate.findById(6).then(candidate => candidate.setElection(1)),
+  ]);
+
+  const addActiveElectionToCommunity =
+    await Election.findById(1).then(election => election.setCommunity(3));
+
+  console.log(`seeded active election!`);
 
 }
 
