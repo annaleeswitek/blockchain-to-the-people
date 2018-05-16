@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, WatchParty, VotingBooth, PastDonutChart, CreateElection, CreateCandidate, ElectionHistory, Instructions, LandingPage, AllCommunityMembers, Stepper, StepperUser} from './components'
+import { Login, Signup, AboutPage, UserHome, WatchParty, VotingBooth, PastDonutChart, CreateElection, CreateCandidate, ElectionHistory, Instructions, LandingPage, AllCommunityMembers, Stepper, StepperUser} from './components'
 import {me} from './store'
 
 /**
@@ -34,10 +34,11 @@ class Routes extends Component {
               <Route path="/create-candidate" component={CreateCandidate} />
               <Route path="/voting-booth" component={VotingBooth} />
               <Route path="/firstSteps" component={Stepper} />
+              <Route path="/aboutPage" component={AboutPage} /> 
               <Route path="/userFirstSteps" component={StepperUser} />
               <Route path="/history" component={ElectionHistory} />
               <Route path="/instructions" component={Instructions} />
-              <Route exact path="/community-members" component={AllCommunityMembers} />
+              <Route path="/community-members" component={AllCommunityMembers} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

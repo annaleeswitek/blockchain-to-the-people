@@ -11,18 +11,29 @@ const gotCommunityMembers = (members) => {
 //Thunks!
 export const fetchCommunityMembers = (communityId) => {
   return dispatch => {
-    axios.get(`users/community/${communityId}`)
+    console.log('got to axios.get')
+    axios.get(`/api/users/community/${communityId}`)
       .then(res => res.data)
       .then(communityMembers => dispatch(gotCommunityMembers(communityMembers)))
       .catch(console.error)
   }
 };
 
+export const postMemberEmail = (sendObj) => {
+  return dispatch => {
+    axios.post(`/api/mail/send-email`, sendObj)
+      .then(res => res.data)
+      .then(response => alert(response))
+      .catch(console.error)
+  }
+};
+
 //Reducer
 
-export function communityMembersReducer(communityMembers = [], action) {
+export function communityMembersReducer(communityMembers=[], action) {
   switch (action.type) {
     case GOT_COMMUNITY_MEMBERS:
+    console.log("ACTION.members", action.members)
       return action.members
     default:
       return communityMembers

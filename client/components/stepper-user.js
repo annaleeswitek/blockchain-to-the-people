@@ -17,7 +17,7 @@ class UserHorizontalStepper extends React.Component {
       this.state = {
         finished: false,
         stepIndex: 0,
-        components: [null, <VotingBooth/>, null] 
+        components: [null, <VotingBooth/>] 
       };
 
       this.getStepContent = this.getStepContent.bind(this); 
@@ -46,8 +46,6 @@ class UserHorizontalStepper extends React.Component {
         return 'Download metamask.';
       case 1:
         return 'Cast your vote.';
-      case 2:
-        return 'Go to the watch party.';
       default:
         return 'Follow the prior steps to set up your first election!';
     }

@@ -49,7 +49,7 @@ class HorizontalStepper extends React.Component {
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return 'MetaMask Browser Extension turns Google Chrome into an ethereum browser, which will enable us to retrieve your vote from the blockchain, and let you securely sign transactions and manage your identity.'
+        return 'MetaMask Browser Extension turns Google Chrome into an ethereum browser, which will enable us to retrieve your vote from the blockchain, and lets you securely sign transactions and manage your identity.'
       case 1: 
         return 'Select campaign settings.';
       case 2:

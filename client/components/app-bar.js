@@ -29,23 +29,15 @@ class NavBar extends Component {
     console.log('userLogIn', this.props.isLoggedIn)
     return (
       <div>
-        {/* <Toggle
-          label="Logged"
-          defaultToggled={true}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
-        /> */}
-
         {
           this.props.isLoggedIn
           ?
-          <div>
+          <div className="app-bar">
           <AppBar
           title={<img src="logo.png" style={{height: '80px'}} />}
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
-          ><span className="user-greeting">Welcome, {this.props.user.name}!</span></AppBar>
+          ><span className="user-greeting">Hello, {this.props.user.name}</span></AppBar>
           <Drawer
             docked={false}
             width={200}

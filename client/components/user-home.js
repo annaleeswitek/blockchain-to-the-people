@@ -1,26 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
-import { Paper, Tab, Tabs, RaisedButton, GridList, GridTile} from 'material-ui';
+import { RaisedButton } from 'material-ui';
+import { blue500 } from 'material-ui/styles/colors'
 import moment from 'moment';
-// import Election from '../../ethereum/election';
 
-const gridStyles = {
-  root: {
-    paddingTop: 16,
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    height: 650,
-    width: 1275,
-    overflowY: 'auto',
-  }
-};
+// import Election from '../../ethereum/election';
 
 const styles = {
   headline: {
+    color: blue500,
     fontSize: 24,
     paddingTop: 16,
     marginBottom: 12,
@@ -32,7 +21,7 @@ const style = {
   height: 400,
   width: 680,
   margin: 15,
-  textAlign: 'center',
+  textAlign: 'cnenter',
   display: 'inline-block',
 };
 /**
@@ -47,57 +36,52 @@ class UserHome extends Component {
   }
   render() {
     let activeElection = this.props.activeElection
-    console.log('Upcoming ', this.props.upcomingElections)
-    console.log('ACTIVE ELECTION', this.props.activeElection);
-    console.log("blockchain addresses, ", this.props.blockchainElections.map((election, idx) => election));
+    console.log('Upcoming: ', this.props.upcomingElections)
+    console.log('Active Election: ', this.props.activeElection);
+    console.log('Blockchain Addresses: ', this.props.blockchainElections.map((election) => election));
+
     let upcomingElections = this.props.upcomingElections
 
     return (
-      <div className="center">
-          <Paper style={style} zDepth={2}>
-            <div className="center">
-              <div>
-                <h2 style={styles.headline}>{activeElection.name}</h2>
-                    {
-                      activeElection
-                      ?
-                      (
-                          <div key={activeElection.id}>
-                            <h5>{activeElection.name}</h5>
-                            <h5>From: {moment(activeElection.startDate).format("dddd, MMMM Do YYYY, h:mm:ss a")}</h5>
-                            <h5>To: {moment(activeElection.endDate).format("dddd, MMMM Do YYYY, h:mm:ss a")}</h5>
-                            <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
-                          </div>
-                        )
-                      : <div>"There's no active election in your community!"</div>
-                    }
+      <div className="flex-center">
+        <h2 className="header">Current Election</h2>
+          <div className="election-box">
+              <h2 style={styles.headline}>{activeElection.name}</h2>
+                {
+                  activeElection
+                  ?
+                  (
+                    <div key={activeElection.id}>
+                      <h5>{activeElection.description}</h5>
+                      <h5>From: {moment(activeElection.startDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</h5>
+                      <h5>To: {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</h5>
+                      <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
+                    </div>
+                    )
+                  : <div>"There's no active election in your community!"</div>
+                }
               </div>
-            </div>
-            </Paper>
-          <div style={gridStyles.root}>
-          <GridList
-            cellHeight='auto'
-            style={gridStyles.gridList}
-            cols={1}
-            >
+              <br />
+              <br />
+          <h2 className="header">Upcoming Elections</h2>
+            <div className="election-box">
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
-                    let startDate = moment(election.startDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
-                    let endDate = moment(election.endDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
+                    let startDate = moment(election.startDate).format('dddd, MMMM Do YYYY, h:mm:ss a');
+                    let endDate = moment(election.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a');
                     return (
-                      <GridTile
-                      key={election.id}
-                      >
-                        <h5>{election.name}</h5>
+                      <div key={election.id}>
+                        <h2 style={styles.headline}>
+                        {election.name}</h2>
+                        <h5>{election.description}</h5>
                         <h5>From: {startDate}</h5>
                         <h5>To: {endDate}</h5>
-                      </GridTile>
+                      </div>
                     )
                   })
                 : <div>There are no upcoming elections in your community!</div>
               }
-            </GridList>
             </div>
       </div>
     )

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PastDonutChart from './past-donut-chart';
-import DonutChart from './donut-chart';
 import { fetchPastElections } from '../store/election';
+import moment from 'moment';
 
 
 class ElectionHistory extends Component {
@@ -14,26 +14,28 @@ class ElectionHistory extends Component {
   render(){
     const pastElections = this.props.pastElections;
     return (
-      <div>
-      <h4>Past Elections:</h4>
+      <div className="history-wrapper">
+      <h1>Past Elections</h1>
         {
         pastElections.length
           ? pastElections.map(election => {
+            let startDate = moment(election.startDate).format('dddd, MMMM Do YYYY, h:mm a');
+            let endDate = moment(election.endDate).format('dddd, MMMM Do YYYY, h:mm a');
             return (
-                <div key={election.id}>
-
-                <h5>{election.name}</h5>
-                <h5>Candidates: {election.candidates.map(candidate => {
-                    return (<ul key={candidate.id}>
-                      {`${candidate.name} (${candidate.affiliation})`}
-                      </ul>
-                    )
-                })} </h5>
-                <h5>From: {election.startDate}</h5>
-                <h5>To: {election.endDate}</h5>
-                <PastDonutChart idx={election.id}/>
+              <div key={election.id}>
+                <div className= "past-election-box">
+                  <div className="past-election-info">
+                    <h2>{election.name}</h2>
+                    <br />
+                    <h3>Started: {startDate}</h3>
+                    <br />
+                    <h3>Ended: {endDate}</h3>
+                  </div>
+                  <PastDonutChart idx={election.id} />
+                </div>
               </div>
             )
+
 
           })
           : <div>There are no past elections in your community!</div>

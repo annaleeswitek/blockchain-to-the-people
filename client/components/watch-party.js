@@ -16,22 +16,21 @@ class WatchParty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      switchView: null,
-      GraphName: null
+      switchView: false,
+      GraphName: false
     }
     this.election = null;
   }
 
     async componentDidMount () {
-      setTimeout(this.toogleView, 50);
+      setTimeout(this.toggleView, 50);
     this.election = await Election(this.props.blockchainAddress);
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId);
     console.log('this.props.state', this.props.state);
   }
 
-  toogleView = () => {
-    console.log('In toogleView')
+  toggleView = () => {
     this.setState(({GraphName, switchView}) => ({
       switchView: !switchView,
       GraphName: !GraphName
@@ -41,25 +40,27 @@ class WatchParty extends Component {
   render () {
     let activeElection = this.props.activeElection;
     return (
-      <div>
+      <div className="watchParty-wrapper">
           {
             activeElection
             ? (
-                <div key={activeElection.id}>
+                <div className="center-text" key={activeElection.id}>
                   <h1>Welcome to the Watch Party for the {activeElection.name}!</h1>
+                  {
+                    this.state.GraphName
+                    ? <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.toggleView()} />
+                    : <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.toggleView()} />
+                  }
+                  <div className="center-text">
+                  {
+                    this.state.switchView
+                    ? <DonutChart />
+                    : <BarGraph />
+                  }
+                  </div>
                 </div>
               )
             : <div>"There's no active election in your community!"</div>
-          }
-          {
-            this.state.GraphName
-            ? <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
-            : <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.setState({switchView: !this.state.switchView, GraphName: !this.state.GraphName})} />
-          }
-          {
-            this.state.switchView
-            ? <DonutChart />
-            : <BarGraph />
           }
       </div>
     )

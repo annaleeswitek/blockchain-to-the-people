@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 module.exports = router;
 
+router.use('/mail', require('./mail.js'));
 router.use('/users', require('./users'));
 router.use('/elections', require('./elections'));
 router.use('/candidates', require('./candidates'));
