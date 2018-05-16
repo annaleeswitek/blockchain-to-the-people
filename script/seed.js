@@ -46,43 +46,7 @@ async function seed () {
 
   // -- CANDIDATES --
 
-  const candidatesList = [
-    {
-      name: 'Bernie Sanders',
-      affiliation: 'Democrat',
-      voteCount: 500,
-      arrayIndex: 1
-    },
-    {
-      name: 'Kieth Ellison',
-      affiliation: 'Democrat',
-      voteCount: 550,
-      arrayIndex: 1
-    },
-    {
-      name: 'Elizabeth Warren',
-      affiliation: 'Democrat',
-      voteCount: 100,
-      arrayIndex: 1
-    },
-    {
-      name: 'Mark Zuckerberg',
-      affiliation: 'Democrat',
-      voteCount: 50,
-      arrayIndex: 1
-    },
-    {
-      name: 'Lord Voldemort',
-      affiliation: 'Republican',
-      voteCount: 10,
-      arrayIndex: 1
-    },
-    {
-      name: 'Jill Stein',
-      affiliation: 'Green Party',
-      voteCount: 50,
-      arrayIndex: 1
-    },
+  const pastCandidatesList = [
     {
       name: 'Brian Kavanagh',
       affiliation: 'Democratic',
@@ -107,32 +71,59 @@ async function seed () {
       voteCount: 143,
       arrayIndex: 1
     },
+    {
+      name: 'Christine Pellegrino',
+      affiliation: 'Democratic',
+      voteCount: 5324,
+      arrayIndex: 1
+    },
+    {
+      name: 'Thomas Gargiulo',
+      affiliation: 'Republican',
+      voteCount: 3181,
+      arrayIndex: 1
+    },
+    {
+      name: 'Albert Thompson',
+      affiliation: 'Independence',
+      voteCount: 292,
+      arrayIndex: 1
+    },
+    {
+      name: 'John Smith',
+      affiliation: 'Conservative',
+      voteCount: 867,
+      arrayIndex: 1
+    },
+  ]
 
-  ];
+  // const candidates = await Promise.all(
+  //   candidatesList.map(candidate => Candidate.create(candidate))
+  // );
 
-  const candidates = await Promise.all(
-    candidatesList.map(candidate => Candidate.create(candidate))
-  );
+  const pastCandidates = await Promise.all(
+    pastCandidatesList.map(candidate => Candidate.create(candidate))
+  )
 
-  console.log(`seeded ${candidates.length} candidates`);
+  console.log(`seeded ${pastCandidates.length} candidates`);
 
   // -- COMMUNITIES --
 
   const communitiesList = [
     {
-      name: 'New York State Senate',
-      location: 'New York State',
+      name: 'New York State',
+      location: 'New York, USA',
       timeZone: 'EST'
     },
     {
-      name: 'Occupy Walstreet',
-      location: 'New York City',
+      name: 'New York State',
+      location: 'New York, USA',
       timeZone: 'EST'
     },
     {
-      name: 'Board of Directors of Google',
-      location: 'Mountain View',
-      timeZone: 'PST'
+      name: 'New York State',
+      location: 'New York, USA',
+      timeZone: 'EST'
     }
   ];
 
@@ -141,8 +132,8 @@ async function seed () {
   );
 
   const addUsersToCommunities = await Promise.all([
-    User.findById(1).then(category => category.setCommunity(1)),
-    User.findById(2).then(category => category.setCommunity(1)),
+    User.findById(1).then(category => category.setCommunity(3)),
+    User.findById(2).then(category => category.setCommunity(3)),
     User.findById(3).then(category => category.setCommunity(3)),
     User.findById(4).then(category => category.setCommunity(3)),
     User.findById(5).then(category => category.setCommunity(3)),
@@ -152,51 +143,45 @@ async function seed () {
 
   // -- ELECTIONS --
 
-  const electionsList = [
+  const pastElectionsList = [
     {
-      name: 'Spring 2018 Primary',
-      startDate: 'Fri May 08 2018 16:21:00 EST-0400 (EST)',
-      endDate: 'Fri May 09 2018 08:00:00 EST-0400 (EST)',
+      name: 'New York State Assembly Special Elections, District 9',
+      startDate: 'Tue May 23 2017 08:00:00 EST-0400 (EST)',
+      endDate: 'Tue May 23 2017 16:00:00 EST-0400 (EST)',
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
     {
-      name: 'New York state legislative special elections, District 26',
+      name: 'New York State Senate Special Elections, District 26',
       startDate: 'Tue Nov 07 2017 08:00:00 EST-0400 (EST)',
       endDate: 'Tue Nov 07 2017 18:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
-    },
-    {
-      name: 'New Board Member Vote',
-      startDate: 'Mon May 29 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Tues May 30 2018 08:00:00 EST-0400 (EST)',
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     }
   ];
 
-  const elections = await Promise.all(
-    electionsList.map(election => Election.create(election))
+  const pastElections = await Promise.all(
+    pastElectionsList.map(election => Election.create(election))
   );
 
-  const addCandidatesToElections = await Promise.all([
-    Candidate.findById(1).then(candidate => candidate.setElection(1)),
-    Candidate.findById(2).then(candidate => candidate.setElection(1)),
-    Candidate.findById(3).then(candidate => candidate.setElection(1)),
-    Candidate.findById(4).then(candidate => candidate.setElection(1)),
-    Candidate.findById(5).then(candidate => candidate.setElection(3)),
-    Candidate.findById(6).then(candidate => candidate.setElection(3)),
-    Candidate.findById(7).then(candidate => candidate.setElection(2)),
-    Candidate.findById(8).then(candidate => candidate.setElection(2)),
-    Candidate.findById(9).then(candidate => candidate.setElection(2)),
-    Candidate.findById(10).then(candidate => candidate.setElection(2)),
-  ]);
+  // const addCandidatesToPastElections = await Promise.all([
+  //   Candidate.findById(1).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(2).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(3).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(4).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(5).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(6).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(7).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(8).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(9).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(10).then(candidate => candidate.setElection(2)),
+  // ]);
 
   const addElectionsToCommunities = await Promise.all([
-    Election.findById(1).then(election => election.setCommunity(3)),
-    Election.findById(2).then(election => election.setCommunity(1)),
+    // Election.findById(1).then(election => election.setCommunity(3)),
+    Election.findById(2).then(election => election.setCommunity(3)),
     Election.findById(3).then(election => election.setCommunity(3))
   ]);
 
-  console.log(`seeded ${elections.length} elections`);
+  console.log(`seeded ${pastElections.length} elections`);
 
 }
 
