@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchActiveElection, postVote } from '../store/election';
 import web3 from '../../ethereum/web3';
-import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-ui';
+import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton, TextField } from 'material-ui';
 import Election from '../../ethereum/election';
 import Checkbox from 'material-ui/Checkbox'
 import socket from '../socket';
@@ -26,6 +26,7 @@ class VotingBooth extends Component {
       message: '',
       arrayIndex: '',
       candidateId: '',
+      code: '',
       isLoading: false,
       open: false
     }
@@ -71,22 +72,24 @@ class VotingBooth extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
-
-    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex === this.selectedCandidateArrayIndex);
+    //equal in find needs to be double, not triple, equal
+    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
 
     web3.eth.getAccounts()
     .then(accounts => {
       this.setState({ isLoading: true, open: true});
-      this.election.methods.submitVote(1234, this.state.arrayIndex).send({
+      this.election.methods.submitVote(this.state.code, this.state.arrayIndex).send({
         from: accounts[0],
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
       .then(voteReceipt => {
         console.log('VOTING BOOTH voteReciept', voteReceipt);
+        alert('Congratulations! You vote has been cast!');
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
         this.setState({ isLoading: false, open: false });
+        this.props.history.push('/watch');
       })
     })
     .catch(console.error)
@@ -103,6 +106,13 @@ class VotingBooth extends Component {
             <h1>{activeElection.name}</h1>
             <h4>The voting period ends at {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm a')}</h4>
             <h3>Please cast your vote here.</h3>
+            <TextField
+                floatingLabelText="election code"
+                errorText="This field is required"
+                value={this.state.code}
+                name="code"
+                onChange={this.handleChange}
+            /><br />
             <form className="ballot" onSubmit={this.handleSubmit}>
             <div className="ballot-wrapper">
             {
@@ -113,12 +123,7 @@ class VotingBooth extends Component {
                     <img src="Icon1.png" className="flexBallot" />
                       <h2>{candidate.name}</h2>
                       <h4>{candidate.affiliation}</h4>
-                    <Checkbox
-                      onCheck={this.handleChange}
-                      value={candidate.arrayIndex}
-                      className="flexBallot"
-                      style={style.checkbox}
-                    />
+                    <input type="checkbox" onChange={this.handleChange} value={candidate.arrayIndex}/>
                   </div>
                 )
               })
@@ -132,14 +137,14 @@ class VotingBooth extends Component {
             <br />
             { this.state.isLoading ?
             <div >
-            <h4>Processing your vote to the blockchain</h4>
+            <h4>Processing your vote on the blockchain</h4>
             <LinearProgress mode={'indeterminate'} />
             </div>
 
             : null }
             <Snackbar
                 open={this.state.open}
-                message="Click 'submit' in MetaMask to add your vote to the blockchain! It'll take a minute!"
+                message="Click 'submit' in MetaMask to add your vote to the blockchain!"
                 autoHideDuration={10000}
                 onRequestClose={this.handleRequestClose}
               />
