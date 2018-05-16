@@ -27,24 +27,24 @@ export default class AboutPage extends Component {
             <div className="faq-box">
               <div style={styles.headline} className="info"><b>{question1}</b></div>
               <br />
-              <div className="info"><b></b>  {answer1}</div>
+              <div className="info">{answer1}</div>
             </div>
             <br />
             <br />
             <div className="faq-box">
-              <div style={styles.headline} className="info"><b>Q: {question2}</b></div>
+              <div style={styles.headline} className="info"><b>{question2}</b></div>
               <br />
-              <div className="info"><b>A:</b>  {answer2}</div>
+              <div className="info">{answer2}</div>
             </div>
             <div className="faq-box">
-              <div style={styles.headline} className="info"><b>Q: {question3}</b></div>
+              <div style={styles.headline} className="info"><b>{question3}</b></div>
               <br />
-              <div className="info"><b>A:</b>  {answer3}</div>
+              <div className="info">{answer3}</div>
             </div>
             <div className="faq-box">
-              <div style={styles.headline} className="info"><b>Q: {question4}</b></div>
+              <div style={styles.headline} className="info"><b>{question4}</b></div>
               <br />
-              <div className="info"><b>A:</b>  {answer4}</div>
+              <div className="info">{answer4}</div>
             </div>
           </div>
         )
