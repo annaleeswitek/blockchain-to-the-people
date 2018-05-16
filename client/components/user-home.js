@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
 import { RaisedButton } from 'material-ui';
+import { blue500 } from 'material-ui/styles/colors'
 import moment from 'moment';
+
 // import Election from '../../ethereum/election';
 
 const styles = {
   headline: {
+    color: blue500,
     fontSize: 24,
     paddingTop: 16,
     marginBottom: 12,
@@ -41,7 +44,7 @@ class UserHome extends Component {
 
     return (
       <div className="flex-center">
-        <h2>Current Election</h2>
+        <h2 className="header">Current Election</h2>
           <div className="election-box">
               <h2 style={styles.headline}>{activeElection.name}</h2>
                 {
@@ -60,7 +63,7 @@ class UserHome extends Component {
               </div>
               <br />
               <br />
-          <h2>Upcoming Elections</h2>
+          <h2 className="header">Upcoming Elections</h2>
             <div className="election-box">
               {
                 upcomingElections.length
