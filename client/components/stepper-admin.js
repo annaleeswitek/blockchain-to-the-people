@@ -68,19 +68,19 @@ class HorizontalStepper extends React.Component {
 
     return (
       <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
-        <Stepper activeStep={stepIndex}>
-          <Step>
+        <Stepper className="container" activeStep={stepIndex}>
+          <Step className="centerText">
             <StepLabel>Download MetaMask 
             </StepLabel>
-          </Step>
-          <Step>
+          </Step >
+          <Step className="centerText">
             <StepLabel>Create a Campaign
             </StepLabel>
           </Step>
-          <Step>
+          <Step className="centerText">
             <StepLabel>Add a Candidate to the Election</StepLabel>
           </Step>
-          <Step>
+          <Step className="centerText">
             <StepLabel>Invite Community Members To Participate In The Election</StepLabel>
           </Step>
         </Stepper>
@@ -100,7 +100,7 @@ class HorizontalStepper extends React.Component {
           ) : (
             <div>
               <p>{this.getStepContent(stepIndex)}</p>
-              <div>{ this.state.components[stepIndex]}</div> 
+              <div className="container">{ this.state.components[stepIndex]}</div> 
               <div style={{marginTop: 12}}>
                 <FlatButton
                   label="Back"

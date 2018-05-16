@@ -29,7 +29,7 @@ class UserHorizontalStepper extends React.Component {
     const {stepIndex} = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2,
+      finished: stepIndex >= 1,
     });
   };
 
@@ -46,8 +46,6 @@ class UserHorizontalStepper extends React.Component {
         return 'Download MetaMask.';
       case 1:
         return 'Cast your vote. Make sure to include your code, or the vote will not go through! Also, you can only cast your vote once for a single candidate, so please be certain of your choice before voting.'; 
-      default:
-        return 'Follow the prior steps to set up your first election!';
     }
   }
 
@@ -94,7 +92,7 @@ class UserHorizontalStepper extends React.Component {
                   style={{marginRight: 12}}
                 />
                 <RaisedButton
-                  label={stepIndex === 2 ? 'Finish' : 'Next'}
+                  label={stepIndex === 1 ? 'Finish' : 'Next'}
                   primary={true}
                   onClick={this.handleNext}
                 />
