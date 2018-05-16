@@ -133,7 +133,7 @@ class CreateElection extends Component {
 
     web3.eth.getAccounts()
       .then(accounts => {
-        
+
         return factory.methods
         .createElection(this.state.code)
         .send({
@@ -149,11 +149,11 @@ class CreateElection extends Component {
             blockchainAddress: address,
             foreignId: this.props.communityId
           }
-          
+
           this.props.postNewElection(objToSend, this.props.communityId)
           this.setState({ name: '', code: '', startDate: null, endDate: null, startTime: null, endTime: null, isLoading: false, open: false});
           alert("New Election Added!");
-          this.props.history.push('/home');
+          this.props.history.push('/create-candidate');
         })
       })
       .catch(console.error)
@@ -192,11 +192,11 @@ class CreateElection extends Component {
           </form>
             { this.state.isLoading ?
             <div >
-            <h4>Processing blockchain vote...</h4> 
-            <LinearProgress mode={"indeterminate"} /> 
-            <br /> 
-            <br /> 
-            <br /> 
+            <h4>Processing blockchain vote...</h4>
+            <LinearProgress mode={"indeterminate"} />
+            <br />
+            <br />
+            <br />
             </div>
 
             : null }
