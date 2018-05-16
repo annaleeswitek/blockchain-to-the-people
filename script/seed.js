@@ -46,6 +46,56 @@ async function seed () {
 
   // -- CANDIDATES --
 
+  const pastCandidatesList = [
+    {
+      name: 'Brian Kavanagh',
+      affiliation: 'Democratic',
+      voteCount: 17782,
+      arrayIndex: 1
+    },
+    {
+      name: 'Analicia Alexander',
+      affiliation: 'Republican',
+      voteCount: 4072,
+      arrayIndex: 1
+    },
+    {
+      name: 'Unrecorded',
+      affiliation: 'Other',
+      voteCount: 5079,
+      arrayIndex: 1
+    },
+    {
+      name: 'Write-ins',
+      affiliation: 'Other',
+      voteCount: 143,
+      arrayIndex: 1
+    },
+    {
+      name: 'Christine Pellegrino',
+      affiliation: 'Democratic',
+      voteCount: 5324,
+      arrayIndex: 1
+    },
+    {
+      name: 'Thomas Gargiulo',
+      affiliation: 'Republican',
+      voteCount: 3181,
+      arrayIndex: 1
+    },
+    {
+      name: 'Albert Thompson',
+      affiliation: 'Independence',
+      voteCount: 292,
+      arrayIndex: 1
+    },
+    {
+      name: 'John Smith',
+      affiliation: 'Conservative',
+      voteCount: 867,
+      arrayIndex: 1
+    },
+  ]
   const activeCandidatesList = [
     {
       name: 'Rosa Franklin',
@@ -95,9 +145,17 @@ async function seed () {
       description: ' Grace Hopper was one of the most accomplished women in computer science. She held a Ph.D. in mathematics and taught at Vassar until she joined the Navy during World War II. She served in the Naval Reserves for most of her life, eventually achieving the rank of Rear Admiral.',
       imageURL: 'https://qph.fs.quoracdn.net/main-qimg-08742725c88e7d39c39b839c2f73044f-c'
     }
+  ]
 
-  ];
+  // const candidates = await Promise.all(
+  //   candidatesList.map(candidate => Candidate.create(candidate))
+  // );
 
+  const pastCandidates = await Promise.all(
+    pastCandidatesList.map(candidate => Candidate.create(candidate))
+  )
+
+  console.log(`seeded ${pastCandidates.length} candidates`);
   const activeCandidates = await Promise.all(
     activeCandidatesList.map(candidate => Candidate.create(candidate))
   );
@@ -108,19 +166,19 @@ async function seed () {
 
   const communitiesList = [
     {
-      name: 'Board of Directors for Imaginary Corp',
-      location: 'New York City',
+      name: 'New York State',
+      location: 'New York, USA',
       timeZone: 'EST'
     },
     {
-      name: 'Occupy Walstreet',
-      location: 'New York City',
+      name: 'New York State',
+      location: 'New York, USA',
       timeZone: 'EST'
     },
     {
-      name: 'Board of Directors of Google',
-      location: 'Mountain View',
-      timeZone: 'PST'
+      name: 'New York State',
+      location: 'New York, USA',
+      timeZone: 'EST'
     }
   ];
 
@@ -140,6 +198,20 @@ async function seed () {
 
   // -- ELECTIONS --
 
+  const pastElectionsList = [
+    {
+      name: 'New York State Assembly Special Elections, District 9',
+      startDate: 'Tue May 23 2017 08:00:00 EST-0400 (EST)',
+      endDate: 'Tue May 23 2017 16:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+    },
+    {
+      name: 'New York State Senate Special Elections, District 26',
+      startDate: 'Tue Nov 07 2017 08:00:00 EST-0400 (EST)',
+      endDate: 'Tue Nov 07 2017 18:00:00 EST-0400 (EST)',
+    }
+  ]
+
   const activeElectionInfo = {
       name: 'Earth\'s Philosopher Queen',
       startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
@@ -147,6 +219,30 @@ async function seed () {
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     };
 
+  const pastElections = await Promise.all(
+    pastElectionsList.map(election => Election.create(election))
+  );
+
+  // const addCandidatesToPastElections = await Promise.all([
+  //   Candidate.findById(1).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(2).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(3).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(4).then(candidate => candidate.setElection(1)),
+  //   Candidate.findById(5).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(6).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(7).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(8).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(9).then(candidate => candidate.setElection(2)),
+  //   Candidate.findById(10).then(candidate => candidate.setElection(2)),
+  // ]);
+
+  const addElectionsToCommunities = await Promise.all([
+    Election.findById(1).then(election => election.setCommunity(3)),
+    // Election.findById(2).then(election => election.setCommunity(3)),
+    // Election.findById(3).then(election => election.setCommunity(3))
+  ]);
+
+  console.log(`seeded ${pastElections.length} elections`);
   const activeElection = await Election.create(activeElectionInfo);
 
   const addCandidatesToActiveElection = await Promise.all([

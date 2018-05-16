@@ -32,11 +32,10 @@ class ElectionHistory extends Component {
               <div key={election.id}>
                 <div className= "past-election-box">
                   <div className="past-election-info">
-                    <h2 style={styles.headline}>{election.name}</h2>
+                    <h3 style={styles.headline}>{election.name}</h3>
                     <br />
-                    <h3>Started: {startDate}</h3>
-                    <br />
-                    <h3>Ended: {endDate}</h3>
+                    <h5>Started: {startDate}</h5>
+                    <h5>Ended: {endDate}</h5>
                   </div>
                   <PastDonutChart idx={election.id} />
                 </div>
