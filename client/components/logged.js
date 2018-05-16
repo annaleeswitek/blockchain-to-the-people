@@ -17,8 +17,8 @@ const Logged = ({ props, handleClick }) => (
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <Link to="/about"><MenuItem primaryText="About" /></Link>
     <Link to="/tutorial"><MenuItem primaryText="Tutorial" /></Link> 
+    <Link to="/about"><MenuItem primaryText="FAQ" /></Link>
     <a href="#" onClick={handleClick}><MenuItem primaryText="Log Out" /></a>
   </IconMenu>
 );
