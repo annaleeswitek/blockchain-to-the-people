@@ -153,7 +153,7 @@ class CreateCandidate extends Component {
           </form>
             { this.state.isLoading ?
             <div >
-            <h4>Processing blockchain vote...</h4>
+            <h4>Adding new candidate to your election...</h4>
             <LinearProgress mode={"indeterminate"} />
             <br />
             <br />
