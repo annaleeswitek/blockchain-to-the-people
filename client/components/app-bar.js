@@ -34,7 +34,7 @@ class NavBar extends Component {
           ?
           <div className="app-bar">
           <AppBar
-          title={<img src="logo.png" style={{height: '80px'}} />}
+          title={<Link to="/home"><img src="logo.png" style={{height: '80px'}} /></Link>}
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={this.props.isLoggedIn ? <Logged /> : <LoginButton />}
           ><span className="user-greeting">Hello, {this.props.user.name}</span></AppBar>
