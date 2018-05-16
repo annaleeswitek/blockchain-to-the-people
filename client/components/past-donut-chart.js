@@ -1,13 +1,14 @@
 
 import React, { Component } from 'react';
 import { PieChart, Pie, Tooltip } from 'recharts';
+import { fetchPastElections } from '../store/election';
 import { connect } from 'react-redux';
 
 
 class PastDonutChart extends Component {
 
   render (){
-    const colorArray = ['#8884d8', '#9cacf1', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57']
+    const colorArray = ['#8884d8', '#a4de6c', '#9cacf1', '#8dd1e1', '#82ca9d', '#d0ed57']
     let idx = 0;
 
     const data = this.props.pastElections.candidates.length ? this.props.pastElections.candidates.map(candidate => {

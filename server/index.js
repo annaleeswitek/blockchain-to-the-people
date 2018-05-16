@@ -11,6 +11,8 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const nodemailer = require('nodemailer');
+
 module.exports = app
 
 /**
@@ -68,6 +70,10 @@ const createApp = () => {
       next()
     }
   })
+
+
+
+   
 
   // sends index.html
   app.use('*', (req, res) => {
