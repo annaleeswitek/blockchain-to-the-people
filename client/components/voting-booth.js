@@ -6,7 +6,6 @@ import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-
 import Election from '../../ethereum/election';
 import Checkbox from 'material-ui/Checkbox'
 import socket from '../socket';
-//export const newVoteSocket
 
 const style = {
   margin: 15,

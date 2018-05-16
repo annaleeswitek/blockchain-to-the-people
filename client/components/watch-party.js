@@ -40,22 +40,24 @@ class WatchParty extends Component {
   render () {
     let activeElection = this.props.activeElection;
     return (
-      <div>
+      <div className="watchParty-wrapper">
           {
             activeElection
             ? (
-                <div key={activeElection.id}>
+                <div className="center-text" key={activeElection.id}>
                   <h1>Welcome to the Watch Party for the {activeElection.name}!</h1>
                   {
                     this.state.GraphName
                     ? <RaisedButton  primary={true} label="Switch to Bar Graph" onClick={() => this.toggleView()} />
                     : <RaisedButton  primary={true} label="Switch to Pie Chart" onClick={() => this.toggleView()} />
                   }
+                  <div className="center-text">
                   {
                     this.state.switchView
                     ? <DonutChart />
                     : <BarGraph />
                   }
+                  </div>
                 </div>
               )
             : <div>"There's no active election in your community!"</div>

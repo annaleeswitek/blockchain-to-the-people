@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Tooltip } from 'recharts';
+import { PieChart, Pie, Tooltip, ResponsiveContainer } from 'recharts';
 import { connect } from 'react-redux';
 
 class DonutChart extends Component {
@@ -17,10 +17,12 @@ class DonutChart extends Component {
     }) : null
     console.log('Here is data! ', data);
     return (
-      <PieChart width={1000} height={1000}>
-        <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={300} innerRadius={150} outerRadius={200} fill="#82ca9d" label />
-        <Tooltip />
-      </PieChart>
+        <div className="chart-wrapper">
+          <PieChart width={1000} height={1000}>
+            <Pie isAnimationActive={true} data={data} dataKey="value" nameKey="name" cx={700} cy={300} innerRadius={150} outerRadius={200} fill="#82ca9d" label />
+            <Tooltip />
+          </PieChart>
+        </div>
     )
   }
 }

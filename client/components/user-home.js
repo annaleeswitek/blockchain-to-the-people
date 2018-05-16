@@ -42,7 +42,7 @@ class UserHome extends Component {
     return (
       <div className="flex-center">
         <h2>Current Election</h2>
-          <div className="box">
+          <div className="election-box">
               <h2 style={styles.headline}>{activeElection.name}</h2>
                 {
                   activeElection
@@ -58,7 +58,7 @@ class UserHome extends Component {
                 }
               </div>
           <h2>Upcoming Elections</h2>
-            <div className="box">
+            <div className="election-box">
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
