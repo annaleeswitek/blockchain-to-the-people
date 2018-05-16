@@ -192,7 +192,7 @@ class CreateElection extends Component {
           </form>
             { this.state.isLoading ?
             <div >
-            <h4>Processing blockchain vote...</h4>
+            <h4>Creating an election on the blockchain...</h4>
             <LinearProgress mode={"indeterminate"} />
             <br />
             <br />

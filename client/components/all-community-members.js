@@ -45,49 +45,54 @@ class AllCommunityMembers extends Component {
 
   render() {
     return (
-      <div>
-      <h4>Here Are Your Community Members!</h4>
+      <div className="flex-center">
+      <h4 className="header">Here Are Your Community Members!</h4>
       {
         this.props.communityMembers.length ?
         this.props.communityMembers.map(member => {
             return (
-              <div key={member.id}>
-              <div>{member.name}</div>
-              <div>{member.email}</div>
-              <div>{moment(member.createdAt).format('dddd, MMMM Do YYYY')}</div>
+              <div className="community-member-box" key={member.id}>
+                <div>{member.name}</div>
+                <div>{member.email}</div>
+                <div>Joined: {moment(member.createdAt).format('dddd, MMMM Do YYYY')}</div>
               <br />
             </div>
             )
             }) : <div>There are no members in your community!</div>
       }
       <form onSubmit={this.handleSubmit}>
-      <h3>Invite a Community Member to Participate in an Election</h3>
+      <br />
+      <br />
+      <br />
+        <div className="invite-form-box">
+        <h3>Invite a Community Member to Participate in an Election</h3>
           <TextField
             floatingLabelText="member name"
             value={this.state.memberName}
             name="memberName"
             onChange={this.handleChange}
-          /><br />
+          />
           <TextField
             floatingLabelText="member email"
             value={this.state.memberEmail}
             name="memberEmail"
             onChange={this.handleChange}
-          /><br />
+          />
           <TextField
             floatingLabelText="subject line"
             value={this.state.emailSubject}
             name="emailSubject"
             onChange={this.handleChange}
-          /><br />
+          />
           <TextField
             floatingLabelText="message"
             multiLine={true}
             value={this.state.memberMessage}
             name="memberMessage"
             onChange={this.handleChange}
-          /><br />
+          />
           <RaisedButton type="submit" primary={true} style={buttonStyle} label="SUBMIT" labelColor="white" />
+        </div>
       </form>
     </div>
     )
