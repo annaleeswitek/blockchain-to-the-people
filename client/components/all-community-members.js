@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCommunityMembers } from '../store/community';
+import { fetchCommunityMembers, postMemberEmail } from '../store/community';
 import { List, TextField, RaisedButton } from 'material-ui';
 import moment from 'moment';
 
@@ -18,6 +18,7 @@ class AllCommunityMembers extends Component {
     this.state = {
       memberName: '',
       memberEmail: '',
+      emailSubject: '',
       memberMessage: ''
     }
   }
@@ -28,11 +29,18 @@ class AllCommunityMembers extends Component {
 
   handleChange = (evt) => {
     this.setState({ [evt.target.name]: evt.target.value })
-    console.log('now state', this.state)
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
+    console.log("state in handleSubmit", this.state);
+    const sendObj = {
+      email: this.state.memberEmail,
+      name: this.state.memberName,
+      subject: this.state.emailSubject,
+      message: this.state.memberMessage
+    }
+    this.props.sendMemberEmail(sendObj);
   }
 
   render() {
@@ -67,6 +75,12 @@ class AllCommunityMembers extends Component {
             onChange={this.handleChange}
           /><br />
           <TextField
+            floatingLabelText="subject line"
+            value={this.state.emailSubject}
+            name="emailSubject"
+            onChange={this.handleChange}
+          /><br />
+          <TextField
             floatingLabelText="message"
             multiLine={true}
             value={this.state.memberMessage}
@@ -88,14 +102,17 @@ const mapState = (state) => {
     communityMembers: state.communityMembers,
     user: state.user,
   }
-}
+};
 
 const mapDispatch = (dispatch) => {
   return {
     getCommunityMembers: (communityId) => {
       dispatch(fetchCommunityMembers(communityId))
+    },
+    sendMemberEmail: (sendObj) => {
+      dispatch(postMemberEmail(sendObj));
     }
   }
-}
+};
 
 export default connect(mapState, mapDispatch)(AllCommunityMembers);

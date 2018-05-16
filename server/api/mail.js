@@ -2,10 +2,10 @@ const nodeMailer = require("nodemailer");
 const router = require("express").Router();
 
 router.post('/send-email', function (req, res) {
-    let email = req.body.email; 
-    let name = req.body.name; 
-    let subject = req.body.subject; 
-    let message = req.body.message;   
+    let email = req.body.email;
+    let name = req.body.name;
+    let subject = req.body.subject;
+    let message = req.body.message;
     //let code = req.params.code
 
     let transporter = nodeMailer.createTransport({
@@ -35,5 +35,5 @@ router.post('/send-email', function (req, res) {
             });
     });
 
-    
-module.exports = router; 
+
+module.exports = router;
