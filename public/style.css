@@ -109,13 +109,6 @@ img {
   padding-right: 380px
 }
 
-.history-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .ballot-box {
   display: flex;
   flex-direction: row;
@@ -156,3 +149,27 @@ img {
   padding-bottom: 50px;
 }
 
+.history-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.past-election-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.past-election-box {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: 300px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: white;
+}

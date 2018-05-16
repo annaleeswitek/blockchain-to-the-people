@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { PieChart, Pie, Tooltip } from 'recharts';
+import { fetchPastElections } from '../store/election';
 import { connect } from 'react-redux';
 
 
