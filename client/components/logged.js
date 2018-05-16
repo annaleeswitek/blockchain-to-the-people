@@ -6,6 +6,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { logout } from '../store';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Logged = ({ props, handleClick }) => (
   <IconMenu
@@ -16,7 +17,7 @@ const Logged = ({ props, handleClick }) => (
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <MenuItem primaryText="Help" />
+    <Link to="/about"><MenuItem primaryText="About" /></Link>
     <a href="#" onClick={handleClick}><MenuItem primaryText="Log Out" /></a>
   </IconMenu>
 );

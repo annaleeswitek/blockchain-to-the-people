@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PastDonutChart from './past-donut-chart';
 import { fetchPastElections } from '../store/election';
+import { blue500 } from 'material-ui/styles/colors'
 import moment from 'moment';
+
+const styles = {
+  headline: {
+    color: blue500,
+  }
+};
 
 
 class ElectionHistory extends Component {
@@ -25,7 +32,7 @@ class ElectionHistory extends Component {
               <div key={election.id}>
                 <div className= "past-election-box">
                   <div className="past-election-info">
-                    <h2>{election.name}</h2>
+                    <h2 style={styles.headline}>{election.name}</h2>
                     <br />
                     <h3>Started: {startDate}</h3>
                     <br />
