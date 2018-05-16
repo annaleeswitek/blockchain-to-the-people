@@ -84,6 +84,7 @@ img {
   padding: 10px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   text-align: center;
+  background-color: white;
 }
 
 .center-text {
