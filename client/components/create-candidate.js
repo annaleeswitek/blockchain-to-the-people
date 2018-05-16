@@ -72,7 +72,7 @@ class CreateCandidate extends Component {
     this.setState({ isLoading: true, open: true});
 
     const election = await Election(this.state.electionAddress);
-    const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress === this.state.electionAddress);
+    const selectedElection = this.props.upcomingElections.filter(election => election.blockchainAddress == this.state.electionAddress);
 
     web3.eth.getAccounts()
     .then(accounts => {
