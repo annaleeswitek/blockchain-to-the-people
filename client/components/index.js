@@ -12,4 +12,4 @@ export { LandingPage } from './landing-page';
 export { default as CreateCandidate } from './create-candidate';
 export { default as Stepper } from './stepper-admin';
 export { default as StepperUser } from './stepper-user';
-export { default as AboutPage } from './about-page'; 
+export { default as AboutPage } from './about-page';

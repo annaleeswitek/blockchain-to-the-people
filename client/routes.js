@@ -34,10 +34,11 @@ class Routes extends Component {
               <Route path="/create-candidate" component={CreateCandidate} />
               <Route path="/voting-booth" component={VotingBooth} />
               <Route path="/firstSteps" component={Stepper} />
-              <Route path="/aboutPage" component={AboutPage} /> 
+              <Route path="/aboutPage" component={AboutPage} />
               <Route path="/userFirstSteps" component={StepperUser} />
               <Route path="/history" component={ElectionHistory} />
               <Route path="/instructions" component={Instructions} />
+              <Route path="/about" component={AboutPage} />
               <Route exact path="/community-members" component={AllCommunityMembers} />
             </Switch>
         }
