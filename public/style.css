@@ -85,7 +85,7 @@ img {
   padding: 10px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   text-align: center;
-  background-color: white;
+  background-color: azure;
 }
 
 .center-text {
@@ -107,13 +107,6 @@ img {
   align-items: center;
   flex-direction: column;
   padding-right: 380px
-}
-
-.history-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .ballot-box {
@@ -156,3 +149,31 @@ img {
   padding-bottom: 50px;
 }
 
+.history-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.past-election-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.past-election-box {
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  height: 300px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: azure;
+}
+
+.header {
+  font-size: 36px;
+}
