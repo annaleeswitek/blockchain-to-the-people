@@ -7,7 +7,7 @@ import {
   RaisedButton, 
   FlatButton 
 } from 'material-ui';
-import { StepperUser, VotingBooth } from './index';
+import { InstallMetamask, VotingBooth } from './index';
 import {Link} from 'react-router-dom'; 
 
 class UserHorizontalStepper extends React.Component {
@@ -17,7 +17,7 @@ class UserHorizontalStepper extends React.Component {
       this.state = {
         finished: false,
         stepIndex: 0,
-        components: [null, <VotingBooth/>, null] 
+        components: [<InstallMetamask />, <VotingBooth/>] 
       };
 
       this.getStepContent = this.getStepContent.bind(this); 
@@ -29,7 +29,7 @@ class UserHorizontalStepper extends React.Component {
     const {stepIndex} = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2,
+      finished: stepIndex >= 1,
     });
   };
 
@@ -43,13 +43,9 @@ class UserHorizontalStepper extends React.Component {
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return 'Download metamask.';
+        return 'Download MetaMask.';
       case 1:
-        return 'Cast your vote.';
-      case 2:
-        return 'Go to the watch party.';
-      default:
-        return 'Follow the prior steps to set up your first election!';
+        return 'Cast your vote. Make sure to include your code, or the vote will not go through! Also, you can only cast your vote once for a single candidate, so please be certain of your choice before voting.'; 
     }
   }
 
@@ -69,10 +65,6 @@ class UserHorizontalStepper extends React.Component {
           <Step>
             <StepLabel>Cast your vote. 
             </StepLabel>
-          </Step>
-          <Step>
-            
-            <StepLabel>View the real-time votes as they come in to your community's election.</StepLabel>
           </Step>
         </Stepper>
         <div style={contentStyle}>
@@ -100,7 +92,7 @@ class UserHorizontalStepper extends React.Component {
                   style={{marginRight: 12}}
                 />
                 <RaisedButton
-                  label={stepIndex === 2 ? 'Finish' : 'Next'}
+                  label={stepIndex === 1 ? 'Finish' : 'Next'}
                   primary={true}
                   onClick={this.handleNext}
                 />
