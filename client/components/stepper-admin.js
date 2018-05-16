@@ -56,8 +56,6 @@ class HorizontalStepper extends React.Component {
         return 'Add your first candidate. You can either add several candidates now, or return to this page at a later date.';
       case 3:
         return 'Invite members of your community to your election. They will be sent a private code, and will be added to your view after thay have successfully registered on the site.';
-      default:
-        return 'Follow the prior steps to set up your first election!';
     }
   }
 
