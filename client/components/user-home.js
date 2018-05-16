@@ -18,7 +18,7 @@ const style = {
   height: 400,
   width: 680,
   margin: 15,
-  textAlign: 'center',
+  textAlign: 'cnenter',
   display: 'inline-block',
 };
 /**
