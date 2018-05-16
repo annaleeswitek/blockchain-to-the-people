@@ -26,14 +26,14 @@ class ElectionHistory extends Component {
                 <h2>{election.name}</h2>
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
-                <PastDonutChart idx={election.id}/>
+                <PastDonutChart idx={election.id} />
               </div>
-                <h5>Candidates: {election.candidates.map(candidate => {
+                {/* <h5>Candidates: {election.candidates.map(candidate => {
                       return (<ul key={candidate.id}>
                         {`${candidate.name} (${candidate.affiliation})`}
                         </ul>
                       )
-                  })} </h5>
+                  })} </h5> */}
               </div>
             )
 
