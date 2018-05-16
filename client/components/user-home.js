@@ -71,6 +71,7 @@ class UserHome extends Component {
                     <div className="candidate-box">
                       <div style={styles.headline}>{candidate.name}</div>
                       <div><img src={candidate.imageURL} /></div>
+                      <br />
                       <div>{candidate.description}</div>
                     </div>
                   )
