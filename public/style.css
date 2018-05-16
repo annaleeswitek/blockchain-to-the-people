@@ -2,6 +2,7 @@ body {
   font-family: 'Libre Baskerville', sans-serif;
   background-repeat: repeat;
   background-image: url("ecailles_@2X.png");
+  margin-bottom: 200px;
 }
 
 a {
@@ -63,6 +64,7 @@ img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 200px;
 }
 
 .ballot-candidate {
@@ -216,4 +218,21 @@ img {
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   text-align: center;
   background-color: azure;
+}
+
+.candidate-box {
+  width: 350px;
+  height: 300px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: azure;
+}
+
+.active-candidates-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
 }

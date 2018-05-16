@@ -39,6 +39,7 @@ class UserHome extends Component {
     console.log('Upcoming: ', this.props.upcomingElections)
     console.log('Active Election: ', this.props.activeElection);
     console.log('Blockchain Addresses: ', this.props.blockchainElections.map((election) => election));
+    console.log('Active Candidate', this.props.activeElection.candidates)
 
     let upcomingElections = this.props.upcomingElections
 
@@ -60,9 +61,25 @@ class UserHome extends Component {
                     )
                   : <div>"There's no active election in your community!"</div>
                 }
-              </div>
-              <br />
-              <br />
+          </div>
+          <br />
+            <div className="active-candidates-wrapper">
+              {
+                activeElection && activeElection.candidates
+                ? activeElection.candidates.map(candidate => {
+                  return (
+                    <div className="candidate-box">
+                      <div style={styles.headline}>{candidate.name}</div>
+                      <div><img src={candidate.imageURL} /></div>
+                      <div>{candidate.description}</div>
+                    </div>
+                  )
+                })
+                : <div>There are no candidates in this active election!</div>
+                }
+            </div>
+          <br />
+          <br />
           <h2 className="header">Upcoming Elections</h2>
             <div className="election-box">
               {
