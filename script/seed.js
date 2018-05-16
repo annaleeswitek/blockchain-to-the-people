@@ -82,7 +82,31 @@ async function seed () {
       affiliation: 'Green Party',
       voteCount: 50,
       arrayIndex: 1
-    }
+    },
+    {
+      name: 'Brian Kavanagh',
+      affiliation: 'Democratic',
+      voteCount: 17782,
+      arrayIndex: 1
+    },
+    {
+      name: 'Analicia Alexander',
+      affiliation: 'Republican',
+      voteCount: 4072,
+      arrayIndex: 1
+    },
+    {
+      name: 'Unrecorded',
+      affiliation: 'Other',
+      voteCount: 5079,
+      arrayIndex: 1
+    },
+    {
+      name: 'Write-ins',
+      affiliation: 'Other',
+      voteCount: 143,
+      arrayIndex: 1
+    },
 
   ];
 
@@ -96,8 +120,8 @@ async function seed () {
 
   const communitiesList = [
     {
-      name: 'Board of Directors for Imaginary Corp',
-      location: 'New York City',
+      name: 'New York State Senate',
+      location: 'New York State',
       timeZone: 'EST'
     },
     {
@@ -117,8 +141,8 @@ async function seed () {
   );
 
   const addUsersToCommunities = await Promise.all([
-    User.findById(1).then(category => category.setCommunity(3)),
-    User.findById(2).then(category => category.setCommunity(3)),
+    User.findById(1).then(category => category.setCommunity(1)),
+    User.findById(2).then(category => category.setCommunity(1)),
     User.findById(3).then(category => category.setCommunity(3)),
     User.findById(4).then(category => category.setCommunity(3)),
     User.findById(5).then(category => category.setCommunity(3)),
@@ -136,9 +160,9 @@ async function seed () {
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
     {
-      name: 'Vote on who should be president of the pidgeon committee',
-      startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Sun May 15 2018 08:00:00 EST-0400 (EST)',
+      name: 'New York state legislative special elections, District 26',
+      startDate: 'Tue Nov 07 2017 08:00:00 EST-0400 (EST)',
+      endDate: 'Tue Nov 07 2017 18:00:00 EST-0400 (EST)',
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     },
     {
@@ -156,15 +180,19 @@ async function seed () {
   const addCandidatesToElections = await Promise.all([
     Candidate.findById(1).then(candidate => candidate.setElection(1)),
     Candidate.findById(2).then(candidate => candidate.setElection(1)),
-    Candidate.findById(3).then(candidate => candidate.setElection(2)),
-    Candidate.findById(4).then(candidate => candidate.setElection(2)),
+    Candidate.findById(3).then(candidate => candidate.setElection(1)),
+    Candidate.findById(4).then(candidate => candidate.setElection(1)),
     Candidate.findById(5).then(candidate => candidate.setElection(3)),
     Candidate.findById(6).then(candidate => candidate.setElection(3)),
+    Candidate.findById(7).then(candidate => candidate.setElection(2)),
+    Candidate.findById(8).then(candidate => candidate.setElection(2)),
+    Candidate.findById(9).then(candidate => candidate.setElection(2)),
+    Candidate.findById(10).then(candidate => candidate.setElection(2)),
   ]);
 
   const addElectionsToCommunities = await Promise.all([
     Election.findById(1).then(election => election.setCommunity(3)),
-    Election.findById(2).then(election => election.setCommunity(3)),
+    Election.findById(2).then(election => election.setCommunity(1)),
     Election.findById(3).then(election => election.setCommunity(3))
   ]);
 
