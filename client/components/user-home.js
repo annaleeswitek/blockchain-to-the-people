@@ -49,6 +49,7 @@ class UserHome extends Component {
                   ?
                   (
                     <div key={activeElection.id}>
+                      <h5>{activeElection.description}</h5>
                       <h5>From: {moment(activeElection.startDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</h5>
                       <h5>To: {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</h5>
                       <RaisedButton onClick={() => this.props.history.push('/voting-booth')} labelColor="white" primary={true} label="Vote Now!" />
@@ -57,6 +58,8 @@ class UserHome extends Component {
                   : <div>"There's no active election in your community!"</div>
                 }
               </div>
+              <br />
+              <br />
           <h2>Upcoming Elections</h2>
             <div className="election-box">
               {
@@ -66,7 +69,9 @@ class UserHome extends Component {
                     let endDate = moment(election.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a');
                     return (
                       <div key={election.id}>
-                        <h5>{election.name}</h5>
+                        <h2 style={styles.headline}>
+                        {election.name}</h2>
+                        <h5>{election.description}</h5>
                         <h5>From: {startDate}</h5>
                         <h5>To: {endDate}</h5>
                       </div>
