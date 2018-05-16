@@ -85,7 +85,7 @@ img {
   padding: 10px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   text-align: center;
-  background-color: white;
+  background-color: azure;
 }
 
 .center-text {
@@ -165,11 +165,15 @@ img {
 .past-election-box {
   display: flex;
   flex-direction: row;
-  width: 600px;
+  width: 700px;
   height: 300px;
   margin: 30px auto 0;
   padding: 10px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   text-align: center;
-  background-color: white;
+  background-color: azure;
+}
+
+.header {
+  font-size: 36px;
 }
