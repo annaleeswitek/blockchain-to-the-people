@@ -7,7 +7,7 @@ import {
   RaisedButton, 
   FlatButton 
 } from 'material-ui';
-import { StepperUser, VotingBooth } from './index';
+import { InstallMetamask, VotingBooth } from './index';
 import {Link} from 'react-router-dom'; 
 
 class UserHorizontalStepper extends React.Component {
@@ -17,7 +17,7 @@ class UserHorizontalStepper extends React.Component {
       this.state = {
         finished: false,
         stepIndex: 0,
-        components: [null, <VotingBooth/>] 
+        components: [<InstallMetamask />, <VotingBooth/>] 
       };
 
       this.getStepContent = this.getStepContent.bind(this); 
@@ -43,9 +43,9 @@ class UserHorizontalStepper extends React.Component {
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return 'Download metamask.';
+        return 'Download MetaMask.';
       case 1:
-        return 'Cast your vote.';
+        return 'Cast your vote. Make sure to include your code, or the vote will not go through! Also, you can only cast your vote once for a single candidate, so please be certain of your choice before voting.'; 
       default:
         return 'Follow the prior steps to set up your first election!';
     }
@@ -67,10 +67,6 @@ class UserHorizontalStepper extends React.Component {
           <Step>
             <StepLabel>Cast your vote. 
             </StepLabel>
-          </Step>
-          <Step>
-            
-            <StepLabel>View the real-time votes as they come in to your community's election.</StepLabel>
           </Step>
         </Stepper>
         <div style={contentStyle}>

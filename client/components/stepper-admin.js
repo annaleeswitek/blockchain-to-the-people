@@ -7,7 +7,7 @@ import {
   RaisedButton, 
   FlatButton 
 } from 'material-ui';
-import { CreateElection, CreateCandidate } from './index';
+import { CreateElection, CreateCandidate, InstallMetamask, AllCommunityMembers } from './index';
 import {Link} from 'react-router-dom'; 
 
 /**
@@ -23,7 +23,7 @@ class HorizontalStepper extends React.Component {
       this.state = {
         finished: false,
         stepIndex: 0,
-        components: [null, <CreateElection/>, <CreateCandidate/>, null] 
+        components: [<InstallMetamask/>, <CreateElection/>, <CreateCandidate/>, <AllCommunityMembers />] 
       };
 
       this.getStepContent = this.getStepContent.bind(this); 
@@ -35,7 +35,7 @@ class HorizontalStepper extends React.Component {
     const {stepIndex} = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2,
+      finished: stepIndex >= 3,
     });
   };
 
@@ -81,7 +81,6 @@ class HorizontalStepper extends React.Component {
             <StepLabel>Add a Candidate to the Election</StepLabel>
           </Step>
           <Step>
-            
             <StepLabel>Invite Community Members To Participate In The Election</StepLabel>
           </Step>
         </Stepper>
@@ -96,7 +95,7 @@ class HorizontalStepper extends React.Component {
                 }}
               >
                 Click here
-              </a> to reset the example.
+              </a> to reset the tutorial.
             </p>
           ) : (
             <div>
@@ -110,7 +109,7 @@ class HorizontalStepper extends React.Component {
                   style={{marginRight: 12}}
                 />
                 <RaisedButton
-                  label={stepIndex === 2 ? 'Finish' : 'Next'}
+                  label={stepIndex === 3 ? 'Finish' : 'Next'}
                   primary={true}
                   onClick={this.handleNext}
                 />
