@@ -6,12 +6,14 @@ import { LinearProgress, Snackbar, Dialog, Paper, RaisedButton } from 'material-
 import Election from '../../ethereum/election';
 import Checkbox from 'material-ui/Checkbox'
 import socket from '../socket';
+import moment from 'moment';
 //export const newVoteSocket
 
 const style = {
   margin: 15,
   checkbox: {
     marginBottom: 16,
+    width: 15
   },
 }
 
@@ -93,37 +95,36 @@ class VotingBooth extends Component {
   render() {
     let activeElection = this.props.activeElection;
     return (
-      <div>
+      <div className="flex-center">
         {
           activeElection
           ?
-          <div>
+          <div className="center-text">
             <h1>{activeElection.name}</h1>
-            <h4>Voting period ends by {activeElection.endDate}</h4>
-            <h5>Cast your vote HERE!</h5>
+            <h4>The voting period ends at {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm a')}</h4>
+            <h3>Please cast your vote here.</h3>
             <form className="ballot" onSubmit={this.handleSubmit}>
+            <div className="ballot-wrapper">
             {
               this.props.candidates
               ? this.props.candidates.map(candidate => {
                 return (
-                  <Paper className="ballot-candidate" key={candidate.id} style={style} zDepth={2}>
-                  <div className="container">
-                    <img src={candidate.imageURL} className="flexBallot" />
-                    <h3 className="flexBallot">{candidate.name}</h3>
-                    <h4 className="flexBallot">{candidate.affiliation}</h4>
+                  <div className="ballot-box" key={candidate.id}>
+                    <img src="Icon1.png" className="flexBallot" />
+                      <h2>{candidate.name}</h2>
+                      <h4>{candidate.affiliation}</h4>
                     <Checkbox
                       onCheck={this.handleChange}
                       value={candidate.arrayIndex}
                       className="flexBallot"
                       style={style.checkbox}
                     />
-                    {/*<input type="checkbox" onChange= name="arrayIndex"  />*/}
                   </div>
-                  </Paper>
                 )
               })
               : null
             }
+            </div>
             <RaisedButton type="submit" onClick={this.handleClick} label = "SUBMIT VOTE" primary={true} />
             <div>{this.state.message}</div>
             </form>

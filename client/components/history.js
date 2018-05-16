@@ -14,24 +14,26 @@ class ElectionHistory extends Component {
   render(){
     const pastElections = this.props.pastElections;
     return (
-      <div>
-      <h4>Past Elections:</h4>
+      <div className="history-wrapper">
+      <h1>Past Elections</h1>
         {
         pastElections.length
           ? pastElections.map(election => {
             return (
-                <div key={election.id}>
+              <div key={election.id}>
+                <div className="center-text election-box">
 
-                <h5>{election.name}</h5>
-                <h5>Candidates: {election.candidates.map(candidate => {
-                    return (<ul key={candidate.id}>
-                      {`${candidate.name} (${candidate.affiliation})`}
-                      </ul>
-                    )
-                })} </h5>
+                <h2>{election.name}</h2>
                 <h5>From: {election.startDate}</h5>
                 <h5>To: {election.endDate}</h5>
-                <PastDonutChart idx={election.id}/>
+                <PastDonutChart idx={election.id} />
+              </div>
+                {/* <h5>Candidates: {election.candidates.map(candidate => {
+                      return (<ul key={candidate.id}>
+                        {`${candidate.name} (${candidate.affiliation})`}
+                        </ul>
+                      )
+                  })} </h5> */}
               </div>
             )
 

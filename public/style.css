@@ -1,5 +1,7 @@
 body {
-  font-family: 'Libre Baskerville', sans-serif
+  font-family: 'Libre Baskerville', sans-serif;
+  background-repeat: repeat;
+  background-image: url("ecailles_@2X.png");
 }
 
 a {
@@ -21,7 +23,7 @@ img {
 }
 
 #landingImg {
-  height: 600px;
+  height: 550px;
 }
 
 .center {
@@ -68,16 +70,89 @@ img {
   padding: 9px;
 }
 
-.app-bar {
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.election-box {
+  width: 700px;
+  height: 250px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: white;
+}
+
+.center-text {
+  width: 700px;
+  height: 250px;
+  text-align: center;
+}
+
+.watchParty-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 380px
+}
+
+.history-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ballot-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 600px;
+  height: 100px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: white;
+}
+/* .app-bar {
   position: fixed;
   top: 0;
   width: 100%;
+} */
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center
 }
 
-/* .container {
-  display: flex
-} */
-/*
 .flexBallot {
   flex-direction: row
-} */
+
+}
+
+.candidate-name-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.ballot-wrapper {
+  padding-bottom: 50px;
+}
+
