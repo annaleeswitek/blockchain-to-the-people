@@ -19,6 +19,15 @@ export const fetchCommunityMembers = (communityId) => {
   }
 };
 
+export const postMemberEmail = (sendObj) => {
+  return dispatch => {
+    axios.post(`/api/mail/send-email`, sendObj)
+      .then(res => res.data)
+      .then(response => alert(response))
+      .catch(console.error)
+  }
+};
+
 //Reducer
 
 export function communityMembersReducer(communityMembers=[], action) {
