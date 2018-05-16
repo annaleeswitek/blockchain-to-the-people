@@ -1,6 +1,5 @@
 body {
   font-family: 'Libre Baskerville', sans-serif;
-  background-image: url("ecailles_@2X.png");
   background-repeat: repeat
 }
 
@@ -70,10 +69,19 @@ img {
   padding: 9px;
 }
 
-.app-bar {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.box {
+  width: 700px;
+  height: 250px;
+  margin: 30px auto 0;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 /* .container {
