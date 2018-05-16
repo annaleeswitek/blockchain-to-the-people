@@ -121,9 +121,14 @@ class VotingBooth extends Component {
                 return (
                   <div className="ballot-box" key={candidate.id}>
                     <img src="Icon1.png" className="flexBallot" />
-                      <h2>{candidate.name}</h2>
-                      <h4>{candidate.affiliation}</h4>
-                    <input type="checkbox" onChange={this.handleChange} value={candidate.arrayIndex}/>
+                    <h2>{candidate.name}</h2>
+                    <h4>{candidate.affiliation}</h4>
+                    <Checkbox
+                    onCheck={this.handleChange}
+                    value={candidate.arrayIndex}
+                    className="flexBallot"
+                    style={style.checkbox}
+                    />
                   </div>
                 )
               })
