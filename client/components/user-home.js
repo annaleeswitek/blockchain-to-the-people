@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchActiveElection, fetchUpcomingElections, fetchBlockchainElections } from '../store/election';
-import { RaisedButton, BottomNavigation, BottomNavigationItem } from 'material-ui';
+import { RaisedButton } from 'material-ui';
 import moment from 'moment';
 // import Election from '../../ethereum/election';
 
