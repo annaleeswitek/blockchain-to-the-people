@@ -37,7 +37,7 @@ class Routes extends Component {
               <Route path="/userFirstSteps" component={StepperUser} />
               <Route path="/history" component={ElectionHistory} />
               <Route path="/instructions" component={Instructions} />
-              <Route exact path="/community-members" component={AllCommunityMembers} />
+              <Route path="/community-members" component={AllCommunityMembers} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

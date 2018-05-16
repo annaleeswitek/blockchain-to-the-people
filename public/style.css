@@ -1,7 +1,5 @@
 body {
-  font-family: 'Libre Baskerville', sans-serif;
-  background-image: url("ecailles_@2X.png");
-  background-repeat: repeat
+  font-family: 'Libre Baskerville', sans-serif
 }
 
 a {
@@ -66,7 +64,7 @@ img {
 }
 
 .ballot-candidate {
-  width: 50vw;
+  width: 60vw;
   padding: 9px;
 }
 

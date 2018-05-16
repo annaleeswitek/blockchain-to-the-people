@@ -11,12 +11,9 @@ class AllCommunityMembers extends Component {
     this.props.getCommunityMembers(this.props.user.communityId)
   }
   render() {
-    console.log('here are community members', this.props.communityMembers)
-    console.log('here is user', this.props.user)
+console.log('got community members, ', this.props.communityMembers)
     return (
-      <div>
       <h4>Hello</h4>
-      </div>
     )
   }
 }
