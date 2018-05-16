@@ -1,5 +1,11 @@
 Melissa's mnemonic: 'hotel zone basket crumble foot vault predict jeans federal evil muffin long'
 
+****FOR DEMO****
+Attempting deploy from account:  0xB9914cbe4E07aca0bf3532EB797D9E08F2c99AaA
+Contract deployed to:  0x7fDe5bA05C0d8ea4E11c265b617D711AD468EFc4
+
+
+
 Attempting deploy from account: 0xB9914cbe4E07aca0bf3532EB797D9E08F2c99AaA
 * ADDRESS = Contract deployed to:
 
@@ -56,11 +62,27 @@ Mnemonic:      perfect canvas solid stage insane emerge strike detect flash enha
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 
+Philosopher Queen
 
-// <TextField
-            //     floatingLabelText="election code"
-            //     errorText="This field is required"
-            //     value={this.state.code}
-            //     name="code"
-            //     onChange={this.handleChange}
-            // /><br />
+Rosalind Franklin
+array Index 0
+It may have taken humanity much, much longer to discover the double-helix structure of DNA without Rosalind Franklin’s work. In fact, it has been suggested that she could have discovered the entire double-helix model on her own within a year, if a parallel discovery had not been made based (partially) on her research data.
+
+Sappho
+array Index 1
+(630 and 612 BC)- Included among the nine lyric poets of ancient Greece, little of Sappho's writing has survived; but what has survived is a rich influence on western society and a provocative philosophy and lifestyle that challenges us even today.
+
+Flannery O'Conner
+array Index 2
+(1925-1964)- Leading member of the Southern Gothic movement, the American master of prose both in the short and long form. Along with William Faulkner, O'Conner perhaps grasped the Southern experience like few others. Her short story A Good Man is Hard to Find is considered a landmark for the short form.
+
+Frida Kahlo
+array Index 3
+(1907-1957)- Shocking, controversial, and thought provoking both in her art and in her personal life. Frida's many self portraits challenged what should be at the center of a work of art, and her style often challenged how an artist should depict it.
+
+Maryam Mirzakhani.
+array Index 4
+She is an Iranian mathematician who serves as a professor of mathematics at Stanford University. She is the the first woman and Iranian to win the Fields Medal, the most prestigious award in mathematics. The Fields Medal and the Abel Prize have often been described as the "mathematician's Nobel Prize"
+
+Rear Admiral Dr. Grace Hopper
+ Grace Hopper was one of the most accomplished women in computer science. She held a Ph.D. in mathematics and taught at Vassar until she joined the Navy during World War II. She served in the Naval Reserves for most of her life, eventually achieving the rank of Rear Admiral.
