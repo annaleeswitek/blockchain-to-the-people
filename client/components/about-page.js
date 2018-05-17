@@ -19,7 +19,7 @@ export default class AboutPage extends Component {
         let answer3 = "A smart contract is a contract that is defined by code-- i.e., it will be executed impersonally, accurately, and fairly every time. The terms of the agreement are written into the smart contract and the contract gives control of the information to whoever rightly owns it. One way to imagine the way smart contracts works without delving into the code is that it’s like a vending machine. The machine functions as an intermediary between two parties. Given the same input, it reliably spits out the same output.";
         let question4 = "What is the blockchain?";
         let answer4 = "You can think about the blockchain as a digital ledger that used advanced cryptography to eliminate the need for trust in transactions. You can also think of it like a distributed database. It is literally a distributed computing architecture that is made up of blocks. The blocks are themselves made up of network nodes, and every node executes and records every transaction. It is only possible to add blocks to the end of the chain, one at a time. The cryptography that makes the foundation of this system secures individual interactions with the ledger. The idea is that the ledger is a public record, so no one institution is the source of truth for any transaction that is stored on the blockchain.";
-
+      
         return (
           <div className="flex-center">
             <div className="header">Frequently Asked Questions</div>
