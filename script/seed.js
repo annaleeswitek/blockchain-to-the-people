@@ -280,13 +280,6 @@ async function seed () {
     }
   ]
 
-  const activeElectionInfo = {
-      name: 'Earth\'s Philosopher Queen',
-      startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
-      endDate: 'Sun May 25 2018 08:00:00 EST-0400 (EST)',
-      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
-    };
-
   const pastElections = await Promise.all(
     pastElectionsList.map(election => Election.create(election))
   );
@@ -301,6 +294,45 @@ async function seed () {
     Candidate.findById(7).then(candidate => candidate.setElection(2)),
     Candidate.findById(8).then(candidate => candidate.setElection(2)),
   ]);
+
+  console.log(`seeded ${pastElections.length} elections`);
+
+
+
+  // const addElectionsToCommunities = await Promise.all([
+  //   Election.findById(1).then(election => election.setCommunity(3)),
+  //   Election.findById(2).then(election => election.setCommunity(3)),
+  //   Election.findById(3).then(election => election.setCommunity(3))
+  // ]);
+
+
+
+  const activeElectionInfo = {
+    name: 'Earth\'s Philosopher Queen',
+    startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
+    endDate: 'Sun May 25 2018 08:00:00 EST-0400 (EST)',
+    blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+  };
+
+  const activeElection = await Election.create(activeElectionInfo);
+
+  const addCandidatesToActiveElection = await Promise.all([
+    Candidate.findById(9).then(candidate => candidate.setElection(3)),
+    Candidate.findById(10).then(candidate => candidate.setElection(3)),
+    Candidate.findById(11).then(candidate => candidate.setElection(3)),
+    Candidate.findById(12).then(candidate => candidate.setElection(3)),
+    Candidate.findById(13).then(candidate => candidate.setElection(3)),
+    Candidate.findById(14).then(candidate => candidate.setElection(3)),
+  ]);
+
+  const addActiveElectionToCommunity =await Promise.all([
+      Election.findById(1).then(election => election.setCommunity(3)),
+      Election.findById(2).then(election => election.setCommunity(3)),
+      Election.findById(3).then(election => election.setCommunity(3)),
+    ])
+
+
+  console.log(`seeded active election!`);
 
   const upcomingElectionsList = [
     {
@@ -322,35 +354,21 @@ async function seed () {
   ); 
 
   const addCandidatesToUpcomingElections = await Promise.all([
-    Candidate.findById(1).then(candidate => candidate.setElection())
+    Candidate.findById(15).then(candidate => candidate.setElection(4)), 
+    Candidate.findById(16).then(candidate => candidate.setElection(4)), 
+    Candidate.findById(17).then(candidate => candidate.setElection(4)), 
+    Candidate.findById(18).then(candidate => candidate.setElection(5)), 
+    Candidate.findById(19).then(candidate => candidate.setElection(5)),
+    Candidate.findById(20).then(candidate => candidate.setElection(5)),
+    Candidate.findById(21).then(candidate => candidate.setElection(5)),
   ])
 
-  // const addElectionsToCommunities = await Promise.all([
-  //   Election.findById(1).then(election => election.setCommunity(3)),
-  //   Election.findById(2).then(election => election.setCommunity(3)),
-  //   Election.findById(3).then(election => election.setCommunity(3))
-  // ]);
+  const addUpcomingElectionsToCommunity =await Promise.all([
+    Election.findById(4).then(election => election.setCommunity(3)),
+    Election.findById(5).then(election => election.setCommunity(3))
+  ])
 
-  console.log(`seeded ${pastElections.length} elections`);
-  const activeElection = await Election.create(activeElectionInfo);
-
-  const addCandidatesToActiveElection = await Promise.all([
-    Candidate.findById(9).then(candidate => candidate.setElection(3)),
-    Candidate.findById(10).then(candidate => candidate.setElection(3)),
-    Candidate.findById(11).then(candidate => candidate.setElection(3)),
-    Candidate.findById(12).then(candidate => candidate.setElection(3)),
-    Candidate.findById(13).then(candidate => candidate.setElection(3)),
-    Candidate.findById(14).then(candidate => candidate.setElection(3)),
-  ]);
-
-  const addActiveElectionToCommunity =await Promise.all([
-      Election.findById(1).then(election => election.setCommunity(3)),
-      Election.findById(2).then(election => election.setCommunity(3)),
-      Election.findById(3).then(election => election.setCommunity(3)),
-    ])
-
-
-  console.log(`seeded active election!`);
+  console.log(`seeded ${upcomingElections.length} elections`); 
 
 }
 
