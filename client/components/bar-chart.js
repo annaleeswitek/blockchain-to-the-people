@@ -11,7 +11,15 @@ class BarGraph extends Component {
     const data = this.props.candidates ? this.props.candidates.map(candidate => {
       let voteCount = candidate.voteCount;
       let splitName = candidate.name.split(' ')
-      let lastName = splitName[1]
+      let lastName;
+      if (splitName[1]) {
+        lastName = splitName[1]
+      } else lastName = candidate.name;
+
+      if (lastName.length > 8) {
+        lastName = splitName[0][0] + splitName[1][0];
+      }
+
       let dataObj = {name: lastName, value: voteCount, fill: colors[idx]}
       idx++
       return dataObj;
