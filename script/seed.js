@@ -153,8 +153,7 @@ async function seed () {
       affiliation: 'Republican',
       voteCount: 0,
       arrayIndex: 0,
-      description: `Lee Zeldin
-      (b. January 30, 1980) is a Republican member of the U.S. House of Representatives, representing New York's 1st Congressional District. Zeldin was first elected to the House in 2014. Zeldin is currently the only Jewish Republican member of Congress.`,
+      description: `Lee Zeldin (b. January 30, 1980) is a Republican member of the U.S. House of Representatives, representing New York's 1st Congressional District. Zeldin was first elected to the House in 2014. Zeldin is currently the only Jewish Republican member of Congress.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Lee_Zeldin_new_official_portrait.jpg'
     }, 
     {
@@ -162,8 +161,7 @@ async function seed () {
       affiliation: 'Democrat', 
       voteCount: 0, 
       arrayIndex: 1, 
-      description: `Kathleen M. Rice
-      (b. February 15, 1965, in New York City, N.Y.) is a Democratic member of the U.S. House of Representatives, representing New York's 4th Congressional District. Rice was first elected to the House in 2014.`,
+      description: `Kathleen M. Rice (b. February 15, 1965, in New York City, N.Y.) is a Democratic member of the U.S. House of Representatives, representing New York's 4th Congressional District. Rice was first elected to the House in 2014.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Kathleen_M._Rice.jpg'
     }, 
     {
@@ -179,8 +177,7 @@ async function seed () {
       affiliation: 'Republican', 
       voteCount: 0, 
       arrayIndex: 3,
-      description: `Daniel M. Donovan, Jr.
-      (b. November 6, 1956, in Staten Island, New York) is a Republican member of the U.S. House representing the 11th Congressional District of New York. He was first elected in a special election on May 5, 2015.`,
+      description: `Daniel M. Donovan, Jr. (b. November 6, 1956, in Staten Island, New York) is a Republican member of the U.S. House representing the 11th Congressional District of New York. He was first elected in a special election on May 5, 2015.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Dan_Donovan.jpg'
     }, 
     { 
@@ -311,8 +308,10 @@ async function seed () {
     name: 'Earth\'s Philosopher Queen',
     startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
     endDate: 'Sun May 25 2018 08:00:00 EST-0400 (EST)',
-    blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+    blockchainAddress: '0xb571C21E823026A26A49081e4d9ECa54f6D2166A'
   };
+
+
 
   const activeElection = await Election.create(activeElectionInfo);
 

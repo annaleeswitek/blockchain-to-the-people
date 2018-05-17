@@ -62,6 +62,7 @@ class UserHome extends Component {
                   : <div>"There's no active election in your community!"</div>
                 }
           </div>
+
           <h2 className="header">Candidates</h2>
             <div className="active-candidates-wrapper">
               {
@@ -102,6 +103,28 @@ class UserHome extends Component {
                 : <div>There are no upcoming elections in your community!</div>
               }
             </div>
+
+             <h2 className="header">Upcoming Election Candidates</h2>
+            <div className="active-candidates-wrapper">
+              {
+                upcomingElections && upcomingElections.candidates
+                ? upcomingElections.candidates.map(candidate => {
+                  return (
+                    <div className="candidate-box">
+                      <div style={styles.headline}>{candidate.name}</div>
+                      <div><img src={candidate.imageURL} /></div>
+                      <br />
+                      <div>{candidate.description}</div>
+                    </div>
+                  )
+                })
+                : <div>There are no candidates in this active election!</div>
+                }
+            </div>
+          <br />
+          <hr />
+          <br />
+
       </div>
     )
   }
