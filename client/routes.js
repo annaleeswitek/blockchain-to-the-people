@@ -33,12 +33,12 @@ class Routes extends Component {
               <Route path="/create-election" component={CreateElection} />
               <Route path="/create-candidate" component={CreateCandidate} />
               <Route path="/voting-booth" component={VotingBooth} />
-              <Route path="/aboutPage" component={AboutPage} /> 
+              <Route path="/about" component={AboutPage} />
               <Route path="/history" component={ElectionHistory} />
               <Route path="/instructions" component={Instructions} />
               <Route path="/community-members" component={AllCommunityMembers} />
-              <Route path="/tutorial" component={StepperUser} /> 
-              <Route path="/adminTutorial" component={StepperAdmin} /> 
+              <Route path="/tutorial" component={StepperUser} />
+              <Route path="/adminTutorial" component={StepperAdmin} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
