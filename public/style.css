@@ -64,7 +64,7 @@ img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 200px;
+  padding-bottom: 10px;
 }
 
 .ballot-candidate {
@@ -94,6 +94,7 @@ img {
   width: 700px;
   height: 250px;
   text-align: center;
+  margin-bottom: 200px;
 }
 
 .watchParty-wrapper {
@@ -234,5 +235,8 @@ img {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
 
+.progress-bar-wrapper {
+  margin-bottom: 50px;
 }

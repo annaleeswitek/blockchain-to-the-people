@@ -137,13 +137,12 @@ class VotingBooth extends Component {
             </div>
             <RaisedButton type="submit" onClick={this.handleClick} label = "SUBMIT VOTE" primary={true} />
             <div>{this.state.message}</div>
-            </form>
-              <br />
+            <br />
               <br />
               { this.state.isLoading ?
-              <div >
-              <h4>Processing your vote on the blockchain</h4>
-              <LinearProgress mode={'indeterminate'} />
+              <div className="progress-bar-wrapper">
+                <h4>Processing your vote on the blockchain</h4>
+                <LinearProgress mode={'indeterminate'} />
               </div>
               : null }
             <Snackbar
@@ -152,6 +151,7 @@ class VotingBooth extends Component {
                 autoHideDuration={10000}
                 onRequestClose={this.handleRequestClose}
               />
+            </form>
           </div>
           : <div>There's no election active at this time!</div>
         }
