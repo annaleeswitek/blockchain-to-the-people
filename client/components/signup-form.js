@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {TextField, RaisedButton, Paper} from 'material-ui'
 import {signup} from '../store';
+import { LandingPage } from './landing-page';
 
 /**
  * COMPONENT
@@ -23,46 +24,42 @@ const SignUpForm = (props) => {
   const {handleSubmit, error} = props
 
   return (
-    <div className="form">
-      <Paper style={style} zDepth={2}>
-        <br />
-        <h1>Sign Up</h1>
-        <form onSubmit={handleSubmit}>
-        <TextField
-          hintText="Enter your Full Name"
-          floatingLabelText="Name"
-          name="name"
-          />
+    <div className="form-flex">
+      <LandingPage />
+      <div className="form">
+        <h2 style={{textAlign: 'center'}}>Voting Made Easy and Secure!</h2>
+        <Paper style={style} zDepth={2}>
           <br />
+          <h1>Sign Up</h1>
+          <form onSubmit={handleSubmit}>
           <TextField
-          hintText="Enter your Email"
-          floatingLabelText="Email"
-          name="email"
-          />
-          <br />
-          <TextField
-            type="password"
-            hintText="Enter your Password"
-            floatingLabelText="Password"
-            name="password"
+            hintText="Enter your Full Name"
+            floatingLabelText="Name"
+            name="name"
             />
-          <br />
-            <RaisedButton type="submit" label="Sign Up" primary={true} style={buttonStyle} />
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-    {/*<a href="/auth/google">{displayName} with Google</a>*/}
-      </Paper>
+            <br />
+            <TextField
+            hintText="Enter your Email"
+            floatingLabelText="Email"
+            name="email"
+            />
+            <br />
+            <TextField
+              type="password"
+              hintText="Enter your Password"
+              floatingLabelText="Password"
+              name="password"
+              />
+            <br />
+              <RaisedButton type="submit" label="Sign Up" primary={true} style={buttonStyle} />
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+        </Paper>
+      </div>
     </div>
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 
 const mapSignup = (state) => {
   return {
