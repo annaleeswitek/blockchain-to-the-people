@@ -147,6 +147,68 @@ async function seed () {
     }
   ]
 
+  const upcomingCandidatesList = [
+    {
+      name: 'Lee Zeldin',
+      affiliation: 'Republican',
+      voteCount: 0,
+      arrayIndex: 0,
+      description: `Lee Zeldin
+      (b. January 30, 1980) is a Republican member of the U.S. House of Representatives, representing New York's 1st Congressional District. Zeldin was first elected to the House in 2014. Zeldin is currently the only Jewish Republican member of Congress.`,
+      imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Lee_Zeldin_new_official_portrait.jpg'
+    }, 
+    {
+      name: 'Kathleen M. Rice', 
+      affiliation: 'Democrat', 
+      voteCount: 0, 
+      arrayIndex: 1, 
+      description: `Kathleen M. Rice
+      (b. February 15, 1965, in New York City, N.Y.) is a Democratic member of the U.S. House of Representatives, representing New York's 4th Congressional District. Rice was first elected to the House in 2014.`,
+      imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Kathleen_M._Rice.jpg'
+    }, 
+    {
+      name: 'Yvette D. Clark', 
+      affiliation: 'Democrat', 
+      voteCount: 0, 
+      arrayIndex: 2, 
+      description: `Yvette D. Clarke (b. November 21, 1964, in Brooklyn, N.Y.) is a Democratic member of the United States House of Representatives representing New York's 9th Congressional District. Clarke was first elected to the House in New York's 11th Congressional District in 2006. Due to redistricting, she ran in the 9th District in 2012.`,
+      imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Yvette_Clark.jpeg'
+    }, 
+    {
+      name: 'Daniel M. Donovan, Jr', 
+      affiliation: 'Republican', 
+      voteCount: 0, 
+      arrayIndex: 3,
+      description: `Daniel M. Donovan, Jr.
+      (b. November 6, 1956, in Staten Island, New York) is a Republican member of the U.S. House representing the 11th Congressional District of New York. He was first elected in a special election on May 5, 2015.`,
+      imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Dan_Donovan.jpg'
+    }, 
+    { 
+      name: 'Claudia Tenney', 
+      affiliation: 'Republican', 
+      voteCount: 0, 
+      arrayIndex: 4, 
+      description: `Claudia Tenney is a Republican member of the U.S. House representing the 22nd Congressional District of New York. Tenney was first elected to the House in 2016.`,
+      imageURL: `https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Claudia_Tenney,_115th_official_photo-7.jpg`
+    }, 
+    {
+      name: 'Hakeem Jeffries', 
+      affiliation: 'Democrat', 
+      voteCount: 0, 
+      arrayIndex: 5, 
+      description: `Hakeem Jeffries (b. August 4, 1970, in Crown Heights, N.Y.) is a Democratic member of the United States House of Representatives representing New York's 8th Congressional District. Jeffries was first elected to the House on November 6, 2012.`,
+      imageURL: `https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/HakeemJeffries.jpg`
+    }, 
+    {
+      name: 'Nydia Velazquez', 
+      affiliation: 'Democrat', 
+      voteCount: 0, 
+      arrayIndex: 6, 
+      description: `Nydia Velazquez (b. March 28, 1958, in Yabucoa, PR) is a Democratic member of the United States House of Representatives representing New York's 7th Congressional District. Velázquez was first elected to the House in 1992`,
+      imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Nydia_Velazquez.jpg'
+    }
+  ]; 
+
   // const candidates = await Promise.all(
   //   candidatesList.map(candidate => Candidate.create(candidate))
   // );
@@ -161,6 +223,12 @@ async function seed () {
   );
 
   console.log(`seeded ${activeCandidates.length} activeCandidates`);
+
+  const upcomingCandidates = await Promise.all(
+    upcomingCandidatesList.map(candidate => Candidate.create(candidate))
+  ); 
+  
+  console.log(`seeded ${upcomingCandidates.length} candidates`); 
 
   // -- COMMUNITIES --
 
@@ -233,6 +301,29 @@ async function seed () {
     Candidate.findById(7).then(candidate => candidate.setElection(2)),
     Candidate.findById(8).then(candidate => candidate.setElection(2)),
   ]);
+
+  const upcomingElectionsList = [
+    {
+      name: 'New York State Assembly Special Elections, District 12',
+      startDate: 'Tue May 30 2018 08:00:00 EST-0400 (EST)',
+      endDate: 'Tue May 30 2018 16:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+    },
+    {
+      name: 'New York State Senate Special Elections, District 24',
+      startDate: 'Thurs June 07 2018 08:00:00 EST-0400 (EST)',
+      endDate: 'Thurs June 07 2018 18:00:00 EST-0400 (EST)',
+      blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
+    }
+  ]; 
+
+  const upcomingElections = await Promise.all(
+    upcomingElectionsList.map(election => Election.create(election))
+  ); 
+
+  const addCandidatesToUpcomingElections = await Promise.all([
+    Candidate.findById(1).then(candidate => candidate.setElection())
+  ])
 
   // const addElectionsToCommunities = await Promise.all([
   //   Election.findById(1).then(election => election.setCommunity(3)),
