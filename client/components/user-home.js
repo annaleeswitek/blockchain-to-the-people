@@ -62,7 +62,7 @@ class UserHome extends Component {
                   : <div>"There's no active election in your community!"</div>
                 }
           </div>
-          <br />
+          <h2 className="header">Candidates</h2>
             <div className="active-candidates-wrapper">
               {
                 activeElection && activeElection.candidates
@@ -80,6 +80,7 @@ class UserHome extends Component {
                 }
             </div>
           <br />
+          <hr />
           <br />
           <h2 className="header">Upcoming Elections</h2>
            <div className="election-box"> 
