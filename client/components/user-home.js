@@ -83,7 +83,7 @@ class UserHome extends Component {
           <hr />
           <br />
           <h2 className="header">Upcoming Elections</h2>
-           <div className="election-box"> 
+           <div className="upcoming-election-box">
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
