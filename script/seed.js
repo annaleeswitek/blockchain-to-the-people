@@ -98,52 +98,52 @@ async function seed () {
   ]
   const activeCandidatesList = [
     {
-      name: 'Rosa Franklin',
-      affiliation: 'Scientist',
+      name: 'Angela Merkel',
+      affiliation: 'CDU/CSU',
       voteCount: 0,
       arrayIndex: 0,
-      description: "It may have taken humanity much, much longer to discover the double-helix structure of DNA without Rosalind Franklin’s work. In fact, it has been suggested that she could have discovered the entire double-helix model on her own within a year, if a parallel discovery had not been made based (partially) on her research data.",
-      imageURL:'https://upload.wikimedia.org/wikipedia/en/e/e9/Rosalind_Franklin_%281920-1958%29.jpg'
+      description: "Merkel is a German politician serving as Chancellor of Germany since 2005 and leader of the centre-right Christian Democratic Union (CDU) since 2000.[7] Merkel has been widely described as the de facto leader of the European Union, the most powerful woman in the world, and the leader of the Free World.",
+      imageURL:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Angela_Merkel._Tallinn_Digital_Summit.jpg/220px-Angela_Merkel._Tallinn_Digital_Summit.jpg'
     },
     {
-      name: 'Sappho',
-      affiliation: 'Poet',
+      name: 'Martin Schultz',
+      affiliation: 'SPD',
       voteCount: 0,
       arrayIndex: 1,
-      description: '(630 and 612 BC)- Included among the nine lyric poets of ancient Greece, little of Sappho\'s writing has survived; but what has survived is a rich influence on western society and a provocative philosophy and lifestyle that challenges us even today.',
-      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-8e166d74a6e7e1b8ff6e8d84e84af88c'
+      description: 'Schultz is a German politician who was previously President of the European Parliament from 2012 to 2017, Leader of the Progressive Alliance of Socialists and Democrats from 2004 to 2012 and a Member of the European Parliament (MEP) from Germany from 1994 to 2017',
+      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2017-09-14_Martin_Schulz_SPD_9489.jpg/220px-2017-09-14_Martin_Schulz_SPD_9489.jpg'
     },
     {
-      name: 'Flannery O\'Conner',
-      affiliation: 'Writer',
+      name: 'Alice Weidel',
+      affiliation: 'AfD',
       voteCount: 0,
       arrayIndex: 2,
-      description: '(1925-1964)- Leading member of the Southern Gothic movement, the American master of prose both in the short and long form. Along with William Faulkner, O\'Conner perhaps grasped the Southern experience like few others.Her short story A Good Man is Hard to Find is considered a landmark for the short form.',
-      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-8dc8ebab32e1e311c96778aff425e75f'
+      description: 'Weidel is the first lesbian to serve as a lead candidate of her party, which opposes same-sex marriage and adoptions.',
+      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/2017-11-29-Alice_Weidel-Maischberger-5664.jpg/220px-2017-11-29-Alice_Weidel-Maischberger-5664.jpg'
     },
     {
-      name: 'Frida Kahlo',
-      affiliation: 'Artist',
+      name: 'Christian Linder',
+      affiliation: 'FDP',
       voteCount: 0,
       arrayIndex: 3,
-      description: '(1907-1957)- Shocking, controversial, and thought provoking both in her art and in her personal life. Frida\'s many self portraits challenged what should be at the center of a work of art, and her style often challenged how an artist should depict it.',
-      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-9590bb2a08ae42ad56f1730e6b233c4d'
+      description: 'Linder is a German politician, member of the Bundestag and leader of the liberal Free Democratic Party of Germany. Lindner joined the FDP in 1995. He has been a member of the Executive Board of the FDP in the state of North Rhine-Westphalia since 1998 and became Secretary General in 2004 (until February 2010).',
+      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ChristianLindner-FDP-1_%28cropped_1%29.jpg/1024px-ChristianLindner-FDP-1_%28cropped_1%29.jpg'
     },
     {
-      name: 'Maryam Mirzakhani',
-      affiliation: 'Mathematician',
+      name: 'Sahra Wagenknecht',
+      affiliation: 'The Left',
       voteCount: 0,
       arrayIndex: 4,
-      description: 'She is an Iranian mathematician who serves as a professor of mathematics at Stanford University. She is the the first woman and Iranian to win the Fields Medal, the most prestigious award in mathematics. The Fields Medal and the Abel Prize have often been described as the "mathematician\'s Nobel Prize"',
-      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-90d6c37b286d5be2e131fa4d58ada603-c'
+      description: 'Wagenknecht is a German left-wing politician, economist, author and publicist. She is with Dietmar Bartsch parliamentary chairperson of Die Linke. Since 2009, she has been a member of the Bundestag.',
+      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/14-09-11-Sarah-Wagenknecht-RalfR-008.jpg/1024px-14-09-11-Sarah-Wagenknecht-RalfR-008.jpg'
     },
     {
-      name: 'Rear Admiral Dr. Grace Hopper',
-      affiliation: 'Computer Science',
+      name: 'Katrin Göring-Eckardt',
+      affiliation: 'Green',
       voteCount: 0,
       arrayIndex: 5,
-      description: ' Grace Hopper was one of the most accomplished women in computer science. She held a Ph.D. in mathematics and taught at Vassar until she joined the Navy during World War II. She served in the Naval Reserves for most of her life, eventually achieving the rank of Rear Admiral.',
-      imageURL: 'https://qph.fs.quoracdn.net/main-qimg-08742725c88e7d39c39b839c2f73044f-c'
+      description: 'Göring-Eckardt is a German politician from the German Green Party. Starting her political activity in the now-former German Democratic Republic(East Germany) in the late 1980s, she has been a member of the German Bundestag since 1998',
+      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Katrin_Goring-Eckhardt_Cropped.jpg/220px-Katrin_Goring-Eckhardt_Cropped.jpg'
     }
   ]
 
@@ -155,56 +155,56 @@ async function seed () {
       arrayIndex: 0,
       description: `Lee Zeldin (b. January 30, 1980) is a Republican member of the U.S. House of Representatives, representing New York's 1st Congressional District. Zeldin was first elected to the House in 2014. Zeldin is currently the only Jewish Republican member of Congress.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Lee_Zeldin_new_official_portrait.jpg'
-    }, 
+    },
     {
-      name: 'Kathleen M. Rice', 
-      affiliation: 'Democrat', 
-      voteCount: 0, 
-      arrayIndex: 1, 
+      name: 'Kathleen M. Rice',
+      affiliation: 'Democrat',
+      voteCount: 0,
+      arrayIndex: 1,
       description: `Kathleen M. Rice (b. February 15, 1965, in New York City, N.Y.) is a Democratic member of the U.S. House of Representatives, representing New York's 4th Congressional District. Rice was first elected to the House in 2014.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Kathleen_M._Rice.jpg'
-    }, 
+    },
     {
-      name: 'Yvette D. Clark', 
-      affiliation: 'Democrat', 
-      voteCount: 0, 
-      arrayIndex: 2, 
+      name: 'Yvette D. Clark',
+      affiliation: 'Democrat',
+      voteCount: 0,
+      arrayIndex: 2,
       description: `Yvette D. Clarke (b. November 21, 1964, in Brooklyn, N.Y.) is a Democratic member of the United States House of Representatives representing New York's 9th Congressional District. Clarke was first elected to the House in New York's 11th Congressional District in 2006. Due to redistricting, she ran in the 9th District in 2012.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Yvette_Clark.jpeg'
-    }, 
+    },
     {
-      name: 'Daniel M. Donovan, Jr', 
-      affiliation: 'Republican', 
-      voteCount: 0, 
+      name: 'Daniel M. Donovan, Jr',
+      affiliation: 'Republican',
+      voteCount: 0,
       arrayIndex: 3,
       description: `Daniel M. Donovan, Jr. (b. November 6, 1956, in Staten Island, New York) is a Republican member of the U.S. House representing the 11th Congressional District of New York. He was first elected in a special election on May 5, 2015.`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Dan_Donovan.jpg'
-    }, 
-    { 
-      name: 'Claudia Tenney', 
-      affiliation: 'Republican', 
-      voteCount: 0, 
-      arrayIndex: 4, 
+    },
+    {
+      name: 'Claudia Tenney',
+      affiliation: 'Republican',
+      voteCount: 0,
+      arrayIndex: 4,
       description: `Claudia Tenney is a Republican member of the U.S. House representing the 22nd Congressional District of New York. Tenney was first elected to the House in 2016.`,
       imageURL: `https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Claudia_Tenney,_115th_official_photo-7.jpg`
-    }, 
+    },
     {
-      name: 'Hakeem Jeffries', 
-      affiliation: 'Democrat', 
-      voteCount: 0, 
-      arrayIndex: 5, 
+      name: 'Hakeem Jeffries',
+      affiliation: 'Democrat',
+      voteCount: 0,
+      arrayIndex: 5,
       description: `Hakeem Jeffries (b. August 4, 1970, in Crown Heights, N.Y.) is a Democratic member of the United States House of Representatives representing New York's 8th Congressional District. Jeffries was first elected to the House on November 6, 2012.`,
       imageURL: `https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/HakeemJeffries.jpg`
-    }, 
+    },
     {
-      name: 'Nydia Velazquez', 
-      affiliation: 'Democrat', 
-      voteCount: 0, 
-      arrayIndex: 6, 
+      name: 'Nydia Velazquez',
+      affiliation: 'Democrat',
+      voteCount: 0,
+      arrayIndex: 6,
       description: `Nydia Velazquez (b. March 28, 1958, in Yabucoa, PR) is a Democratic member of the United States House of Representatives representing New York's 7th Congressional District. Velázquez was first elected to the House in 1992`,
       imageURL: 'https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Nydia_Velazquez.jpg'
     }
-  ]; 
+  ];
 
   // const candidates = await Promise.all(
   //   candidatesList.map(candidate => Candidate.create(candidate))
@@ -223,9 +223,9 @@ async function seed () {
 
   const upcomingCandidates = await Promise.all(
     upcomingCandidatesList.map(candidate => Candidate.create(candidate))
-  ); 
-  
-  console.log(`seeded ${upcomingCandidates.length} candidates`); 
+  );
+
+  console.log(`seeded ${upcomingCandidates.length} candidates`);
 
   // -- COMMUNITIES --
 
@@ -294,24 +294,12 @@ async function seed () {
 
   console.log(`seeded ${pastElections.length} elections`);
 
-
-
-  // const addElectionsToCommunities = await Promise.all([
-  //   Election.findById(1).then(election => election.setCommunity(3)),
-  //   Election.findById(2).then(election => election.setCommunity(3)),
-  //   Election.findById(3).then(election => election.setCommunity(3))
-  // ]);
-
-
-
   const activeElectionInfo = {
-    name: 'Earth\'s Philosopher Queen',
+    name: 'German Federal Election 2017',
     startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
-    endDate: 'Sun May 25 2018 08:00:00 EST-0400 (EST)',
+    endDate: 'Sun August 30 2018 08:00:00 EST-0400 (EST)',
     blockchainAddress: '0xb571C21E823026A26A49081e4d9ECa54f6D2166A'
   };
-
-
 
   const activeElection = await Election.create(activeElectionInfo);
 
@@ -346,17 +334,17 @@ async function seed () {
       endDate: 'Thurs June 07 2018 18:00:00 EST-0400 (EST)',
       blockchainAddress: '0xBF0C74eEB0166d1E4291e5ebEFA9f3923f18fFd8'
     }
-  ]; 
+  ];
 
   const upcomingElections = await Promise.all(
     upcomingElectionsList.map(election => Election.create(election))
-  ); 
+  );
 
   const addCandidatesToUpcomingElections = await Promise.all([
-    Candidate.findById(15).then(candidate => candidate.setElection(4)), 
-    Candidate.findById(16).then(candidate => candidate.setElection(4)), 
-    Candidate.findById(17).then(candidate => candidate.setElection(4)), 
-    Candidate.findById(18).then(candidate => candidate.setElection(5)), 
+    Candidate.findById(15).then(candidate => candidate.setElection(4)),
+    Candidate.findById(16).then(candidate => candidate.setElection(4)),
+    Candidate.findById(17).then(candidate => candidate.setElection(4)),
+    Candidate.findById(18).then(candidate => candidate.setElection(5)),
     Candidate.findById(19).then(candidate => candidate.setElection(5)),
     Candidate.findById(20).then(candidate => candidate.setElection(5)),
     Candidate.findById(21).then(candidate => candidate.setElection(5)),
@@ -367,7 +355,7 @@ async function seed () {
     Election.findById(5).then(election => election.setCommunity(3))
   ])
 
-  console.log(`seeded ${upcomingElections.length} elections`); 
+  console.log(`seeded ${upcomingElections.length} elections`);
 
 }
 

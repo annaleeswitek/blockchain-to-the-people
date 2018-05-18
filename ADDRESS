@@ -88,19 +88,25 @@ Rear Admiral Dr. Grace Hopper
  Grace Hopper was one of the most accomplished women in computer science. She held a Ph.D. in mathematics and taught at Vassar until she joined the Navy during World War II. She served in the Naval Reserves for most of her life, eventually achieving the rank of Rear Admiral.
 
 
-//Upcoming
-Lee Zeldin
-(b. January 30, 1980) is a Republican member of the U.S. House of Representatives, representing New York's 1st Congressional District. Zeldin was first elected to the House in 2014. Zeldin is currently the only Jewish Republican member of Congress.
-https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Lee_Zeldin_new_official_portrait.jpg
 
-Kathleen M. Rice
-(b. February 15, 1965, in New York City, N.Y.) is a Democratic member of the U.S. House of Representatives, representing New York's 4th Congressional District. Rice was first elected to the House in 2014.
-https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Kathleen_M._Rice.jpg
+FOR DEMO SCREENCAST:
 
-Yvette D. Clarke
-(b. November 21, 1964, in Brooklyn, N.Y.) is a Democratic member of the United States House of Representatives representing New York's 9th Congressional District. Clarke was first elected to the House in New York's 11th Congressional District in 2006. Due to redistricting, she ran in the 9th District in 2012.
-https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Yvette_Clark.jpeg
+ADD CANDIDATE
 
-Daniel M. Donovan, Jr.
-(b. November 6, 1956, in Staten Island, New York) is a Republican member of the U.S. House representing the 11th Congressional District of New York. He was first elected in a special election on May 5, 2015.
-https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Dan_Donovan.jpg
+NAME: Yvette D. Clarke
+DESCRIPTION: is a Democratic member of the United States House of Representatives representing New York's 9th Congressional District.
+IMAGE: https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/Yvette_Clark.jpeg
+AFFILIATION: Democratic
+Election Name: select 1st (24);
+
+CREATE ELECTION
+
+Governor and Lieutenant Governor of New York
+NY is one of 36 states holding an election for governor in 2018
+November 6, 2018
+8 AM to 8 PM
+
+Andrew Cuomo
+is the 56th and current governor of New York.
+Democrat
+https://api.ballotpedia.org/v3/thumbnail/200/300/crop/best/AndrewCuomo2015.png
