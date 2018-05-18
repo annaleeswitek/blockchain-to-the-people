@@ -162,7 +162,7 @@ class CreateCandidate extends Component {
             : null }
             <Snackbar
                 open={this.state.open}
-                message="Click 'submit' in MetaMask to add your vote to the blockchain! It'll take a minute!"
+                message="Click 'submit' in MetaMask to add your candidate to the election! It'll take a minute!"
                 autoHideDuration={10000}
                 onRequestClose={this.handleRequestClose}
               />
