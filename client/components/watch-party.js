@@ -23,7 +23,7 @@ class WatchParty extends Component {
   }
 
     async componentDidMount () {
-      setTimeout(this.toggleView, 50);
+      setTimeout(this.toggleView, 100);
     this.election = await Election(this.props.blockchainAddress);
     const userCommunityId = this.props.user.communityId;
     this.props.getActiveElection(userCommunityId);

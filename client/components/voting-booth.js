@@ -84,7 +84,7 @@ class VotingBooth extends Component {
       })
       .then(voteReceipt => {
         console.log('VOTING BOOTH voteReciept', voteReceipt);
-        alert('Congratulations! You vote has been cast!');
+        alert('Congratulations! Your vote has been cast!');
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
