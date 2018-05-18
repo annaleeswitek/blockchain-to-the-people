@@ -84,7 +84,7 @@ class UserHome extends Component {
           <hr />
           <br />
           <h2 className="header">Upcoming Elections</h2>
-           <div className="upcoming-election-box">
+           <div className="upcoming-election-box"> 
               {
                 upcomingElections.length
                 ? upcomingElections.map(election => {
@@ -92,39 +92,29 @@ class UserHome extends Component {
                     let endDate = moment(election.endDate).format('dddd, MMMM Do YYYY, h:mm:ss a');
                     return (
                       <div key={election.id}>
-                        <h2 style={styles.headline}>
-                        {election.name}</h2>
+                        <h2 style={styles.headline}>{election.name}</h2>
                         <h5>{election.description}</h5>
                         <h5>From: {startDate}</h5>
                         <h5>To: {endDate}</h5>
+                        { election.candidates.length ? election.candidates.map(candidate => {
+                          return (
+                              <div className="candidate-box">
+                              <div style={styles.headline}>{candidate.name}</div>
+                              <div><img src={candidate.imageURL} /></div>
+                              <br />
+                              <div>{candidate.description}</div>
+                              </div> 
+                            )
+                          }) : <div>There are no candidates in this upcoming election</div> }
                       </div>
                     )
                   })
                 : <div>There are no upcoming elections in your community!</div>
-              }
-            </div>
-
-             <h2 className="header">Upcoming Election Candidates</h2>
-            <div className="active-candidates-wrapper">
-              {
-                upcomingElections && upcomingElections.candidates
-                ? upcomingElections.candidates.map(candidate => {
-                  return (
-                    <div className="candidate-box">
-                      <div style={styles.headline}>{candidate.name}</div>
-                      <div><img src={candidate.imageURL} /></div>
-                      <br />
-                      <div>{candidate.description}</div>
-                    </div>
-                  )
-                })
-                : <div>There are no candidates in this active election!</div>
-                }
+              } 
             </div>
           <br />
           <hr />
           <br />
-
       </div>
     )
   }
