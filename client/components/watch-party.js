@@ -24,10 +24,9 @@ class WatchParty extends Component {
 
     async componentDidMount () {
       setTimeout(this.toggleView, 100);
-    this.election = await Election(this.props.blockchainAddress);
-    const userCommunityId = this.props.user.communityId;
-    this.props.getActiveElection(userCommunityId);
-    console.log('this.props.state', this.props.state);
+      const userCommunityId = await this.props.user.communityId;
+      this.election = await Election(this.props.blockchainAddress);
+      await this.props.getActiveElection(userCommunityId);
   }
 
   toggleView = () => {
@@ -39,6 +38,9 @@ class WatchParty extends Component {
 
   render () {
     let activeElection = this.props.activeElection;
+    let candidates = this.props.candidates; 
+    console.log(candidates);
+    
     return (
       <div className="watchParty-wrapper">
           {

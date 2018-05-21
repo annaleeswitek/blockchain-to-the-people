@@ -96,56 +96,56 @@ async function seed () {
       arrayIndex: 1
     },
   ]
-  const activeCandidatesList = [
-    {
-      name: 'Angela Merkel',
-      affiliation: 'CDU/CSU',
-      voteCount: 0,
-      arrayIndex: 0,
-      description: "Merkel is a German politician serving as Chancellor of Germany since 2005 and leader of the centre-right Christian Democratic Union (CDU) since 2000.[7] Merkel has been widely described as the de facto leader of the European Union, the most powerful woman in the world, and the leader of the Free World.",
-      imageURL:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Angela_Merkel._Tallinn_Digital_Summit.jpg/220px-Angela_Merkel._Tallinn_Digital_Summit.jpg'
-    },
-    {
-      name: 'Martin Schultz',
-      affiliation: 'SPD',
-      voteCount: 0,
-      arrayIndex: 1,
-      description: 'Schultz is a German politician who was previously President of the European Parliament from 2012 to 2017, Leader of the Progressive Alliance of Socialists and Democrats from 2004 to 2012 and a Member of the European Parliament (MEP) from Germany from 1994 to 2017',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2017-09-14_Martin_Schulz_SPD_9489.jpg/220px-2017-09-14_Martin_Schulz_SPD_9489.jpg'
-    },
-    {
-      name: 'Alice Weidel',
-      affiliation: 'AfD',
-      voteCount: 0,
-      arrayIndex: 2,
-      description: 'Weidel is the first lesbian to serve as a lead candidate of her party, which opposes same-sex marriage and adoptions.',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/2017-11-29-Alice_Weidel-Maischberger-5664.jpg/220px-2017-11-29-Alice_Weidel-Maischberger-5664.jpg'
-    },
-    {
-      name: 'Christian Linder',
-      affiliation: 'FDP',
-      voteCount: 0,
-      arrayIndex: 3,
-      description: 'Linder is a German politician, member of the Bundestag and leader of the liberal Free Democratic Party of Germany. Lindner joined the FDP in 1995. He has been a member of the Executive Board of the FDP in the state of North Rhine-Westphalia since 1998 and became Secretary General in 2004 (until February 2010).',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ChristianLindner-FDP-1_%28cropped_1%29.jpg/1024px-ChristianLindner-FDP-1_%28cropped_1%29.jpg'
-    },
-    {
-      name: 'Sahra Wagenknecht',
-      affiliation: 'The Left',
-      voteCount: 0,
-      arrayIndex: 4,
-      description: 'Wagenknecht is a German left-wing politician, economist, author and publicist. She is with Dietmar Bartsch parliamentary chairperson of Die Linke. Since 2009, she has been a member of the Bundestag.',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/14-09-11-Sarah-Wagenknecht-RalfR-008.jpg/1024px-14-09-11-Sarah-Wagenknecht-RalfR-008.jpg'
-    },
-    {
-      name: 'Katrin Göring-Eckardt',
-      affiliation: 'Green',
-      voteCount: 0,
-      arrayIndex: 5,
-      description: 'Göring-Eckardt is a German politician from the German Green Party. Starting her political activity in the now-former German Democratic Republic(East Germany) in the late 1980s, she has been a member of the German Bundestag since 1998',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Katrin_Goring-Eckhardt_Cropped.jpg/220px-Katrin_Goring-Eckhardt_Cropped.jpg'
-    }
-  ]
+  // const activeCandidatesList = [
+  //   {
+  //     name: 'Angela Merkel',
+  //     affiliation: 'CDU/CSU',
+  //     voteCount: 0,
+  //     arrayIndex: 0,
+  //     description: "Merkel is a German politician serving as Chancellor of Germany since 2005 and leader of the centre-right Christian Democratic Union (CDU) since 2000.[7] Merkel has been widely described as the de facto leader of the European Union, the most powerful woman in the world, and the leader of the Free World.",
+  //     imageURL:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Angela_Merkel._Tallinn_Digital_Summit.jpg/220px-Angela_Merkel._Tallinn_Digital_Summit.jpg'
+  //   },
+  //   {
+  //     name: 'Martin Schultz',
+  //     affiliation: 'SPD',
+  //     voteCount: 0,
+  //     arrayIndex: 1,
+  //     description: 'Schultz is a German politician who was previously President of the European Parliament from 2012 to 2017, Leader of the Progressive Alliance of Socialists and Democrats from 2004 to 2012 and a Member of the European Parliament (MEP) from Germany from 1994 to 2017',
+  //     imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2017-09-14_Martin_Schulz_SPD_9489.jpg/220px-2017-09-14_Martin_Schulz_SPD_9489.jpg'
+  //   },
+  //   {
+  //     name: 'Alice Weidel',
+  //     affiliation: 'AfD',
+  //     voteCount: 0,
+  //     arrayIndex: 2,
+  //     description: 'Weidel is the first lesbian to serve as a lead candidate of her party, which opposes same-sex marriage and adoptions.',
+  //     imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/2017-11-29-Alice_Weidel-Maischberger-5664.jpg/220px-2017-11-29-Alice_Weidel-Maischberger-5664.jpg'
+  //   },
+  //   {
+  //     name: 'Christian Linder',
+  //     affiliation: 'FDP',
+  //     voteCount: 0,
+  //     arrayIndex: 3,
+  //     description: 'Linder is a German politician, member of the Bundestag and leader of the liberal Free Democratic Party of Germany. Lindner joined the FDP in 1995. He has been a member of the Executive Board of the FDP in the state of North Rhine-Westphalia since 1998 and became Secretary General in 2004 (until February 2010).',
+  //     imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/ChristianLindner-FDP-1_%28cropped_1%29.jpg/1024px-ChristianLindner-FDP-1_%28cropped_1%29.jpg'
+  //   },
+  //   {
+  //     name: 'Sahra Wagenknecht',
+  //     affiliation: 'The Left',
+  //     voteCount: 0,
+  //     arrayIndex: 4,
+  //     description: 'Wagenknecht is a German left-wing politician, economist, author and publicist. She is with Dietmar Bartsch parliamentary chairperson of Die Linke. Since 2009, she has been a member of the Bundestag.',
+  //     imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/14-09-11-Sarah-Wagenknecht-RalfR-008.jpg/1024px-14-09-11-Sarah-Wagenknecht-RalfR-008.jpg'
+  //   },
+  //   {
+  //     name: 'Katrin Göring-Eckardt',
+  //     affiliation: 'Green',
+  //     voteCount: 0,
+  //     arrayIndex: 5,
+  //     description: 'Göring-Eckardt is a German politician from the German Green Party. Starting her political activity in the now-former German Democratic Republic(East Germany) in the late 1980s, she has been a member of the German Bundestag since 1998',
+  //     imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Katrin_Goring-Eckhardt_Cropped.jpg/220px-Katrin_Goring-Eckhardt_Cropped.jpg'
+  //   }
+  // ]
 
   const upcomingCandidatesList = [
     {
@@ -215,11 +215,11 @@ async function seed () {
   )
 
   console.log(`seeded ${pastCandidates.length} candidates`);
-  const activeCandidates = await Promise.all(
-    activeCandidatesList.map(candidate => Candidate.create(candidate))
-  );
+  // const activeCandidates = await Promise.all(
+  //   activeCandidatesList.map(candidate => Candidate.create(candidate))
+  // );
 
-  console.log(`seeded ${activeCandidates.length} activeCandidates`);
+  // console.log(`seeded ${activeCandidates.length} activeCandidates`);
 
   const upcomingCandidates = await Promise.all(
     upcomingCandidatesList.map(candidate => Candidate.create(candidate))
@@ -294,32 +294,32 @@ async function seed () {
 
   console.log(`seeded ${pastElections.length} elections`);
 
-  const activeElectionInfo = {
-    name: 'German Federal Election 2017',
-    startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
-    endDate: 'Sun August 30 2018 08:00:00 EST-0400 (EST)',
-    blockchainAddress: '0xb571C21E823026A26A49081e4d9ECa54f6D2166A'
-  };
+  // const activeElectionInfo = {
+  //   name: 'German Federal Election 2017',
+  //   startDate: 'Sat May 09 2018 08:00:00 EST-0400 (EST)',
+  //   endDate: 'Sun August 30 2018 08:00:00 EST-0400 (EST)',
+  //   blockchainAddress: '0xb571C21E823026A26A49081e4d9ECa54f6D2166A'
+  // };
 
-  const activeElection = await Election.create(activeElectionInfo);
+  // const activeElection = await Election.create(activeElectionInfo);
 
-  const addCandidatesToActiveElection = await Promise.all([
-    Candidate.findById(9).then(candidate => candidate.setElection(3)),
-    Candidate.findById(10).then(candidate => candidate.setElection(3)),
-    Candidate.findById(11).then(candidate => candidate.setElection(3)),
-    Candidate.findById(12).then(candidate => candidate.setElection(3)),
-    Candidate.findById(13).then(candidate => candidate.setElection(3)),
-    Candidate.findById(14).then(candidate => candidate.setElection(3)),
-  ]);
+  // const addCandidatesToActiveElection = await Promise.all([
+  //   Candidate.findById(9).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(10).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(11).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(12).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(13).then(candidate => candidate.setElection(3)),
+  //   Candidate.findById(14).then(candidate => candidate.setElection(3)),
+  // ]);
 
-  const addActiveElectionToCommunity =await Promise.all([
-      Election.findById(1).then(election => election.setCommunity(3)),
-      Election.findById(2).then(election => election.setCommunity(3)),
-      Election.findById(3).then(election => election.setCommunity(3)),
-    ])
+  // const addActiveElectionToCommunity =await Promise.all([
+  //     Election.findById(1).then(election => election.setCommunity(3)),
+  //     Election.findById(2).then(election => election.setCommunity(3)),
+  //     Election.findById(3).then(election => election.setCommunity(3)),
+  //   ])
 
 
-  console.log(`seeded active election!`);
+  // console.log(`seeded active election!`);
 
   const upcomingElectionsList = [
     {

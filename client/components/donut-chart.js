@@ -15,7 +15,7 @@ class DonutChart extends Component {
       idx++
       return dataObj;
     }) : null
-    console.log('Here is data! ', data);
+    
     return (
         <div className="chart-wrapper">
           <PieChart width={1000} height={1000}>

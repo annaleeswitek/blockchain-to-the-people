@@ -40,8 +40,6 @@ class VotingBooth extends Component {
   async componentDidMount() {
     this.props.getActiveElection(this.props.user.communityId);
     this.election = await Election(this.props.blockchainAddress);
-    console.log('election came back', this.election);
-
     const newVoteEvent = await this.election.events.CandidateLog();
     window.election = this.election
     window.nve = newVoteEvent
@@ -64,16 +62,21 @@ class VotingBooth extends Component {
   }
 
   handleChange(evt) {
-    this.selectedCandidateArrayIndex = evt.target.value;
-    console.log("HERE is EVT target val", evt.target.value)
+    console.log('DOES CANDIDATE ID GET HERE? '); 
+    console.log('HERE IS EVT TARGET VAL', evt.target.value); 
+    //expect CODE to come here, 
+    // this.selectedCandidateArrayIndex = evt.target.value;
+    // console.log("HERE is EVT target val", evt.target.value)
     this.setState({[evt.target.name]: evt.target.value});
   }
 
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
+    console.log('here is state BEFORE we deal with blockchain: ', this.state);
     //equal in find needs to be double, not triple, equal
-    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.selectedCandidateArrayIndex);
+    const selectedCandidate = this.props.candidates.find(candidate => candidate.arrayIndex == this.state.arrayIndex);
+    console.log("what is up with this selectedCandidate thing :", selectedCandidate); 
 
     web3.eth.getAccounts()
     .then(accounts => {
@@ -83,9 +86,17 @@ class VotingBooth extends Component {
         //equivalent to udemy would be --> value: this.state.arrayIndex
       })
       .then(voteReceipt => {
-        console.log('VOTING BOOTH voteReciept', voteReceipt);
+       
+        console.log("TESTING STATE INPUT");
+        console.log('DIS IS WHAT WE GOT FROM STATE', this.state); 
         alert('Congratulations! Your vote has been cast!');
         const candidateLog = voteReceipt.events.CandidateLog.returnValues;
+        console.log('VOTING BOOTH voteReciept', voteReceipt);
+        console.log('DIS IS WHAT WE GOT FROM AND SENT TO BLOCKCHAIN', { 
+          count: candidateLog.count,
+          index: candidateLog.index, 
+          name: candidateLog.name, 
+        })
         this.props.sendNewVote({count: candidateLog.count, index: candidateLog.index, name: candidateLog.name}, selectedCandidate.id);
         socket.emit('newVote', {count: candidateLog.count, index: candidateLog.index, name: candidateLog.name});
         this.setState({ isLoading: false, open: false });
@@ -106,6 +117,9 @@ class VotingBooth extends Component {
             <h1>{activeElection.name}</h1>
             <h4>The voting period ends at {moment(activeElection.endDate).format('dddd, MMMM Do YYYY, h:mm a')}</h4>
             <h3>Please cast your vote here.</h3>
+           
+            <form className="ballot" onSubmit={this.handleSubmit}>
+            <div className="ballot-wrapper">
             <TextField
                 floatingLabelText="election code"
                 errorText="This field is required"
@@ -113,8 +127,7 @@ class VotingBooth extends Component {
                 name="code"
                 onChange={this.handleChange}
             /><br />
-            <form className="ballot" onSubmit={this.handleSubmit}>
-            <div className="ballot-wrapper">
+            
             {
               this.props.candidates
               ? this.props.candidates.map(candidate => {
@@ -125,6 +138,7 @@ class VotingBooth extends Component {
                     <h4>{candidate.affiliation}</h4>
                     <Checkbox
                     onCheck={this.handleChange}
+                    name="arrayIndex" 
                     value={candidate.arrayIndex}
                     className="flexBallot"
                     style={style.checkbox}
@@ -184,13 +198,3 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(VotingBooth);
 
-// { this.state.isLoading ?
-//   <Dialog
-//     title="Transaction Pending"
-//     open={this.state.open}
-//   >
-//   <CircularProgress size={30} thickness={5}/>
-//   <h1>Your vote is being added to the blockchain.</h1>
-//   </Dialog>
-
-//   : null }

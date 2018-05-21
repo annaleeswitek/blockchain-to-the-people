@@ -68,6 +68,7 @@ contract Election {
     require(voterCode == _code); //they have the code that allows them to vote
     require(!voters[msg.sender].voted); //they haven't voted yet
     // voters[msg.sender].voted = true;
+    Candidate storage candidate = candidates[candidateIndex]; 
     voters[msg.sender].vote = candidateIndex;
     candidates[candidateIndex].count++;
 

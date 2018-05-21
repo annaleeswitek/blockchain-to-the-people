@@ -69,7 +69,7 @@ class UserHome extends Component {
                 activeElection && activeElection.candidates
                 ? activeElection.candidates.map(candidate => {
                   return (
-                    <div className="candidate-box">
+                    <div key={candidate.id} className="candidate-box">
                       <div style={styles.headline}>{candidate.name}</div>
                       <div><img src={candidate.imageURL} /></div>
                       <br />
