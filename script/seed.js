@@ -291,6 +291,11 @@ async function seed () {
     Candidate.findById(7).then(candidate => candidate.setElection(2)),
     Candidate.findById(8).then(candidate => candidate.setElection(2)),
   ]);
+  
+  const addPastElectionToCommunity =await Promise.all([
+      Election.findById(1).then(election => election.setCommunity(3)),
+      Election.findById(2).then(election => election.setCommunity(3)),
+    ])
 
   console.log(`seeded ${pastElections.length} elections`);
 
@@ -341,18 +346,18 @@ async function seed () {
   );
 
   const addCandidatesToUpcomingElections = await Promise.all([
+    Candidate.findById(9).then(candidate => candidate.setElection(3)),
+    Candidate.findById(10).then(candidate => candidate.setElection(3)),
+    Candidate.findById(11).then(candidate => candidate.setElection(3)),
+    Candidate.findById(12).then(candidate => candidate.setElection(4)),
+    Candidate.findById(13).then(candidate => candidate.setElection(4)),
+    Candidate.findById(14).then(candidate => candidate.setElection(4)),
     Candidate.findById(15).then(candidate => candidate.setElection(4)),
-    Candidate.findById(16).then(candidate => candidate.setElection(4)),
-    Candidate.findById(17).then(candidate => candidate.setElection(4)),
-    Candidate.findById(18).then(candidate => candidate.setElection(5)),
-    Candidate.findById(19).then(candidate => candidate.setElection(5)),
-    Candidate.findById(20).then(candidate => candidate.setElection(5)),
-    Candidate.findById(21).then(candidate => candidate.setElection(5)),
   ])
 
   const addUpcomingElectionsToCommunity =await Promise.all([
-    Election.findById(4).then(election => election.setCommunity(3)),
-    Election.findById(5).then(election => election.setCommunity(3))
+    Election.findById(3).then(election => election.setCommunity(3)),
+    Election.findById(4).then(election => election.setCommunity(3))
   ])
 
   console.log(`seeded ${upcomingElections.length} elections`);
