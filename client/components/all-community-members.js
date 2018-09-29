@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCommunityMembers, postMemberEmail } from '../store/community';
-import { List, TextField, RaisedButton } from 'material-ui';
+import { TextField, RaisedButton } from 'material-ui';
 import moment from 'moment';
 
 const buttonStyle = {

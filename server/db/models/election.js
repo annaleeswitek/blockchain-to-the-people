@@ -17,7 +17,7 @@ const Election = db.define('election', {
   },
   endDate: {
     type: Sequelize.DATE,
-    validate: { //not sure if this works
+    validate: {
       isAfterStart: function(endDate) {
         if (this.startDate.getTime() > endDate.getTime()) {
           throw new Error('End date must be after the start date!');
