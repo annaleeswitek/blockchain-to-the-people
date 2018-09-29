@@ -30,8 +30,6 @@ A smart contract is a contract that is defined by code-- i.e., it will be execut
 * Solidity
 * Metamask
 * Web3
-* Truffle
-* Ganache
 
 ## Contributors
 
